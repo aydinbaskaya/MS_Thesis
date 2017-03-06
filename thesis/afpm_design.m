@@ -6,6 +6,7 @@
 %% [V_ph_rms] Voltage per phase(rms) calculation
 
 %% ----------Definition of the parameters/variables----------
+
 % E_ph_rms: induced emf per phase(rms), lamda: load angle, phi: power factor angle, I_ph_rms: phase current(rms), R_ph_th: phase resistance(included thermal effects), X_ph: phase reactance value
 % E_ph_peak: induced emf per phase(peak)
 % e:induced emf of one turn,  Nt:number of turns in a coil, N_series: number of coils connnected in series
@@ -22,6 +23,7 @@
 % Nc: number of coils, m: number of phases
 
 %% Calculation part
+
 coil_phase=Nc/m; 
 N_series=coil_phase/n_branch; 
 width_winding=pitch_ratio*tau_c; 
@@ -43,3 +45,42 @@ E_ph_rms=E_ph_peak/sqrt(2);
 V_ph_rms = E_ph_rms*cosd(lambda)-I_ph_rms(R_ph_th*cosd(phi)+X_ph*sind(phi)) ;  %%Resulting equation
 
 %--------------------------------------------------------------------------------------------------------------------------
+
+
+%--------------------------------------------------------------------------------------------------------------------------
+%% [I_ph_rms] Current per phase(rms) calculation
+
+%% ----------Definition of the parameters/variables----------
+
+%I_coil : current in one coil
+% J:curent density, a_cond=cross section area of the conductor 
+% a_window: effective area of winding window
+%h_w : height of the winding,  kf: fill factor(1 for concentrated windings)
+
+%% Calculation part
+
+width_winding=pitch_ratio*tau_c;
+a_window=h_w*width_winding*kf; 
+a_cond=a_window/Nt;  
+I_coil=J*a_cond*1000000; 
+I_ph_rms= I_coil*n_branch;  %%Resulting equation
+
+%------------------------------------------------------------------------------------------------------------------------------
+
+
+%--------------------------------------------------------------------------------------------------------------------------
+%% [P_o] Power output calculation
+
+%% ----------Definition of the parameters/variables----------
+
+% V_ph_rms : Voltage per phase(rms)
+% I_ph_rms : Current per phase(rms)
+% m : number of phases 
+
+%% Calculation part
+
+P_o= m*V_ph_rms*I_ph_rms; 
+
+%---------------------------------------------------------------------------------------------------------------------------
+
+
