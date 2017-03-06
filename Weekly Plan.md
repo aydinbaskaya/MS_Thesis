@@ -18,6 +18,22 @@
 ### 27 Şubat- 5 Mart
 
 * Matlabda tasarım denklemleri çalışmalarına başlanacak
+<br/> - [ ] ---> tasarım denklemlerine başlandı,ilerleme oldukça .m dosyaları githuba yükleniyor.
+
 * Tezin introduction kısmının yazımına başlanacak
-* Powerlab Journal Club & haftalık seminer 
+<br/> - [ ] ---> yazıma başlandı, bu bölümle ilgili bir versiyon githuba yüklendi.
+
+* Powerlab Journal Club & haftalık seminer
+<br/> - [ ] ---> Bu hafta ikise de yapılamadı, ancak 7 mart tarihli "The state of the art of wind energy conversion systems and technologies: A review" makalesi incelendi.
+
 * Mendeley ayıklamasına devam, ayrıca çok güncel makaleler için de alarm oluşturularak takibi yapılacak.
+<br/> - [ ] ---> Mendeley/Powerlab klasörüne ilginç ve tezle ilgili makaleler yüklenmeye devam edildi. Ayrıca önceki haftalarda belirtilen anahtar kelimeler için Google Scholar alarmı oluşturuldu. 
+
+
+### 6-12 Mart
+
+* Matlab tasarım denklemlerine devam edilecek.
+* Tezin introduction kısmı geliştirilmeye devam edilecek.
+* Powerlab Journal Club & haftalık seminer(14 mart makalesi incelenek)
+* Grauers A , "Design of Direct-driven Permanent-magnet Generators for Wind Turbines" tezi okunacak.(Bir kopyası Mendeley/Powerlab'a yüklendi.)
+
