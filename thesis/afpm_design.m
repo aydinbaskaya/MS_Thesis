@@ -7,7 +7,7 @@
 
 %% ----------Definition of the parameters/variables----------
 
-% E_ph_rms: induced emf per phase(rms), lamda: load angle, phi: power factor angle, I_ph_rms: phase current(rms), R_ph_th: phase resistance(included thermal effects), X_ph: phase reactance value
+% E_ph_rms: induced emf per phase(rms), lamda: load angle, phi: power factor angle, I_ph_rms: phase current(rms), R_ph_th: phase resistance(including thermal effects), X_ph: phase reactance value
 % E_ph_peak: induced emf per phase(peak)
 % e:induced emf of one turn,  Nt:number of turns in a coil, N_series: number of coils connnected in series
 % v: air-gap linear speed, flux_lnk_peak : peak flux linkage , tau_p : pole pitch
@@ -24,6 +24,16 @@
 
 %% Calculation part
 
+f=rpm/60*Np/2 ; 
+w_e=2*pi*f ; % f: frequency
+X_ph=w_e*L_coil*(N_series/n_branch); % w_e : electrical angle, L_coil: coil inductance
+l_coil_structure=(r_mean+0.5*(l_magnet+width_winding))*2*pi/Nc;
+l_coil_middle=l_magnet+width_winding; 
+l_coil_end=(r_mean-0.5*(l_magnet+width_winding))*2*pi/Nc; 
+l_t=l_coil_end+2*l_coil_middle+l_coil_structure-2*width_winding; % l_coil_end: coil end length, l_coil_middle: coil middle part length, l_coil_structure: coil structure part length  
+R_coil=rho*l_t*Nt/a_cond; % rho: copper resistivity coefficient, l_t: mean turn length 
+R_amb=R_coil*N_series/n_branch % R_coil: coil resistance 
+R_ph_th=R_amb*(1+alpha_Cu*dT); % R_amb: resistance value at ambient temperature, alpha_Cu: temperature coefficent at 20 Celcius degree , dT: temperature difference
 coil_phase=Nc/m; 
 N_series=coil_phase/n_branch; 
 width_winding=pitch_ratio*tau_c; 
@@ -79,8 +89,10 @@ I_ph_rms= I_coil*n_branch;  %%Resulting equation
 
 %% Calculation part
 
-P_o= m*V_ph_rms*I_ph_rms; 
+P_o= m*V_ph_rms*I_ph_rms; %%Resulting equation
 
 %---------------------------------------------------------------------------------------------------------------------------
+
+
 
 
