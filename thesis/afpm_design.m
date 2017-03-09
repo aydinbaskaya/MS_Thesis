@@ -21,19 +21,36 @@
 % pitch_ratio: winding thickness/coil pitch ratio
 % coil_phase:number of coils per phase, n_branch: number of parallel branches 
 % Nc: number of coils, m: number of phases
+% R_amb: resistance value at ambient temperature, alpha_Cu: temperature coefficent at 20 Celcius degree , dT: temperature difference
+% R_coil: coil resistance
+% rho: copper resistivity coefficient, l_t: mean turn length 
+% l_coil_end: coil end length, l_coil_middle: coil middle part length, l_coil_structure: coil structure part length  
+% f: frequency
+% k_ind: inductance coefficient(take 1 for no leakage path assumption), flux_lnk: flux linkage
+% B_a: flux density for inductance calculation
+% mu_0: permeability of vacuum=constant , l_ss: steel to steel distance
+% l_mm: magnet to magnet gap,h_m: height of the magnet , groove: space between c-cores(take 0 for this design)
+% h_w: height of the winding, g: air-gap clearence
 
 %% Calculation part
 
+l_mm=h_w+2*g ; 
+l_ss=l_mm+(h_m-groove) ;  
+mu_0=1.257E-06 ; 
+B_a=mu_0*Nt/l_ss ; 
+flux_lnk=(2*B_a*Nt*((0.5*(r_o^2-r_i^2)*tand(theta_o))-(width_winding*l_magnet)))+(2*B_a*Nt*width_winding*l_magnet/3)  
+k_ind=1; % constant
+L_coil= k_ind*flux_lnk ; 
 f=rpm/60*Np/2 ; 
-w_e=2*pi*f ; % f: frequency
-X_ph=w_e*L_coil*(N_series/n_branch); % w_e : electrical angle, L_coil: coil inductance
+w_e=2*pi*f ; 
+X_ph=w_e*L_coil*(N_series/n_branch); 
 l_coil_structure=(r_mean+0.5*(l_magnet+width_winding))*2*pi/Nc;
 l_coil_middle=l_magnet+width_winding; 
 l_coil_end=(r_mean-0.5*(l_magnet+width_winding))*2*pi/Nc; 
-l_t=l_coil_end+2*l_coil_middle+l_coil_structure-2*width_winding; % l_coil_end: coil end length, l_coil_middle: coil middle part length, l_coil_structure: coil structure part length  
-R_coil=rho*l_t*Nt/a_cond; % rho: copper resistivity coefficient, l_t: mean turn length 
-R_amb=R_coil*N_series/n_branch % R_coil: coil resistance 
-R_ph_th=R_amb*(1+alpha_Cu*dT); % R_amb: resistance value at ambient temperature, alpha_Cu: temperature coefficent at 20 Celcius degree , dT: temperature difference
+l_t=l_coil_end+2*l_coil_middle+l_coil_structure-2*width_winding; 
+R_coil=rho*l_t*Nt/a_cond; 
+R_amb=R_coil*N_series/n_branch  
+R_ph_th=R_amb*(1+alpha_Cu*dT); 
 coil_phase=Nc/m; 
 N_series=coil_phase/n_branch; 
 width_winding=pitch_ratio*tau_c; 
@@ -92,6 +109,31 @@ I_ph_rms= I_coil*n_branch;  %%Resulting equation
 P_o= m*V_ph_rms*I_ph_rms; %%Resulting equation
 
 %---------------------------------------------------------------------------------------------------------------------------
+
+
+%--------------------------------------------------------------------------------------------------------------------------
+%% [Eff] Efficiency calculation
+
+%% ----------Definition of the parameters/variables----------
+
+%ag_loss: airgap eddy loss content, leakage_loss: leakage eddy loss content
+% eddy_coil: sum of eddy losses both for air-gap flux and leakage flux , eddy_magnet: eddy loss due to magnet
+% P_copper_th: copper loss including thermal effects , P_eddy: eddy losses(coil+magnet)
+% P_loss: total loss(copper+eddy)
+
+%% Calculation part
+
+eddy_magnet= ... continue
+leakage_loss=0 % constant
+ag_loss= ...  continue
+eddy_coil=ag_loss+leakage_loss;  
+P_eddy=eddy_coil*Nc+eddy_magnet; 
+P_copper_th=m*(I_ph_rms*I_ph_rms)*R_ph_th ; 
+P_loss=P_copper_th+P_eddy ; 
+Eff=P_o/(P_o+P_loss) ; %%Resulting equation
+
+%---------------------------------------------------------------------------------------------------------------------------
+
 
 
 
