@@ -2,7 +2,37 @@
 %----------------------------------------------------------------------
 
 
+%% Variables defined in optimization part(user defined variables/constraints)
+
+% r_mean : mean radius
+% g: air-gap clearence 
+% rpm : rotational speed(rpm)
+
+% J : curent density
+
+% t_o : outer limb thickness
+% t_i : inner limb thickness
+% lc : steel web 
+% groove : space between c-cores
+% groove_c : gap between modules
+
+% Nt : number of turns in a coil
+% Np : number of poles
+% n_branch : number of parallel branches
+% m : number of phases
+
+% h_w : height of the winding
+% pitch_ratio: winding thickness/coil pitch ratio 
+% kf: fill factor(1 for concentrated windings)
+
+% h_m : height of the magnet
+% l_magnet : axial lenght of the magnet
+% width_ratio: Magnet/steel width ratio 
+% B_opt : Desired remanent flux density for the magnet 
+
 %-------------------------------------------------------------------------------------------------------
+
+
 %% [V_ph_rms] Voltage per phase(rms) calculation
 
 %% ----------Definition of the parameters/variables----------
@@ -12,7 +42,7 @@
 % e:induced emf of one turn,  Nt:number of turns in a coil, N_series: number of coils connnected in series
 % v: air-gap linear speed, flux_lnk_peak : peak flux linkage , tau_p : pole pitch
 % r_mean:mean radius, w_m : mechanical speed
-% rpm rotational speed(rpm)
+% rpm : rotational speed(rpm)
 % k_leak:leakage factor , magnet_h1:varying magnet pitch 1st harmonic,r_o: outside radius , r_i: inner radius, Np:number of poles, theta_o: outer arc length , theta_i:inner arc length, theta_dif: arc length differences  
 % B_ag: Airgap flux density, width_ratio: Magnet/steel width ratio
 % l_magnet: axial lenght of the magnet
