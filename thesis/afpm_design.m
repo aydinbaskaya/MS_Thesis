@@ -165,6 +165,16 @@ Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 %---------------------------------------------------------------------------------------------------------------------------
 
 
+%--------------------------------------------------------------------------------------------------------------------------
+%% Coil Electrical Parameters calculation
+
+%% ----------Definition of the parameters/variables----------
+
+
+%% Calculation part
+
+L_phase=L_coil*N_series/n_branch*1000 ; % L_phase : phase inductance
+
 
 
 
