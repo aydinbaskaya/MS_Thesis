@@ -28,7 +28,8 @@
 % h_m : height of the magnet
 % l_magnet : axial lenght of the magnet
 % width_ratio: Magnet/steel width ratio 
-% B_opt : Desired remanent flux density for the magnet 
+% B_opt : Desired remanent flux density for the magnet
+% t_amb : ambient temperature
 
 %-------------------------------------------------------------------------------------------------------
 
@@ -170,10 +171,29 @@ Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 
 %% ----------Definition of the parameters/variables----------
 
+% t_amb: ambient temperature
+% temp_winding : resulting winding temperature
+% t_winding: winding temperature (forced air cooling)
+% L_phase : phase inductance
 
 %% Calculation part
 
-L_phase=L_coil*N_series/n_branch*1000 ; % L_phase : phase inductance
+L_phase=L_coil*N_series/n_branch*1000 ; 
+
+%winding temperature calculated here
+
+if t_winding>179   
+    temp_winding=179 ; 
+else if t_winding <-179
+    temp_winding=-179;
+    else
+    temp_winding=t_winding;
+    end
+end
+
+t_winding=(100-t_amb)/49*(J^2)+t_amb ;  
+
+%----------------------------------------------------------------------------------------------------
 
 
 
