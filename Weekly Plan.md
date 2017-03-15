@@ -49,6 +49,6 @@
 * Matlab tasarım denklemlerine devam edilecek.
 * Tezin introduction kısmı geliştirilmeye devam edilecek. MW-seviyesindeki piyasa türbinleri araştırılacak.
 * Powerlab Journal Club & haftalık seminer
-* Asko Parviainen, "Design of Axial-Flux Permanent-Magnet Low-Speed Machines and Performance Comparison between Radial-Flux and Axial-Flux Machines" tezi okunacak.
+* Asko Parviainen, "Design of Axial-Flux Permanent-Magnet Low-Speed Machines and Performance Comparison between Radial-Flux and Axial-Flux Machines" tezi okunacak.(Bir kopyası Mendeley/Powerlab'a yüklendi.)
 
 
