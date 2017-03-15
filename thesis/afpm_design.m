@@ -69,7 +69,7 @@ l_mm=h_w+2*g ;
 l_ss=l_mm+(h_m-groove) ;  
 mu_0=1.257E-06 ; 
 B_a=mu_0*Nt/l_ss ; 
-flux_lnk=(2*B_a*Nt*((0.5*(r_o^2-r_i^2)*tand(theta_o))-(width_winding*l_magnet)))+(2*B_a*Nt*width_winding*l_magnet/3)  
+flux_lnk=(2*B_a*Nt*((0.5*(r_o^2-r_i^2)*tand(theta_o))-(width_winding*l_magnet)))+(2*B_a*Nt*width_winding*l_magnet/3) ;  
 k_ind=1; % constant
 L_coil= k_ind*flux_lnk ; 
 f=rpm/60*Np/2 ; 
@@ -80,7 +80,7 @@ l_coil_middle=l_magnet+width_winding;
 l_coil_end=(r_mean-0.5*(l_magnet+width_winding))*2*pi/Nc; 
 l_t=l_coil_end+2*l_coil_middle+l_coil_structure-2*width_winding; 
 R_coil=rho*l_t*Nt/a_cond; 
-R_amb=R_coil*N_series/n_branch  
+R_amb=R_coil*N_series/n_branch  ;
 R_ph_th=R_amb*(1+alpha_Cu*dT); 
 coil_phase=Nc/m; 
 N_series=coil_phase/n_branch; 
@@ -155,9 +155,9 @@ P_o= m*V_ph_rms*I_ph_rms; %%Resulting equation
 %% Calculation part
 
 eddy_magnet= ... continue
-leakage_loss=0 % constant
+leakage_loss=0  ;% constant
 ag_loss= ...  continue
-eddy_coil=ag_loss+leakage_loss;  
+eddy_coil= ag_loss+leakage_loss;  
 P_eddy=eddy_coil*Nc+eddy_magnet; 
 P_copper_th=m*(I_ph_rms*I_ph_rms)*R_ph_th ; 
 P_loss=P_copper_th+P_eddy ; 
@@ -194,6 +194,37 @@ end
 t_winding=(100-t_amb)/49*(J^2)+t_amb ;  
 
 %----------------------------------------------------------------------------------------------------
+
+
+%--------------------------------------------------------------------------------------------------------------------------
+%% Flux Density Parameters calculation
+
+%% ----------Definition of the parameters/variables----------
+
+
+%% Calculation part
+
+phi_ag_l= ... continue %(use reluctance matrix)
+magnet_width= width_ratio*tau_p; 
+B_ag_l= phi_ag_l/l_magnet/magnet_width  % phi_ag_l: airgap flux included leakage , magnet_width : magnet width
+
+if (leakage_insert==1)  % leakage_insert : adjustment for enable leakage flux effect i.e leakage_insert=1---> leakage flux enabled in calculation otherwise not enabled
+    B_ag=B_ag_l ;  % B_ag: flux density in air-gap , B_ag_l: flux density in air-gap included leakage flux
+else
+    B_ag=B_ag_nl; % B_ag_nl: flux density in air-gap not included leakage flux
+end
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
