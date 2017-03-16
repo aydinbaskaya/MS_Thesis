@@ -147,7 +147,13 @@ P_o= m*V_ph_rms*I_ph_rms; %%Resulting equation
 
 %% ----------Definition of the parameters/variables----------
 
-%ag_loss: airgap eddy loss content, leakage_loss: leakage eddy loss content
+% coil_area_i : area of single coil with insulation
+% t_coil_i: thickness of the coil with insulation , ins_area: insulation area per coil
+% strand:number of parallel strands in coil (taken as 1)
+% t_epoxy : epoxy thickness(taken as 1) , turn_strand : number of turns per strand
+% h_coil_i: height of the copper with insulation, t_insulation: insulation thickness
+% h_copper: heigth of the copper 
+% ag_loss: airgap eddy loss content, leakage_loss: leakage eddy loss content
 % eddy_coil: sum of eddy losses both for air-gap flux and leakage flux , eddy_magnet: eddy loss due to magnet
 % P_copper_th: copper loss including thermal effects , P_eddy: eddy losses(coil+magnet)
 % P_loss: total loss(copper+eddy)
@@ -156,7 +162,20 @@ P_o= m*V_ph_rms*I_ph_rms; %%Resulting equation
 
 eddy_magnet= ... continue
 leakage_loss=0  ;% constant
-ag_loss= ...  continue
+coil_area_i=(width_winding*1000-2*t_epoxy)*(h_w*1000-2*t_epoxy)/Nt ; 
+ins_area=coil_area_i-a_cond*10^6 ;  
+t_coil_i=(width_winding*1000-2*t_epoxy)/turn_strand ; 
+
+if ((h_coil_i+t_coil_i)^2-(4*ins_area))>0    
+    t_insulation=((h_coil_i+t_coil_i)-sqrt((h_coil_i+t_coil_i)^2-(4*ins_area)))/4;
+else
+    t_insulation=0;
+end
+
+turn_strand=Nt/strand ; 
+h_coil_i=(h_w*1000-2*t_epoxy)/turn_strand ;   
+h_copper=h_coil_i-2*t_insulation ;  
+ag_loss=2*l_magnet*Nt*(((l_magnet/2000)^3)*(B_ag_l^2)*(w_e^2))*(h_copper/1000)/(3*rho*(1+alpha_Cu*dT)) ;  
 eddy_coil= ag_loss+leakage_loss;  
 P_eddy=eddy_coil*Nc+eddy_magnet; 
 P_copper_th=m*(I_ph_rms*I_ph_rms)*R_ph_th ; 
@@ -213,19 +232,5 @@ if (leakage_insert==1)  % leakage_insert : adjustment for enable leakage flux ef
 else
     B_ag=B_ag_nl; % B_ag_nl: flux density in air-gap not included leakage flux
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
