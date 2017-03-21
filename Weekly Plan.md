@@ -60,7 +60,8 @@
 * Matlab tasarım denklemlerine devam edilecek. Genetik algoritma olayları matlabda araştırılacak.
 * Tezin introduction kısmı geliştirilmeye devam edilecek. MW seviyesindeki türbin bilgileri direkt üretici sitesi ve güncel review makaleleri yardımıyla toparlanacak.
 * Powerlab Journal Club & haftalık seminer
-* Şu iki makale okunacak:
+<br/> - [ ] --->Bu hafta journal club yapılmadı, sonraki 28 mart
+* Şu iki makale okunacak(makaleler mendeley/powerlab klasörüne eklenmiştir): 
    1) Daghigh, A., Javadi, H., & Torkaman, H. (2016). Considering Wind Speed Characteristics in the Design of a Coreless AFPM Synchronous Generator. International Journal of Renewable Energy Research, 6(1), 263–270.
    2) Kappatou, J. C., Zalokostas, G. D., & Spyratos, D. A. (2016). Design Optimization of Axial Flux Permanent Magnet ( AFPM ) Synchronous Machine Using 3D FEM Analysis, 247–260. https://doi.org/10.4236/jemaa.2016.811023 
 
