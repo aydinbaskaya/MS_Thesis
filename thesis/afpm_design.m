@@ -278,7 +278,7 @@ phi_sp_l=flux_l(2,:) ; % second row of flux_l matrix
 B_sp_l=phi_sp_l/A_sp_o ; % phi_sp_l: spacer flux included leakage , A_sp_o: intermodule area
 
 if (leakage_insert==1)  % leakage_insert : adjustment for enable leakage flux effect i.e leakage_insert=1---> leakage flux enabled in calculation otherwise not enabled
-    B_sp =B_sp_l ;  % B_sp: flux density in spacer(intermodule) , B_ag_l: flux density in air-gap included leakage flux
+    B_sp =B_sp_l ;  % B_sp: flux density in spacer(intermodule) , B_sp_l: flux density in spacer included leakage flux
 else
     B_sp =B_sp_nl ; % B_sp_nl: flux density in spacer(intermodule) not included leakage flux
 end
