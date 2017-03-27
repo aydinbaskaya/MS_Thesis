@@ -58,10 +58,23 @@
 ### 20-26 Mart
 
 * Matlab tasarım denklemlerine devam edilecek. Genetik algoritma olayları matlabda araştırılacak.
+<br/> - [ ] ---> tasarım denklemlerine devam edildi, güncelleme oldukça githuba yüklendi. GA nın matlab uygulamasıyla ilgili dokuman ve makaleler bulundu,ilgili olanlar Mendeleye eklendi
 * Tezin introduction kısmı geliştirilmeye devam edilecek. MW seviyesindeki türbin bilgileri direkt üretici sitesi ve güncel review makaleleri yardımıyla toparlanacak.
+<br/> - [ ] ---> Introductionda bazı noktalar düzeltilerek/eklenerek(2 yeni kaynakca) tekrar githuba yüklendi. Ayrıca MW seviyesi türbinler(özellikle 3MW ve üstü) için üretici sitelerinden ve makalelerden bilgiler derlendi,TÜREB istatikleriyle githuba yüklendi. Kaynakça kısmı eksik ve biraz düzenlenmesi gerekli.
 * Powerlab Journal Club & haftalık seminer
-<br/> - [ ] --->Bu hafta journal club yapılmadı, sonraki 28 mart
+<br/> - [ ] --->Bu hafta journal club yapılmadı, sonraki 28 mart. Haftalık seminer kapsamında cuma günkü seminere katılım gösterildi.
 * Şu iki makale okunacak(makaleler mendeley/powerlab klasörüne eklenmiştir): 
    1) Daghigh, A., Javadi, H., & Torkaman, H. (2016). Considering Wind Speed Characteristics in the Design of a Coreless AFPM Synchronous Generator. International Journal of Renewable Energy Research, 6(1), 263–270.
    2) Kappatou, J. C., Zalokostas, G. D., & Spyratos, D. A. (2016). Design Optimization of Axial Flux Permanent Magnet ( AFPM ) Synchronous Machine Using 3D FEM Analysis, 247–260. https://doi.org/10.4236/jemaa.2016.811023 
+   <br/> - [ ] ---> iki makale de okundu, ilgili yerler mendeley üzerinde çalışıldı. İkinci makale coreless structure olmasına rağmen cogging torque incelemiş, çok az da olsa değişimler gözlenmiş. Onun dışında analitik tasarım denklemlerine fazla değinmemiş. İlk makale ise tasarım parametlerini belirlemede farklı optimizasyon çalıştırmış ama yine de tasarım aşaması güzel incelenmiş ve denklemler verilmiş. Ayrıca çalıştıkları topoloji bizim tezdekine yakın bir yapıda. 
+
+
+### 27 Mart - 2 Nisan
+* Matlab tasarım denklemlerine devam edilecek. Okunacak GA dokumanları ile ilgili MATLAB ortamında tasarıma başlanacak.
+* Tezin introduction kısmı MW seviyesi araştırmasının kısa özetiyle birleştirilerek son hali verilecek.
+* Powerlab Journal Club & haftalık seminer
+* Şu iki dokuman okunacak(makaleler daha önceden mendeley/powerlab klasörüne eklenmiştir):
+   1) J. Azzouzi, R. Belfkira, N. Abdel-Karim, G. Barakat and B. Dakyo, "Design Optimization of an Axial Flux PM Synchronous Machine: Comparison Between DIRECT Method and GAs Method," 2006 12th International Power Electronics and Motion Control Conference, Portoroz, 2006, pp. 1094-1098. doi: 10.1109/EPEPEMC.2006.4778548
+   2) Popov, Andrey, "Genetic Algorithms for Optimization – Application in Controller Design Problems", User manual,TU-Sofia, 2003
+
 
