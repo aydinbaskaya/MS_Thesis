@@ -365,5 +365,36 @@ number_magnet_layer=2*number_parallel_mach ; % magnets exist both sides of c-cor
 m_magnet_layer=pi*d_magnet*h_m*(r_o^2-r_i^2)*l_magnet ;
 mass_magnet=m_magnet_layer*number_magnet_layer ; % m_magnet_layer: mass of magnet in a layer, number_magnet_layer:layer number of magnet 
 
+%% Structural mass calculation part
+length_total=2*t_o+number_parallel_mach*l_ss+(number_parallel_mach-1)*t_i ; 
+
+length_rotor_bar=r_w ; % stator_outer: stator outer diameter 
+rotor_alternative_a=length_rotor_bar*0.032 ; 
+rotor_alternative_t=rotor_alternative_a*0.5 ;
+rotor_rect_b=rotor_alternative_a;
+rotor_rect_bi=rotor_alternative_a-2*rotor_alternative_t ; % stator_alternative_a: alternative solution for stator rectangle paramater a, stator_alternative_t: alternative solution for stator rectangle paramater a 
+rotor_rect_d=3*rotor_alternative_a ; 
+rotor_rect_di=rotor_rect_d-2*rotor_alternative_t ;
+m_rotor_torque=no_rotor_bar*(rotor_rect_b*rotor_rect_d-rotor_rect_di*rotor_rect_bi)*length_rotor_bar*d_steel ; 
+m_rotor=2*m_rotor_torque; % m_rotor_torque: rotor torque structure mass  
+
+stator_outer=2*(r_o+2*r_w) ; 
+length_stator_bar=0.5*stator_outer ; % stator_outer: stator outer diameter 
+stator_alternative_a=length_stator_bar*0.025 ; 
+stator_alternative_t=stator_alternative_a*0.4 ;
+stator_rect_b=stator_alternative_a;
+stator_rect_bi=stator_alternative_a-2*stator_alternative_t ; % stator_alternative_a: alternative solution for stator rectangle paramater a, stator_alternative_t: alternative solution for stator rectangle paramater a 
+stator_rect_d=3*stator_alternative_a ; 
+stator_rect_di=stator_rect_d-2*stator_alternative_t ; 
+m_stator_torque=no_stator_bar*(stator_rect_b*stator_rect_d-stator_rect_di*stator_rect_bi)*length_stator_bar*d_steel ; % no_stator_bar: number of bar in torque arm of stator(opt),stator_rect_b: stator torque arm dimensions,stator_rect_bi:stator torque arm dimensions,stator_rect_d:stator torque arm dimensions,stator_rect_di:stator torque arm dimensions, length_stator_bar: length of stator bar, 
+m_stator_cyl=pi*d_steel*length_total*((r_o+width_winding)^2-r_o^2);
+m_stator=m_stator_cyl+m_stator_torque*2 ; % m_stator_cyl: stator cylinder structure mass, m_stator_torque: stator torque structure mass
+
+l_shaft=1.25*length_total; % length_total: total axial length of the machine
+m_shaft=pi*(shaft_ro^2-shaft_ri^2)*l_shaft*d_steel ; % shaft_ro: shaft outer radius(opt), shaft_ri: shaft inner radius(opt), l_shaft: axial length of the shaft
+
+m_steelband=number_parallel_mach*(2*pi*(r_o+0.5*r_w)*h_band*w_band*d_steel) ; % h_band:height of the band steel structure(opt),w_band: width of the band steel structure(opt) 
+
+mass_structure=m_shaft+m_stator+m_rotor+m_steelband ;%mass_structure: total structural mass, m_shaft: shaft mass, m_stator: stator structure mass, m_rotor: rotor torque structure mass, m_steelband: steel band mass   
 
 
