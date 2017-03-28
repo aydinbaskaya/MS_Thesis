@@ -30,6 +30,8 @@
 % width_ratio: Magnet/steel width ratio 
 % B_opt : Desired remanent flux density for the magnet
 % t_amb : ambient temperature
+% air_flow : air flow 
+% number_parallel_mach : number of parallel machines stacked axially
 
 %-------------------------------------------------------------------------------------------------------
 
@@ -75,6 +77,7 @@ L_coil= k_ind*flux_lnk ;
 f=rpm/60*Np/2 ; 
 w_e=2*pi*f ; 
 X_ph=w_e*L_coil*(N_series/n_branch); 
+Nc=(3/4)*Np ; 
 l_coil_structure=(r_mean+0.5*(l_magnet+width_winding))*2*pi/Nc;
 l_coil_middle=l_magnet+width_winding; 
 l_coil_end=(r_mean-0.5*(l_magnet+width_winding))*2*pi/Nc; 
@@ -228,7 +231,7 @@ t_winding=(100-t_amb)/49*(J^2)+t_amb ;
 % NI: mmf
 % Br: magnet remanent flux density (constant)
 % phi_ag_nl: airgap flux not included leakage flux
-% phi_ag_l: airgap flux included leakage , magnet_width : magnet width (first row of flux_l matrix)
+% phi_ag_l: airgap flux included leakage(first row of flux_l matrix) , magnet_width : magnet width 
 % R: reluctance matrix
 % inverse_R: inverse of reluctance matrix[2x2] , tot_mmf_matrix: total mmf matrix[2x1] , flux_l: flux matrix included leakage effect 
 % S_st: steel reluctance 
@@ -271,6 +274,7 @@ S_sp=(tau_p/(inter_area*mu_0*mu_st))+(groove_c/(inter_area*mu_0)) ;
 R(1,2)= S_sp ;  
 
 r_w=r_i-l_cl-lc ; 
+diameter_web=r_w;
 tau_pw= 2*pi*r_w/Np ;  
 l_cl= width_winding+l_ws_web ; 
 S_st_A=(l_magnet+2*l_cl+lc)/(t_o*(tau_p+tau_pw)*mu_0*mu_st) ;  
@@ -343,6 +347,29 @@ end
 
 %% ----------Definition of the parameters/variables----------
 
+% total_mass: total mass of the machine, mass_epoxy: epoxy resin mass
+% m_epoxy_single: epoxy mass in single coil unit
+% tau_former:pitch of the coil former mean value, d_epoxy: volumetric mass density of epoxy resin(taken as constant)
+%mass_structure: total structural mass, m_shaft: shaft mass, m_stator: stator structure mass, m_rotor: rotor torque structure mass, m_steelband: steel band mass   
+% h_band:height of the band steel structure(opt),w_band: width of the band steel structure(opt) 
+% shaft_ro: shaft outer radius(opt), shaft_ri: shaft inner radius(opt), l_shaft: axial length of the shaft
+% length_total: total axial length of the machine
+% m_stator_cyl: stator cylinder structure mass, m_stator_torque: stator torque structure mass
+% stator_alternative_a: alternative solution for stator rectangle paramater a, stator_alternative_t: alternative solution for stator rectangle paramater a 
+% no_stator_bar: number of bar in torque arm of stator(opt),stator_rect_b: stator torque arm dimensions,stator_rect_bi:stator torque arm dimensions,stator_rect_d:stator torque arm dimensions,stator_rect_di:stator torque arm dimensions, length_stator_bar: length of stator bar, 
+% stator_outer: stator outer diameter
+% m_rotor_torque: rotor torque structure mass
+% stator_alternative_a: alternative solution for stator rectangle paramater a, stator_alternative_t: alternative solution for stator rectangle paramater a 
+% m_magnet_layer: mass of magnet in a layer, number_magnet_layer:layer number of magnet 
+% magnets exist both sides of c-core
+% m_copper_layer: mass of copper in a layer
+% m_copper_unit: mass of copper in one coil
+% d_copper: volumetric mass density of copper(taken as constant)
+% mass_steel: steel mass, m_outerlimb_layer: mass of outer limb in single layer, number_outer_limb: number of outer limb layer, m_innerlimb_layer: mass of inner limb in a single layer,number_inner_limb: number of inner limb layer, m_web_layer: mass of web in a single layer,number_web : number of web layer   
+% d_steel:volumetric mass density of steel(taken as constant)
+% layer number of outer limb is constant(taken as 2 because of geometry) independent from inner limb number
+% number_parallel_mach:number of axially stacked parallel machines(determined in optimization-constant)
+% h_web: height of web
 
 %% Active mass calculation part
 
@@ -350,51 +377,59 @@ end
 
 number_web=number_parallel_mach ; 
 h_web=l_mm+2*(h_m-groove); 
-m_web_layer=pi*d_steel*t_i*((r_w+lc)^2-r_w^2)*h_web ; % h_web: height of web
-number_inner_limb=number_parallel_mach-1 ; % number_parallel_mach:number of axially stacked parallel machines(determined in optimization-constant)
+m_web_layer=pi*d_steel*t_i*((r_w+lc)^2-r_w^2)*h_web ; 
+number_inner_limb=number_parallel_mach-1 ; 
 m_innerlimb_layer=pi*d_steel*t_i*(r_o^2-r_w^2) ;
-number_outer_limb=2 ;% layer number of outer limb is constant(taken as 2 because of geometry) independent from inner limb number
-m_outerlimb_layer=pi*d_steel*t_o*(r_o^2-r_w^2) ; % d_steel:volumetric mass density of steel(taken as constant)
-mass_steel = m_outerlimb_layer*number_outer_limb+m_innerlimb_layer*number_inner_limb+m_web_layer*number_web ; % mass_steel: steel mass, m_outerlimb_layer: mass of outer limb in single layer, number_outer_limb: number of outer limb layer, m_innerlimb_layer: mass of inner limb in a single layer,number_inner_limb: number of inner limb layer, m_web_layer: mass of web in a single layer,number_web : number of web layer   
+number_outer_limb=2 ;
+m_outerlimb_layer=pi*d_steel*t_o*(r_o^2-r_w^2) ; 
+mass_steel = m_outerlimb_layer*number_outer_limb+m_innerlimb_layer*number_inner_limb+m_web_layer*number_web ; 
 
-m_copper_unit=h_w*width_winding*l_t*kf*d_copper ; % d_copper: volumetric mass density of copper(taken as constant)
-m_copper_layer=m_copper_unit*Nc ; % m_copper_unit: mass of copper in one coil
-mass_copper=m_copper_layer*number_parallel_mach; % m_copper_layer: mass of copper in a layer
+m_copper_unit=h_w*width_winding*l_t*kf*d_copper ; 
+m_copper_layer=m_copper_unit*Nc ; 
+mass_copper=m_copper_layer*number_parallel_mach; 
 
-number_magnet_layer=2*number_parallel_mach ; % magnets exist both sides of c-core
+number_magnet_layer=2*number_parallel_mach ; 
 m_magnet_layer=pi*d_magnet*h_m*(r_o^2-r_i^2)*l_magnet ;
-mass_magnet=m_magnet_layer*number_magnet_layer ; % m_magnet_layer: mass of magnet in a layer, number_magnet_layer:layer number of magnet 
+mass_magnet=m_magnet_layer*number_magnet_layer ; 
 
 %% Structural mass calculation part
 length_total=2*t_o+number_parallel_mach*l_ss+(number_parallel_mach-1)*t_i ; 
 
-length_rotor_bar=r_w ; % stator_outer: stator outer diameter 
+length_rotor_bar=r_w ;  
 rotor_alternative_a=length_rotor_bar*0.032 ; 
 rotor_alternative_t=rotor_alternative_a*0.5 ;
 rotor_rect_b=rotor_alternative_a;
-rotor_rect_bi=rotor_alternative_a-2*rotor_alternative_t ; % stator_alternative_a: alternative solution for stator rectangle paramater a, stator_alternative_t: alternative solution for stator rectangle paramater a 
+rotor_rect_bi=rotor_alternative_a-2*rotor_alternative_t ; 
 rotor_rect_d=3*rotor_alternative_a ; 
 rotor_rect_di=rotor_rect_d-2*rotor_alternative_t ;
 m_rotor_torque=no_rotor_bar*(rotor_rect_b*rotor_rect_d-rotor_rect_di*rotor_rect_bi)*length_rotor_bar*d_steel ; 
-m_rotor=2*m_rotor_torque; % m_rotor_torque: rotor torque structure mass  
+m_rotor=2*m_rotor_torque;   
 
 stator_outer=2*(r_o+2*r_w) ; 
-length_stator_bar=0.5*stator_outer ; % stator_outer: stator outer diameter 
+length_stator_bar=0.5*stator_outer ;  
 stator_alternative_a=length_stator_bar*0.025 ; 
 stator_alternative_t=stator_alternative_a*0.4 ;
 stator_rect_b=stator_alternative_a;
-stator_rect_bi=stator_alternative_a-2*stator_alternative_t ; % stator_alternative_a: alternative solution for stator rectangle paramater a, stator_alternative_t: alternative solution for stator rectangle paramater a 
+stator_rect_bi=stator_alternative_a-2*stator_alternative_t ; 
 stator_rect_d=3*stator_alternative_a ; 
 stator_rect_di=stator_rect_d-2*stator_alternative_t ; 
-m_stator_torque=no_stator_bar*(stator_rect_b*stator_rect_d-stator_rect_di*stator_rect_bi)*length_stator_bar*d_steel ; % no_stator_bar: number of bar in torque arm of stator(opt),stator_rect_b: stator torque arm dimensions,stator_rect_bi:stator torque arm dimensions,stator_rect_d:stator torque arm dimensions,stator_rect_di:stator torque arm dimensions, length_stator_bar: length of stator bar, 
+m_stator_torque=no_stator_bar*(stator_rect_b*stator_rect_d-stator_rect_di*stator_rect_bi)*length_stator_bar*d_steel ; 
 m_stator_cyl=pi*d_steel*length_total*((r_o+width_winding)^2-r_o^2);
-m_stator=m_stator_cyl+m_stator_torque*2 ; % m_stator_cyl: stator cylinder structure mass, m_stator_torque: stator torque structure mass
 
-l_shaft=1.25*length_total; % length_total: total axial length of the machine
-m_shaft=pi*(shaft_ro^2-shaft_ri^2)*l_shaft*d_steel ; % shaft_ro: shaft outer radius(opt), shaft_ri: shaft inner radius(opt), l_shaft: axial length of the shaft
+m_stator=m_stator_cyl+m_stator_torque*2 ; 
 
-m_steelband=number_parallel_mach*(2*pi*(r_o+0.5*r_w)*h_band*w_band*d_steel) ; % h_band:height of the band steel structure(opt),w_band: width of the band steel structure(opt) 
+l_shaft=1.25*length_total; 
+m_shaft=pi*(shaft_ro^2-shaft_ri^2)*l_shaft*d_steel ; 
 
-mass_structure=m_shaft+m_stator+m_rotor+m_steelband ;%mass_structure: total structural mass, m_shaft: shaft mass, m_stator: stator structure mass, m_rotor: rotor torque structure mass, m_steelband: steel band mass   
+m_steelband=number_parallel_mach*(2*pi*(r_o+0.5*r_w)*h_band*w_band*d_steel) ; 
 
+mass_structure=m_shaft+m_stator+m_rotor+m_steelband ;
+
+tau_former=tau_c-
+m_epoxy_single=(l_t*width_winding*(1-kf)+tau_former*l_magnet)*h_w*d_epoxy ; 
+mass_epoxy=m_epoxy_single*Nc; 
+
+total_mass=mass_structure+mass_epoxy+mass_magnet+mass_copper+mass_steel; %%Resulting total mass equation
+
+%-------------------------------------------------------------------------------------------------------------------------
 
