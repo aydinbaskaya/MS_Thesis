@@ -3,46 +3,46 @@
 ### 20-26 Şubat
 
 - [x] Tez bölümleri ve alt başlıkları  geçen dönemki Powerlab raporu üzerinden hareket edilerek taslak netleştirilecek.
-   :arrow_right: Taslak netleştirildi, bir örneği github'a yüklendi. Ufak tefek ekleme-çıkarmalar olsa da ana taslak bu şekilde.
+  <br/> :arrow_right: Taslak netleştirildi, bir örneği github'a yüklendi. Ufak tefek ekleme-çıkarmalar olsa da ana taslak bu şekilde.
 
 - [x] Rezanın tezi yöntem ve uygulama açısından önemli noktalar var, bu hafta okunacak.
-   :arrow_right: Tez okundu, GA ve tez planı açısından güzel noktalar kaydedildi.
+  <br/> :arrow_right: Tez okundu, GA ve tez planı açısından güzel noktalar kaydedildi.
 
 - [x] Powerlab/Journal club
-   :arrow_right: Bu hafta yapılmadı.
+  <br/> :arrow_right: Bu hafta yapılmadı.
 
 - [x] Mendeley klasörü tez kısmı elden geçirip gereksiz makaleler ayıklanacak.(Anahtar kelimeler: AFPM, Direct Drive, wind turbine, FEA, Genetic Optimization, wind energy harvest)
-   :arrow_right: Anahtar kelimelere göre ayıklama yapılıyor ancak çok fazla birikmiş makale var.
+  <br/> :arrow_right: Anahtar kelimelere göre ayıklama yapılıyor ancak çok fazla birikmiş makale var.
 
 
 ### 27 Şubat- 5 Mart
 
 - [x] Matlabda tasarım denklemleri çalışmalarına başlanacak
-   :arrow_right: tasarım denklemlerine başlandı,ilerleme oldukça .m dosyaları githuba yükleniyor.
+  <br/> :arrow_right: tasarım denklemlerine başlandı,ilerleme oldukça .m dosyaları githuba yükleniyor.
 
 - [x] Tezin introduction kısmının yazımına başlanacak
-   :arrow_right: yazıma başlandı, bu bölümle ilgili bir versiyon githuba yüklendi.
+ <br/>  :arrow_right: yazıma başlandı, bu bölümle ilgili bir versiyon githuba yüklendi.
 
 - [x] Powerlab Journal Club & haftalık seminer
-   :arrow_right: Bu hafta ikisi de yapılamadı, ancak 7 mart tarihli "The state of the art of wind energy conversion systems and technologies: A review" makalesi incelendi.
+ <br/>  :arrow_right: Bu hafta ikisi de yapılamadı, ancak 7 mart tarihli "The state of the art of wind energy conversion systems and technologies: A review" makalesi incelendi.
 
 - [x] Mendeley ayıklamasına devam, ayrıca çok güncel makaleler için de alarm oluşturularak takibi yapılacak.
-   :arrow_right: Mendeley/Powerlab klasörüne ilginç ve tezle ilgili makaleler yüklenmeye devam edildi. Ayrıca önceki haftalarda belirtilen anahtar kelimeler için Google Scholar alarmı oluşturuldu. 
+ <br/>  :arrow_right: Mendeley/Powerlab klasörüne ilginç ve tezle ilgili makaleler yüklenmeye devam edildi. Ayrıca önceki haftalarda belirtilen anahtar kelimeler için Google Scholar alarmı oluşturuldu. 
 
 
 ### 6-12 Mart
 
 - [x] Matlab tasarım denklemlerine devam edilecek.
-   :arrow_right: tasarım denklemlerine devam ediliyor,ilerleme oldukça .m dosyaları githuba yükleniyor.
+  <br/> :arrow_right: tasarım denklemlerine devam ediliyor,ilerleme oldukça .m dosyaları githuba yükleniyor.
 
 - [x] Tezin introduction kısmı geliştirilmeye devam edilecek.
-   :arrow_right: yazımı devam ediyor, okunan makaleler ve diğer veriler derlendikçe ekleme yapılıp githuba yükleniyor
+ <br/>  :arrow_right: yazımı devam ediyor, okunan makaleler ve diğer veriler derlendikçe ekleme yapılıp githuba yükleniyor
 
 - [x] Powerlab Journal Club & haftalık seminer(14 mart makalesi incelenek)
-   :arrow_right: Seminer olmamasına rağmen JC yapıldı, ayrıca 14 mart "A review of offshore wind turbine nacelle: Technical challenges, and research and developmental trends" makalesi incelendi. Mendeley/powerlab klasörüne ilgili makaleler yükleniyor.
+  <br/> :arrow_right: Seminer olmamasına rağmen JC yapıldı, ayrıca 14 mart "A review of offshore wind turbine nacelle: Technical challenges, and research and developmental trends" makalesi incelendi. Mendeley/powerlab klasörüne ilgili makaleler yükleniyor.
 
 - [x] Grauers A , "Design of Direct-driven Permanent-magnet Generators for Wind Turbines" tezi okunacak.(Bir kopyası Mendeley/Powerlab'a yüklendi.)
-   :arrow_right: tez okundu, özellikle 5. chapter olan tasarım metoduna kadar teze faydalı olabilcek kısımlar üzerinde duruldu. Ancak bu tezde radial flux ve slotted structure yapısı bulunduğundan tasarımda çok detay incelenmedi. Optimizasyonda da genetik algoritma dışında yöntem kullanılmış. Yine de genel olarak faydalı denilebilir.
+  <br/> :arrow_right: tez okundu, özellikle 5. chapter olan tasarım metoduna kadar teze faydalı olabilcek kısımlar üzerinde duruldu. Ancak bu tezde radial flux ve slotted structure yapısı bulunduğundan tasarımda çok detay incelenmedi. Optimizasyonda da genetik algoritma dışında yöntem kullanılmış. Yine de genel olarak faydalı denilebilir.
 
 ### 13-19 Mart
 
