@@ -425,11 +425,31 @@ m_steelband=number_parallel_mach*(2*pi*(r_o+0.5*r_w)*h_band*w_band*d_steel) ;
 
 mass_structure=m_shaft+m_stator+m_rotor+m_steelband ;
 
-tau_former=tau_c-
+tau_former=tau_c-2*width_winding ; 
 m_epoxy_single=(l_t*width_winding*(1-kf)+tau_former*l_magnet)*h_w*d_epoxy ; 
 mass_epoxy=m_epoxy_single*Nc; 
 
 total_mass=mass_structure+mass_epoxy+mass_magnet+mass_copper+mass_steel; %%Resulting total mass equation
 
 %-------------------------------------------------------------------------------------------------------------------------
+
+
+%--------------------------------------------------------------------------------------------------------------------------
+%% Material Cost calculation 
+
+%% ----------Definition of the parameters/variables----------
+
+%cost_structure: total structural cost including epoxy, uc_epoxy: unit cost of epoxy(constant)
+%cost_magnet: total magnet cost, uc_magnet: unit cost of magnet(constant)
+%cost_copper: total copper cost, uc_copper: unit cost of copper(constant)
+% cost_steel: total steel cost , uc_steel: unit cost of steel(constant)
+
+%% Calculation part
+
+cost_steel=mass_steel*uc_steel ; 
+cost_copper=mass_copper*uc_copper ; 
+cost_magnet=mass_magnet*uc_magnet; 
+cost_structure=mass_structure*uc_steel+mass_epoxy*uc_epoxy ; 
+
+%--------------------------------------------------------------------------------------------------------------------------
 
