@@ -73,11 +73,25 @@
 
 
 ### 27 Mart - 2 Nisan
-- [ ] Matlab tasarım denklemlerine devam edilecek. Okunacak GA dokumanları ile ilgili MATLAB ortamında tasarıma başlanacak.<br/><br/> 
-- [ ] Tezin introduction kısmı MW seviyesi araştırmasının kısa özetiyle birleştirilerek son hali verilecek.<br/><br/>  
-- [ ] Powerlab Journal Club & haftalık seminer<br/> <br/> 
-- [ ] Şu iki dokuman okunacak(makaleler daha önceden mendeley/powerlab klasörüne eklenmiştir):
+- [x] Matlab tasarım denklemlerine devam edilecek. Okunacak GA dokumanları ile ilgili MATLAB ortamında tasarıma başlanacak.<br/><br/>
+<br/> :arrow_right: tasarım denklemlerine devam edildi, GA ile ilgili dökümanlar ve matlab help kısımlarına bakılarak matlab optimtool çalışılmaya başlandı, henüz .m dosyası tamamlanmadığından optimizasyon çalıştırılmadı.Optimizasyonla ilgili github tez reposunda alt klasör oluşturuldu,burdan devam edilecek.
+- [x] Tezin introduction kısmı MW seviyesi araştırmasının kısa özetiyle birleştirilerek son hali verilecek.<br/><br/>
+<br/> :arrow_right: ch-1 hedeflendiği gibi tamamlandı ve gerekli değişiklikler yapılarak(r0) githuba yüklendi. Ayrıca outline da ch-4 de değişiklikler yapıldı,ilgili değişikliğin detayları ilgili commit içinde belirtilmiştir.
+- [x] Powerlab Journal Club & haftalık seminer<br/> <br/> 
+<br/> :arrow_right: JC yapılmadı ancak iki seminere de katılım gösterildi.
+
+<br/> :heavy_exclamation_mark: Şu iki dokuman okunacak(makaleler daha önceden mendeley/powerlab klasörüne eklenmiştir):
    1) J. Azzouzi, R. Belfkira, N. Abdel-Karim, G. Barakat and B. Dakyo, "Design Optimization of an Axial Flux PM Synchronous Machine: Comparison Between DIRECT Method and GAs Method," 2006 12th International Power Electronics and Motion Control Conference, Portoroz, 2006, pp. 1094-1098. doi: 10.1109/EPEPEMC.2006.4778548
    2) Popov, Andrey, "Genetic Algorithms for Optimization – Application in Controller Design Problems", User manual,TU-Sofia, 2003
+<br/> :hourglass: İlk makale okundu önemli noktalar kaydedildi, tezin optimization kısmı için güzel kısımlar var. Ancak bu ilk makalede analitik denklemleri üstükapalı geçmiş. İkinci makale baya iyi optimizasyon konusunda. MATLAB için güzel anlatım var,okunmaya devam ediliyor henüz bitmedi.  
+
+
+### 3 - 9 Nisan
+- [ ] Tasarım denklemlerine termal ve mekanik kısımlar eklencek ve .m dosyası optimtoolda çalışıcak şekilde function haline getirilecek. GA detaylandırılacak.<br/> <br/> 
+- [ ] Powerlab Journal Club & haftalık seminer<br/> <br/> 
+- [ ] Tez Chapter-2 yazımına başlanacak<br/> <br/> 
+- [ ] Şu makale okunacak:
+    1) A. Mahmoudi, S. Kahourzade, N. A. Rahim and W. P. Hew, "Design, Analysis, and Prototyping of an Axial-Flux Permanent Magnet Motor Based on Genetic Algorithm and Finite-Element Analysis," in IEEE Transactions on Magnetics, vol. 49, no. 4, pp. 1479-1492, April 2013.
+doi: 10.1109/TMAG.2012.2228213
 
 
