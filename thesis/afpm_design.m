@@ -68,7 +68,7 @@
 %% Calculation part
 
 l_mm=h_w+2*g ; 
-l_ss=l_mm+(h_m-groove) ;  
+l_ss=l_mm+2*(h_m-groove) ;  
 mu_0=1.257E-06 ; 
 B_a=mu_0*Nt/l_ss ; 
 flux_lnk=(2*B_a*Nt*((0.5*(r_o^2-r_i^2)*tand(theta_o))-(width_winding*l_magnet)))+(2*B_a*Nt*width_winding*l_magnet/3) ;  
@@ -206,6 +206,18 @@ L_phase=L_coil*N_series/n_branch*1000 ;
 
 %winding temperature calculated here
 
+bypass_1=(100-t_amb)/5.5^2*(J^2)+t_amb ;
+bypass_2=(100-t_amb)/49*(J^2)+t_amb ;  
+bypass_3=(100-t_amb)/81*(J^2)+t_amb ;
+
+if(J==5.5)
+    t_winding=bypass_1 ;
+elseif(J==7)
+    t_winding=bypass_2 ;
+elseif(J==9)
+    t_winding=bypass_3 ;
+end
+
 if t_winding>179   
     temp_winding=179 ; 
 else if t_winding <-179
@@ -214,8 +226,6 @@ else if t_winding <-179
     temp_winding=t_winding;
     end
 end
-
-t_winding=(100-t_amb)/49*(J^2)+t_amb ;  
 
 %----------------------------------------------------------------------------------------------------
 
@@ -453,3 +463,24 @@ cost_structure=mass_structure*uc_steel+mass_epoxy*uc_epoxy ;
 
 %--------------------------------------------------------------------------------------------------------------------------
 
+
+%--------------------------------------------------------------------------------------------------------------------------
+%% Thermal Model and Calculations
+
+%% ----------Definition of the parameters/variables----------
+
+% bypass thermal model 
+
+% Natural air Cooling for J=5.5 A/mm^2
+% Forced air cooling for J=7 A/mm^2
+% Forced water cooling for J=9 A/mm^2
+
+% thermal constants
+
+
+%% Calculation part
+
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------
