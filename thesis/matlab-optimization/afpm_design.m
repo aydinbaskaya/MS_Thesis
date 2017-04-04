@@ -56,7 +56,7 @@
 % Nc: number of coils, m: number of phases
 % R_amb: resistance value at ambient temperature, alpha_Cu: temperature coefficent at 20 Celcius degree , dT: temperature difference
 % R_coil: coil resistance
-% rho: copper resistivity coefficient, l_t: mean turn length 
+% rho_cu: copper resistivity coefficient, l_t: mean turn length 
 % l_coil_end: coil end length, l_coil_middle: coil middle part length, l_coil_structure: coil structure part length  
 % f: frequency
 % k_ind: inductance coefficient(take 1 for no leakage path assumption), flux_lnk: flux linkage
@@ -82,7 +82,7 @@ l_coil_structure=(r_mean+0.5*(l_magnet+width_winding))*2*pi/Nc;
 l_coil_middle=l_magnet+width_winding; 
 l_coil_end=(r_mean-0.5*(l_magnet+width_winding))*2*pi/Nc; 
 l_t=l_coil_end+2*l_coil_middle+l_coil_structure-2*width_winding; 
-R_coil=rho*l_t*Nt/a_cond; 
+R_coil=rho_cu*l_t*Nt/a_cond; 
 R_amb=R_coil*N_series/n_branch  ;
 R_ph_th=R_amb*(1+alpha_Cu*dT); 
 coil_phase=Nc/m; 
@@ -179,7 +179,7 @@ end
 turn_strand=Nt/strand ; 
 h_coil_i=(h_w*1000-2*t_epoxy)/turn_strand ;   
 h_copper=h_coil_i-2*t_insulation ;  
-ag_loss=2*l_magnet*Nt*(((l_magnet/2000)^3)*(B_ag_l^2)*(w_e^2))*(h_copper/1000)/(3*rho*(1+alpha_Cu*dT)) ;  
+ag_loss=2*l_magnet*Nt*(((l_magnet/2000)^3)*(B_ag_l^2)*(w_e^2))*(h_copper/1000)/(3*rho_cu*(1+alpha_Cu*dT)) ;  
 eddy_coil= ag_loss+leakage_loss;  
 P_eddy=eddy_coil*Nc+eddy_magnet; 
 P_copper_th=m*(I_ph_rms*I_ph_rms)*R_ph_th ; 
@@ -476,6 +476,20 @@ cost_structure=mass_structure*uc_steel+mass_epoxy*uc_epoxy ;
 % Forced water cooling for J=9 A/mm^2
 
 % thermal constants
+
+alpha_Cu=3.9-E03 ;
+rho_cu=1.7-E08;
+d_air=1.18 ; %kg/m3 density
+a_bar=40; %heat transfer coefficient(?) in W/m^2.K
+a_stat=25; %heat transfer coefficient(?) in W/m^2.K
+a_conc=60; %heat transfer coefficient(?) in W/m^2.K
+lambda_steel=54; %lambda_steel: thermal conductivity of steel in W/m.K
+lambda_alum=250; % lambda_alum: thermal conductivity of aluminium in W/m.K
+lambda_cu_coil=400; % lambda_cu_coil: thermal conductivity of copper along coil in W/m.K
+lambda_cu_ver=1.8; % lambda_cu_ver: thermal conductivity of copper in vertical in W/m.K
+lambda_epoxy=1.3; % lambda_epoxy:thermal conductivity of epoxy in W/m.K 
+lambda_pm=9; % lambda_pm: lambda_pm:thermal conductivity of PM in W/m.K
+k=0.262; % k: thermal conductiviy of air in W/m.K
 
 
 %% Calculation part
