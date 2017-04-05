@@ -475,11 +475,10 @@ cost_structure=mass_structure*uc_steel+mass_epoxy*uc_epoxy ;
 % Forced air cooling for J=7 A/mm^2
 % Forced water cooling for J=9 A/mm^2
 
-% thermal constants
+% thermal constants(from optimization)
 
 alpha_Cu=3.9-E03 ;
 rho_cu=1.7-E08;
-d_air=1.18 ; %kg/m3 density
 a_bar=40; %heat transfer coefficient(?) in W/m^2.K
 a_stat=25; %heat transfer coefficient(?) in W/m^2.K
 a_conc=60; %heat transfer coefficient(?) in W/m^2.K
@@ -490,7 +489,23 @@ lambda_cu_ver=1.8; % lambda_cu_ver: thermal conductivity of copper in vertical i
 lambda_epoxy=1.3; % lambda_epoxy:thermal conductivity of epoxy in W/m.K 
 lambda_pm=9; % lambda_pm: lambda_pm:thermal conductivity of PM in W/m.K
 k=0.262; % k: thermal conductiviy of air in W/m.K
+alpha_ep2air=40 ; % alpha_ep2air: epoxy to air heat transfer coefficient in W/m^2.K
+alpha_st2air=40 ; % alpha_st2air: steel to air heat transfer coefficient in W/m^2.K
+alpha_alum2air=40 ;% alpha_alum2air: aluminium to air heat transfer coefficient in W/m^2.K
+h_epoxy=0.0005 ; % h_epoxy: height of the epoxy layer
+h_band=0.01 ; % h_band: height of steel band(jubilee clip)
+w_band=0.04; % w_band: axial width of the steel band
+t_disc=?? ... continue 
 
+% airgap inputs(from optimization)~at 20o C
+
+af_coil=0.05; % af_coil: airflow over coil in m^3/sec
+kin_vis=1.51E-5 ; % kin_vis: kinematic viscosity of air in m^2/s
+d_air=1.205 ; % d_air: density of air in kg/m^3
+dyn_vis=1.82E-5;  % dyn_vis: dynamic viscosity of air in kg/ms
+prandtl_air=0.713 ; % prandtl_air: Prandtl number of air
+lambda_air=0.0257; % thermal conductivity of air in W/m.K
+heatc_air=1005; % heatc_air: heat capacitance of air in J/kgK
 
 %% Calculation part
 
