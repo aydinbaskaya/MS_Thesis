@@ -85,10 +85,10 @@
 - [x] Powerlab Journal Club & haftalık seminer
 <br/>:arrow_right: JC yapılmadı ancak iki seminere de katılım gösterildi.
 
-:heavy_exclamation_mark: Şu iki dokuman okunacak(makaleler daha önceden mendeley/powerlab klasörüne eklenmiştir):
+- [x] Şu iki dokuman okunacak(makaleler daha önceden mendeley/powerlab klasörüne eklenmiştir):
 <br/>1) J. Azzouzi, R. Belfkira, N. Abdel-Karim, G. Barakat and B. Dakyo, "Design Optimization of an Axial Flux PM Synchronous Machine: Comparison Between DIRECT Method and GAs Method," 2006 12th International Power Electronics and Motion Control Conference, Portoroz, 2006, pp. 1094-1098. doi: 10.1109/EPEPEMC.2006.4778548
    2) Popov, Andrey, "Genetic Algorithms for Optimization – Application in Controller Design Problems", User manual,TU-Sofia, 2003
-<br/>:hourglass: İlk makale okundu önemli noktalar kaydedildi, tezin optimization kısmı için güzel kısımlar var. Ancak bu ilk makalede analitik denklemleri üstükapalı geçmiş. İkinci makale baya iyi optimizasyon konusunda. MATLAB için güzel anlatım var,okunmaya devam ediliyor henüz bitmedi.  
+<br/>:arrow_right: İlk makale okundu önemli noktalar kaydedildi, tezin optimization kısmı için güzel kısımlar var. Ancak bu ilk makalede analitik denklemleri üstükapalı geçmiş. İkinci makale de okundu. Bu makale baya iyi optimizasyon konusunda, ga güzel anlatılmış. Anladığım kadarıyla PID kontrol dizaynı var,optimizasyonda kullandığı fonsiyonu anlatmış. Pareto-optimal(multi) olayına çok dalmış ama biz zaten şuan single objective(mass) için çalışıyoruz.  
 
 
 ### 3 - 9 Nisan
