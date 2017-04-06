@@ -31,7 +31,7 @@
 % B_opt : Desired remanent flux density for the magnet
 % t_amb : ambient temperature
 % air_flow : air flow 
-% number_parallel_mach : number of parallel machines stacked axially
+% number_parallel_mach : number of parallel machines stacked axiall(h_w)y
 
 %-------------------------------------------------------------------------------------------------------
 
@@ -509,6 +509,19 @@ heatc_air=1005; % heatc_air: heat capacitance of air in J/kgK
 
 %% Calculation part
 
+%thermal resistance parameters
+
+epoxy_s=0.5*h_epoxy*(lambda_epoxy*l_coil_structure*(4*width_winding+h_w));
+rad_cop_s=0.5*h_w*(lambda_cu_ver*l_coil_structure*(4*width_winding+h_w));
+R_rad_s=rad_cop_s+epoxy_s; % R_rad_s: thermal resistance of the structure part, rad_cop_s: copper part of thermal resistance at structure, epoxy_s: epoxy part of thermal resistance at structure 
+
+epoxy_m=0.5*h_epoxy*(lambda_epoxy*l_coil_middle*width_winding);
+copper_m=0.5*h_w*(lambda_cu_ver*l_coil_middle*width_winding);
+R_rad_m=0.25*(copper_m+epoxy_m); % R_rad_m: thermal resistance of the middle coil part, copper_m: copper part of thermal resistance at middle coil,epoxy_m: epoxy part of thermal resistance at middle coil 
+
+epoxy_e=0.5*h_epoxy*(lambda_epoxy*l_coil_end*(2*width_winding+h_w)) ;
+rad_cop_e=0.5*h_w*(lambda_cu_ver*l_coil_end*(2*width_winding+h_w)) ; 
+R_rad_e=rad_cop_e+epoxy_e ; % R_rad_e: thermal resistance of the radial end coil part , rad_cop_e: copper part of thermal resistance at end coil,epoxy_e: epoxy part of thermal resistance at end coil  
 
 
 
