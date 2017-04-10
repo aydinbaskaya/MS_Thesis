@@ -4,33 +4,33 @@
 
 %% Variables defined in optimization part(user defined variables/constraints)
 
-% r_mean : mean radius
-% g: air-gap clearence 
+% r_mean : mean radius (m)
+% g: air-gap clearence (m)
 % rpm : rotational speed(rpm)
 
-% J : curent density
+% J : curent density (A/mm^2)
 
-% t_o : outer limb thickness
-% t_i : inner limb thickness
-% lc : steel web 
-% groove : space between c-cores
-% groove_c : gap between modules
+% t_o : outer limb thickness (m)
+% t_i : inner limb thickness (m)
+% lc : steel web (m)
+% groove : space between c-cores(take 0 for this design) (m)
+% groove_c : gap between modules (m)
 
 % Nt : number of turns in a coil
 % Np : number of poles
 % n_branch : number of parallel branches
 % m : number of phases
 
-% h_w : height of the winding
+% h_w : height of the winding (m)
 % pitch_ratio: winding thickness/coil pitch ratio 
 % kf: fill factor(1 for concentrated windings)
 
-% h_m : height of the magnet
-% l_magnet : axial lenght of the magnet
+% h_m : height of the magnet (m)
+% l_magnet : axial lenght of the magnet (m)
 % width_ratio: Magnet/steel width ratio 
-% B_opt : Desired remanent flux density for the magnet
-% t_amb : ambient temperature
-% air_flow : air flow 
+% B_opt : Desired remanent flux density for the magnet (T)
+% t_amb : ambient temperature (oC)
+% air_flow : air flow (m^3/sec)
 % number_parallel_mach : number of parallel machines stacked axiall(h_w)y
 
 %-------------------------------------------------------------------------------------------------------
@@ -59,17 +59,16 @@
 % rho_cu: copper resistivity coefficient, l_t: mean turn length 
 % l_coil_end: coil end length, l_coil_middle: coil middle part length, l_coil_structure: coil structure part length  
 % f: frequency
-% k_ind: inductance coefficient(take 1 for no leakage path assumption), flux_lnk: flux linkage
+% k_ind: inductance coefficient(take 1 for leakage path assumption), flux_lnk: flux linkage
 % B_a: flux density for inductance calculation
-% mu_0: permeability of vacuum=constant , l_ss: steel to steel distance
-% l_mm: magnet to magnet gap,h_m: height of the magnet , groove: space between c-cores(take 0 for this design)
-% h_w: height of the winding, g: air-gap clearence
+% mu_0: permeability of vacuum(constant=4*pi*10^-7) , l_ss: steel to steel distance
+% l_mm: magnet to magnet gap
 
 %% Calculation part
 
 l_mm=h_w+2*g ; 
 l_ss=l_mm+2*(h_m-groove) ;  
-mu_0=1.257E-06 ; 
+mu_0=1.257E-06 ; % constant
 B_a=mu_0*Nt/l_ss ; 
 flux_lnk=(2*B_a*Nt*((0.5*(r_o^2-r_i^2)*tand(theta_o))-(width_winding*l_magnet)))+(2*B_a*Nt*width_winding*l_magnet/3) ;  
 k_ind=1; % constant
@@ -523,6 +522,40 @@ epoxy_e=0.5*h_epoxy*(lambda_epoxy*l_coil_end*(2*width_winding+h_w)) ;
 rad_cop_e=0.5*h_w*(lambda_cu_ver*l_coil_end*(2*width_winding+h_w)) ; 
 R_rad_e=rad_cop_e+epoxy_e ; % R_rad_e: thermal resistance of the radial end coil part , rad_cop_e: copper part of thermal resistance at end coil,epoxy_e: epoxy part of thermal resistance at end coil  
 
+%--------------------------------------------------------------------------------------------------------------------------
 
 
 %--------------------------------------------------------------------------------------------------------------------------
+%% Structural Model and Calculations
+
+%% ----------Definition of the parameters/variables----------
+
+% beam_y_percent: percent value of deflection in beam model with respect to airgap clearence
+% beam_y: total deflection in beam model
+% beam_y2: deflection according to submodel-2
+% beam_y1: deflection according to submodel-1, youngm: Young's Modulus(constant)
+% beam_a2: magnet axial length along the beam (submodel-2)
+% beam_a1: zero length assumption along the beam (submodel-1)
+% L_beam=beam length
+% I_beam: second moment of inertia
+% udl: uniformly distributed load 
+% q : normal stress
+
+%% Calculation part
+
+% beam model
+
+q=(B_ag^2)/(2*mu_0) ; 
+udl=q*tau_p ; 
+I_beam=tau_p*(t_o^3)/12 ; 
+L_beam=l_magnet+l_cl ; 
+beam_a1= 0 ;
+beam_a2=l_magnet ; 
+youngm=2E11 ; 
+beam_y1=-udl*((L_beam-beam_a1)^3)*(3*L_beam+beam_a1)/(24*I_beam*youngm) ; 
+beam_y2=udl*((L_beam-beam_a2)^3)*(3*L_beam+beam_a2)/(24*I_beam*youngm) ; 
+beam_y=beam_y1+beam_y2 ; 
+beam_y_percent=abs(beam_y)/g ; 
+
+%--------------------------------------------------------------------------------------------------------------------------
+
