@@ -92,14 +92,28 @@
 
 
 ### 3 - 9 Nisan
-- [ ] Tasarım denklemlerine termal ve mekanik kısımlar eklenecek ve .m dosyası optimtoolda çalışacak şekilde function haline getirilecek. GA detaylandırılacak.<br/>
+- [x] Tasarım denklemlerine termal ve mekanik kısımlar eklenecek ve .m dosyası optimtoolda çalışacak şekilde function haline getirilecek. GA detaylandırılacak.
+<br/>:arrow_right: matlabda termal ve yapısal denklemlere devam edildi. Optimtool arayüzünde çalışacak şekilde function haline getirildi ve bu dosyalar githuba yüklendi ancak test edilmesi lazım. GA kısmı ilgili açılan repo klasöründe readme dosyasında açıklandı,bunun detaylısı tezde yer alacak.
 
-- [ ] Powerlab Journal Club & haftalık seminer<br/>
+- [x] Powerlab Journal Club & haftalık seminer
+<br/>:arrow_right: JC yapıldı,makaleler okundu.
 
-- [ ] Tez Chapter-2 yazımına başlanacak<br/>
+- [x] Tez Chapter-2 yazımına başlanacak
+<br/>:arrow_right: ch-2 başlandı, githuba yükleme yapıldı.
 
-- [ ] Şu makale okunacak(makale daha önceden mendeley/powerlab klasörüne eklenmiştir):<br/>
+- [x] Şu makale okunacak(makale daha önceden mendeley/powerlab klasörüne eklenmiştir):
     1) A. Mahmoudi, S. Kahourzade, N. A. Rahim and W. P. Hew, "Design, Analysis, and Prototyping of an Axial-Flux Permanent Magnet Motor Based on Genetic Algorithm and Finite-Element Analysis," in IEEE Transactions on Magnetics, vol. 49, no. 4, pp. 1479-1492, April 2013.
 doi: 10.1109/TMAG.2012.2228213
+<br/>:arrow_right: makale okundu,ga kısmı iyi olmasına karsın topoloji air-core olmadıgından cok fazla skewing bahsedilmiş. Ama güzel kısımlar teze adapte edilecek.
+
+
+### 10 - 16 Nisan
+- [ ] Matlab koda termal ve mekanik devam edilecek,optimtool üzerinde durulacak
+
+- [ ] Powerlab Journal Club & haftalık seminer
+
+- [ ] Ch-2 devam
+
+- [ ] Ch-2 için son yılların karışık review makaleleri okunacak(mendeley klasörümdekiler). Bu yüzden ayrıca bir makale okuması yok.
 
 
