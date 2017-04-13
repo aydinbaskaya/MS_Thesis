@@ -64,8 +64,7 @@ alpha_alum2air=40 ;% alpha_alum2air: aluminium to air heat transfer coefficient 
 h_epoxy=0.0005 ; % h_epoxy: height of the epoxy layer
 h_band=0.01 ; % h_band: height of steel band(jubilee clip)
 w_band=0.04; % w_band: axial width of the steel band
-t_disc=?? ... continue 
-    
+t_disc=?? ... continue   
 mu_0=1.257E-06 ; % constant
 
 %--------------------------------------------------------------------------------------------------------------------------
@@ -180,7 +179,7 @@ end
 
 A_sp_o=t_i*l_magnet ; 
 
-phi_sp_nl= S_sp*NI/(S_st*(2*S_PM_o+S_ag+0.5*S_sp)+0.5*(S_sp*(2*S_PM_o+S_ag))) ;
+phi_sp_nl= S_st*NI/(S_st*(2*S_PM_o+S_ag+0.5*S_sp)+0.5*(S_sp*(2*S_PM_o+S_ag))) ;
 B_sp_nl= phi_sp_nl/A_sp_o ; 
 
 phi_sp_l=flux_l(2,:) ; % 
@@ -198,7 +197,7 @@ end
 
 A_st=tau_pw*lc ; 
 
-phi_st_nl=S_st*NI/(S_st*(2*S_PM_o+S_ag+0.5*S_sp)+0.5*(S_sp*(2*S_PM_o+S_ag))) ; 
+phi_st_nl=S_sp*NI/(S_st*(2*S_PM_o+S_ag+0.5*S_sp)+0.5*(S_sp*(2*S_PM_o+S_ag))) ; 
 B_st_nl=phi_st_nl/A_st ; 
 
 
@@ -212,6 +211,7 @@ else
 end
 
 %------ end of steel region flux density calculation---------%
+%----------------------------------------------------------------------------------------------------
 
 
 %----------------------------------------------------------------------------------------------------
