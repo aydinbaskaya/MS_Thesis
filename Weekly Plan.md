@@ -108,12 +108,23 @@ doi: 10.1109/TMAG.2012.2228213
 
 
 ### 10 - 16 Nisan
-- [ ] Matlab koda termal ve mekanik devam edilecek,optimtool üzerinde durulacak
+- [x] Matlab koda termal ve mekanik devam edilecek,optimtool üzerinde durulacak
+<br/>:arrow_right: matlab koda devam edildi, optimtoolla uyumlu olması için function yapıldı ve değişkenler ayarlandı optimtoolla ugraşılıyor. Optimizasyon excel worksheet i eski office sürümlerinde(2003 ve 2010 da dahil) çalışmadı, orijinal laptop ustunden bakılması lazım
 
-- [ ] Powerlab Journal Club & haftalık seminer
+- [x] Powerlab Journal Club & haftalık seminer
+<br/>:arrow_right: JC yapıldı,makaleler okundu.
 
-- [ ] Ch-2 devam
+- [x] Ch-2 devam
+<br/>:arrow_right: Ch-2 yazımına devam ediliyor.
 
-- [ ] Ch-2 için son yılların karışık review makaleleri okunacak(mendeley klasörümdekiler). Bu yüzden ayrıca bir makale okuması yok.
+- [x] Ch-2 için son yılların karışık review makaleleri okunacak(mendeley klasörümdekiler). Bu yüzden ayrıca bir makale okuması yok.
+<br/>:arrow_right: ilgili makaleler okunmaya devam edildi, ch-2'de referanslarda da bazıları var. Ayrıca mendeley/powerlab klasörüne de eklendi.
 
+
+### 17 - 23 Nisan
+- [ ] Matlab koda ve optimizasyona devam,worksheet calıştırılmasına bakılacak.
+
+- [ ] Powerlab Journal Club & haftalık seminer.
+
+- [ ] Ch-2 yazımına, okunan makalelerle devam edilecek.
 
