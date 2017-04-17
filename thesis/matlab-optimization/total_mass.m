@@ -1,10 +1,32 @@
-function result = total_mass(r_mean,g,rpm,J,t_o,t_i,lc,groove,width_ratio,Nt,Np,n_branch,m,h_w,pitch_ratio,kf,h_m,l_magnet,number_parallel_mach) 
-
+function result = total_mass(x)
 %%%%%Axial Flux PM Generator Design Equations%%%%%
 %----------------------------------------------------------------------
 
+%included in optimization
+r_mean=x(1);
+g=x(2);
+J=x(3);
+t_o=x(4);
+t_i=x(5);
+lc=x(6);
+width_ratio=x(7);
+Nt=x(8);
+Np=x(9);
+n_branch=x(10);
+h_w=x(11);
+pitch_ratio=x(12);
+kf=x(13);
+h_m=x(14);
+l_magnet=x(15);
+number_parallel_mach=x(16);
 
-%% Variables defined in optimization part(user defined variables/constraints)
+%not included in optimization
+rpm=12 ;
+groove=0 ;
+m=3; 
+B_opt=1.3;
+
+%% Definitions in optimization part(user defined variables/constraints)
 
 % r_mean : mean radius (m)
 % g: air-gap clearence (m)
