@@ -2,7 +2,7 @@ function result = total_mass(x)
 %%%%%Axial Flux PM Generator Design Equations%%%%%
 %----------------------------------------------------------------------
 
-%included in optimization
+%included in optimization(variables)
 r_mean=x(1);
 g=x(2);
 J=x(3);
@@ -20,11 +20,36 @@ h_m=x(14);
 l_magnet=x(15);
 number_parallel_mach=x(16);
 
-%not included in optimization
+%not included in optimization(constants)
 rpm=12 ;
 groove=0 ;
 m=3; 
 B_opt=1.3;
+groove_c=0;
+t_amb=20; 
+air_flow=9; 
+cool_type=2; 
+alpha_Cu=3.9-E03 ;
+rho_cu=1.7-E08;
+a_bar=40;           %heat transfer coefficient(?) in W/m^2.K
+a_stat=25;          %heat transfer coefficient(?) in W/m^2.K
+a_conc=60;          %heat transfer coefficient(?) in W/m^2.K
+lambda_steel=54;    %lambda_steel: thermal conductivity of steel in W/m.K
+lambda_alum=250;    % lambda_alum: thermal conductivity of aluminium in W/m.K
+lambda_cu_coil=400; % lambda_cu_coil: thermal conductivity of copper along coil in W/m.K
+lambda_cu_ver=1.8;  % lambda_cu_ver: thermal conductivity of copper in vertical in W/m.K
+lambda_epoxy=1.3;   % lambda_epoxy:thermal conductivity of epoxy in W/m.K 
+lambda_pm=9;        % lambda_pm: lambda_pm:thermal conductivity of PM in W/m.K
+k=0.262;            % k: thermal conductiviy of air in W/m.K
+alpha_ep2air=40 ;   % alpha_ep2air: epoxy to air heat transfer coefficient in W/m^2.K
+alpha_st2air=40 ;   % alpha_st2air: steel to air heat transfer coefficient in W/m^2.K
+alpha_alum2air=40 ; % alpha_alum2air: aluminium to air heat transfer coefficient in W/m^2.K
+h_epoxy=0.0005 ;    % h_epoxy: height of the epoxy layer
+h_band=0.01 ;       % h_band: height of steel band(jubilee clip)
+w_band=0.04;        % w_band: axial width of the steel band
+t_disc=?? ... continue   
+mu_0=1.257E-06 ;    % constant
+
 
 %% Definitions in optimization part(user defined variables/constraints)
 
@@ -40,9 +65,9 @@ B_opt=1.3;
 % groove : space between c-cores(take 0 for this design) (m)
 % groove_c : gap between modules (m)
 
-% Nt : number of turns in a coil
-% Np : number of poles
-% n_branch : number of parallel branches
+% Nt : number of turns in a coil(integer)
+% Np : number of poles(integer)
+% n_branch : number of parallel branches(integer)
 % m : number of phases
 
 % h_w : height of the winding (m)
@@ -56,40 +81,9 @@ B_opt=1.3;
 % t_amb : ambient temperature (oC)
 % air_flow : air flow (m^3/sec)
 % number_parallel_mach : number of parallel machines stacked axiall(h_w)y
+% cool_type: cooling type, 1-->natural air, 2-->forced air, 3-->forced water
 
 %-------------------------------------------------------------------------------------------------------
-
-
-%% CONSTANTS 
-
-% Natural air Cooling for J=5.5 A/mm^2
-% Forced air cooling for J=7 A/mm^2
-% Forced water cooling for J=9 A/mm^2
-
-% thermal constants(from optimization)
-
-alpha_Cu=3.9-E03 ;
-rho_cu=1.7-E08;
-a_bar=40; %heat transfer coefficient(?) in W/m^2.K
-a_stat=25; %heat transfer coefficient(?) in W/m^2.K
-a_conc=60; %heat transfer coefficient(?) in W/m^2.K
-lambda_steel=54; %lambda_steel: thermal conductivity of steel in W/m.K
-lambda_alum=250; % lambda_alum: thermal conductivity of aluminium in W/m.K
-lambda_cu_coil=400; % lambda_cu_coil: thermal conductivity of copper along coil in W/m.K
-lambda_cu_ver=1.8; % lambda_cu_ver: thermal conductivity of copper in vertical in W/m.K
-lambda_epoxy=1.3; % lambda_epoxy:thermal conductivity of epoxy in W/m.K 
-lambda_pm=9; % lambda_pm: lambda_pm:thermal conductivity of PM in W/m.K
-k=0.262; % k: thermal conductiviy of air in W/m.K
-alpha_ep2air=40 ; % alpha_ep2air: epoxy to air heat transfer coefficient in W/m^2.K
-alpha_st2air=40 ; % alpha_st2air: steel to air heat transfer coefficient in W/m^2.K
-alpha_alum2air=40 ;% alpha_alum2air: aluminium to air heat transfer coefficient in W/m^2.K
-h_epoxy=0.0005 ; % h_epoxy: height of the epoxy layer
-h_band=0.01 ; % h_band: height of steel band(jubilee clip)
-w_band=0.04; % w_band: axial width of the steel band
-t_disc=?? ... continue   
-mu_0=1.257E-06 ; % constant
-
-%--------------------------------------------------------------------------------------------------------------------------
 
 
 %% [I_ph_rms] Current per phase(rms) calculation
@@ -387,6 +381,14 @@ L_phase=L_coil*N_series/n_branch*1000 ;
 bypass_1=(100-t_amb)/5.5^2*(J^2)+t_amb ;
 bypass_2=(100-t_amb)/49*(J^2)+t_amb ;  
 bypass_3=(100-t_amb)/81*(J^2)+t_amb ;
+
+if(cool_type==1)  % Natural air Cooling
+    J=5.5;
+elseif(cool_type==2) % Forced air cooling
+    J=7;
+elseif(cool_type==3) % % Forced water cooling
+    J=9;
+end
 
 if(J==5.5)
     t_winding=bypass_1 ;
