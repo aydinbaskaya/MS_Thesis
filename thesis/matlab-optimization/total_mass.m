@@ -1,6 +1,7 @@
 function result = total_mass(x)
 %%%%%Axial Flux PM Generator Design Equations%%%%%
 %----------------------------------------------------------------------
+penalty=0;
 
 %included in optimization(variables)
 r_mean=x(1);
@@ -39,7 +40,7 @@ lambda_alum=250;    % lambda_alum: thermal conductivity of aluminium in W/m.K
 lambda_cu_coil=400; % lambda_cu_coil: thermal conductivity of copper along coil in W/m.K
 lambda_cu_ver=1.8;  % lambda_cu_ver: thermal conductivity of copper in vertical in W/m.K
 lambda_epoxy=1.3;   % lambda_epoxy:thermal conductivity of epoxy in W/m.K 
-lambda_pm=9;        % lambda_pm: lambda_pm:thermal conductivity of PM in W/m.K
+lambda_pm=9;        % lambda_pm:thermal conductivity of PM in W/m.K
 k=0.262;            % k: thermal conductiviy of air in W/m.K
 alpha_ep2air=40 ;   % alpha_ep2air: epoxy to air heat transfer coefficient in W/m^2.K
 alpha_st2air=40 ;   % alpha_st2air: steel to air heat transfer coefficient in W/m^2.K
@@ -47,7 +48,7 @@ alpha_alum2air=40 ; % alpha_alum2air: aluminium to air heat transfer coefficient
 h_epoxy=0.0005 ;    % h_epoxy: height of the epoxy layer
 h_band=0.01 ;       % h_band: height of steel band(jubilee clip)
 w_band=0.04;        % w_band: axial width of the steel band
-t_disc=?? ... continue   
+t_disc=0.008;       % t_disc: thickness of the disc model, later used in thermal resistance calculations    
 mu_0=1.257E-06 ;    % constant
 
 
@@ -359,6 +360,10 @@ P_loss=P_copper_th+P_eddy ;
 
 Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 
+if (Eff<0.9)
+   penalty=penalty+(abs(0.9-Eff)*10000) ;
+end
+
 %---------------------------------------------------------------------------------------------------------------------------
 
 
@@ -500,7 +505,7 @@ tau_former=tau_c-2*width_winding ;
 m_epoxy_single=(l_t*width_winding*(1-kf)+tau_former*l_magnet)*h_w*d_epoxy ; 
 mass_epoxy=m_epoxy_single*Nc; 
 
-total_mass=mass_structure+mass_epoxy+mass_magnet+mass_copper+mass_steel; %%Resulting total mass equation
+total_mass=mass_structure+mass_epoxy+mass_magnet+mass_copper+mass_steel+penalty; %%Resulting total mass equation
 
 %-------------------------------------------------------------------------------------------------------------------------
 
