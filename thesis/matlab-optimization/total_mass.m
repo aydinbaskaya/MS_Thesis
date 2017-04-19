@@ -50,7 +50,7 @@ h_band=0.01 ;       % h_band: height of steel band(jubilee clip)
 w_band=0.04;        % w_band: axial width of the steel band
 t_disc=0.008;       % t_disc: thickness of the disc model, later used in thermal resistance calculations    
 mu_0=1.257E-06 ;    % constant
-
+cool_type=2;        % assume 'Forced air cooling' is chosen
 
 %% Definitions in optimization part(user defined variables/constraints)
 
@@ -383,23 +383,25 @@ L_phase=L_coil*N_series/n_branch*1000 ;
 
 %winding temperature calculated here
 
-bypass_1=(100-t_amb)/5.5^2*(J^2)+t_amb ;
-bypass_2=(100-t_amb)/49*(J^2)+t_amb ;  
-bypass_3=(100-t_amb)/81*(J^2)+t_amb ;
-
 if(cool_type==1)  % Natural air Cooling
-    J=5.5;
+    J_type=5.5;
 elseif(cool_type==2) % Forced air cooling
-    J=7;
+    J_type=7;
 elseif(cool_type==3) % % Forced water cooling
-    J=9;
+    J_type=9;
 end
 
-if(J==5.5)
+bypass_1=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;
+bypass_2=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;  
+bypass_3=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;
+
+
+
+if(J_type==5.5)
     t_winding=bypass_1 ;
-elseif(J==7)
+elseif(J_type==7)
     t_winding=bypass_2 ;
-elseif(J==9)
+elseif(J_type==9)
     t_winding=bypass_3 ;
 end
 
