@@ -122,9 +122,19 @@ doi: 10.1109/TMAG.2012.2228213
 
 
 ### 17 - 23 Nisan
-- [ ] Matlab koda ve optimizasyona devam,worksheet calıştırılmasına bakılacak.
+- [x] Matlab koda ve optimizasyona devam,worksheet calıştırılmasına bakılacak.
+<br/>:arrow_right: excel worksheetler inceleniyor, daha sağlıklı yapılması için VBA kısmındaki genetik koduna bakılıyor. kod güncellemesi ve optimtool düzenlemesi yapıldıkça githuba yüklendi.
+
+- [x] Powerlab Journal Club & haftalık seminer.
+<br/>:arrow_right: JC yapıldı ve makaleler okundu.
+
+- [x] Ch-2 yazımına, okunan makalelerle devam edilecek.
+<br/>:arrow_right: Ch-2 yazımına devam edildi, güncellenmiş hali githuba yüklendi.
+
+
+### 24 - 30 Nisan
+- [ ] MATLAB kodu excel VBA kısmı üzerinden tekrar düzenlenecek,termal kısımda çok detaya girilmeden optimizasyona yoğunlaşılacak. 
+
+- [ ] Ch-2 yazımı tamamlanarak son hali verilecek.
 
 - [ ] Powerlab Journal Club & haftalık seminer.
-
-- [ ] Ch-2 yazımına, okunan makalelerle devam edilecek.
-
