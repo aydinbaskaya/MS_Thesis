@@ -262,6 +262,42 @@ end
 
 %% Calculation part
 
+%winding temperature calculated here
+
+if(cool_type==1)  % Natural air Cooling
+    J_type=5.5;
+elseif(cool_type==2) % Forced air cooling
+    J_type=7;
+elseif(cool_type==3) % % Forced water cooling
+    J_type=9;
+end
+
+bypass_1=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;
+bypass_2=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;  
+bypass_3=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;
+
+
+
+if(J_type==5.5)
+    t_winding=bypass_1 ;
+elseif(J_type==7)
+    t_winding=bypass_2 ;
+elseif(J_type==9)
+    t_winding=bypass_3 ;
+end
+
+if t_winding>179   
+    temp_winding=179 ; 
+else if t_winding <-179
+    temp_winding=-179;
+    else
+    temp_winding=t_winding;
+    end
+end
+
+dT= t_winding-t_amb ; 
+
+
 Nc=(3/4)*Np ;
 coil_phase=Nc/m; 
 N_series=coil_phase/n_branch; 
@@ -300,9 +336,6 @@ V_ph_rms = E_ph_rms*cosd(lambda)-I_ph_rms(R_ph_th*cosd(phi)+X_ph*sind(phi)) ;  %
 %--------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
 %--------------------------------------------------------------------------------------------------------------------------
 %% [P_o] Power output calculation
 
@@ -317,6 +350,28 @@ V_ph_rms = E_ph_rms*cosd(lambda)-I_ph_rms(R_ph_th*cosd(phi)+X_ph*sind(phi)) ;  %
 P_o= m*V_ph_rms*I_ph_rms; %%Resulting equation
 
 %---------------------------------------------------------------------------------------------------------------------------
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------
+%% Coil Electrical Parameters calculation
+
+%% ----------Definition of the parameters/variables----------
+
+% t_amb: ambient temperature
+% temp_winding : resulting winding temperature
+% t_winding: winding temperature (forced air cooling)
+% L_phase : phase inductance
+
+%% Calculation part
+
+L_phase=L_coil*N_series/n_branch*1000 ; 
+
+
+%----------------------------------------------------------------------------------------------------
+
+
+
 
 
 %--------------------------------------------------------------------------------------------------------------------------
@@ -367,54 +422,6 @@ end
 %---------------------------------------------------------------------------------------------------------------------------
 
 
-%--------------------------------------------------------------------------------------------------------------------------
-%% Coil Electrical Parameters calculation
-
-%% ----------Definition of the parameters/variables----------
-
-% t_amb: ambient temperature
-% temp_winding : resulting winding temperature
-% t_winding: winding temperature (forced air cooling)
-% L_phase : phase inductance
-
-%% Calculation part
-
-L_phase=L_coil*N_series/n_branch*1000 ; 
-
-%winding temperature calculated here
-
-if(cool_type==1)  % Natural air Cooling
-    J_type=5.5;
-elseif(cool_type==2) % Forced air cooling
-    J_type=7;
-elseif(cool_type==3) % % Forced water cooling
-    J_type=9;
-end
-
-bypass_1=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;
-bypass_2=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;  
-bypass_3=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;
-
-
-
-if(J_type==5.5)
-    t_winding=bypass_1 ;
-elseif(J_type==7)
-    t_winding=bypass_2 ;
-elseif(J_type==9)
-    t_winding=bypass_3 ;
-end
-
-if t_winding>179   
-    temp_winding=179 ; 
-else if t_winding <-179
-    temp_winding=-179;
-    else
-    temp_winding=t_winding;
-    end
-end
-
-%----------------------------------------------------------------------------------------------------
 
 
 
