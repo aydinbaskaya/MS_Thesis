@@ -3,45 +3,47 @@ function result = total_mass(x)
 %----------------------------------------------------------------------
 penalty=0;
 
-%included in optimization(variables)
-r_mean=x(1);
-g=x(2);
-J=x(3);
-t_o=x(4);
-t_i=x(5);
-lc=x(6);
-width_ratio=x(7);
-Nt=x(8);
-Np=x(9);
-n_branch=x(10);
-h_w=x(11);
-pitch_ratio=x(12);
-kf=x(13);
-h_m=x(14);
-l_magnet=x(15);
-number_parallel_mach=x(16);
 
-%not included in optimization(constants)
-rpm=12 ;
-groove=0 ;
-m=3; 
-B_opt=1.3;
-groove_c=0;
-t_amb=20; 
-air_flow=9; 
-cool_type=2; 
-alpha_Cu=3.9-E03 ;
-rho_cu=1.7-E08;
-a_bar=40;           %heat transfer coefficient(?) in W/m^2.K
-a_stat=25;          %heat transfer coefficient(?) in W/m^2.K
-a_conc=60;          %heat transfer coefficient(?) in W/m^2.K
-lambda_steel=54;    %lambda_steel: thermal conductivity of steel in W/m.K
+%% Definitions in optimization part(user defined variables/constraints)
+
+%included in optimization(variables):
+
+r_mean=x(1);        % mean radius 
+g=x(2);             % air-gap clearence
+J=x(3);             % curent density
+t_o=x(4);           % outer limb thickness
+t_i=x(5);           % inner limb thickness
+lc=x(6);            % steel web
+width_ratio=x(7);   % Magnet/steel width ratio
+Nt=x(8);            % number of turns in a coil(integer)
+Np=x(9);            % number of poles(integer)
+n_branch=x(10);     % number of parallel branches(integer)
+h_w=x(11);          % height of the winding
+pitch_ratio=x(12);  % winding thickness/coil pitch ratio
+kf=x(13);           % fill factor
+h_m=x(14);          % height of the magnet
+l_magnet=x(15);     % axial lenght of the magnet
+number_parallel_mach=x(16); % number of parallel machines stacked axially
+
+%not included in optimization(constants):
+
+rpm=12 ;            % rotational speed
+groove=0 ;          % space between c-cores 
+groove_c=0;         % gap between modules 
+m=3;                % number of phases
+B_opt=1.3;          % Desired remanent flux density for the magnet
+t_amb=20;           % ambient temperature
+air_flow=9;         % air flow
+cool_type=2;        % cooling type, 1-->natural air, 2-->forced air, 3-->forced water , "forced air cooling" is selected for design
+leakage_insert=1;   % leakage flux enable control ; 0-->no leakage, 1-->leakage enable
+alpha_Cu=3.9-E03 ;  % temperature coefficent at 20 Celcius degree
+rho_cu=1.7-E08;     % copper resistivity coefficient
+lambda_steel=54;    % lambda_steel: thermal conductivity of steel in W/m.K
 lambda_alum=250;    % lambda_alum: thermal conductivity of aluminium in W/m.K
 lambda_cu_coil=400; % lambda_cu_coil: thermal conductivity of copper along coil in W/m.K
 lambda_cu_ver=1.8;  % lambda_cu_ver: thermal conductivity of copper in vertical in W/m.K
 lambda_epoxy=1.3;   % lambda_epoxy:thermal conductivity of epoxy in W/m.K 
 lambda_pm=9;        % lambda_pm:thermal conductivity of PM in W/m.K
-k=0.262;            % k: thermal conductiviy of air in W/m.K
 alpha_ep2air=40 ;   % alpha_ep2air: epoxy to air heat transfer coefficient in W/m^2.K
 alpha_st2air=40 ;   % alpha_st2air: steel to air heat transfer coefficient in W/m^2.K
 alpha_alum2air=40 ; % alpha_alum2air: aluminium to air heat transfer coefficient in W/m^2.K
@@ -49,40 +51,7 @@ h_epoxy=0.0005 ;    % h_epoxy: height of the epoxy layer
 h_band=0.01 ;       % h_band: height of steel band(jubilee clip)
 w_band=0.04;        % w_band: axial width of the steel band
 t_disc=0.008;       % t_disc: thickness of the disc model, later used in thermal resistance calculations    
-mu_0=1.257E-06 ;    % constant
-cool_type=2;        % assume 'Forced air cooling' is chosen
-
-%% Definitions in optimization part(user defined variables/constraints)
-
-% r_mean : mean radius (m)
-% g: air-gap clearence (m)
-% rpm : rotational speed(rpm)
-
-% J : curent density (A/mm^2)
-
-% t_o : outer limb thickness (m)
-% t_i : inner limb thickness (m)
-% lc : steel web (m)
-% groove : space between c-cores(take 0 for this design) (m)
-% groove_c : gap between modules (m)
-
-% Nt : number of turns in a coil(integer)
-% Np : number of poles(integer)
-% n_branch : number of parallel branches(integer)
-% m : number of phases
-
-% h_w : height of the winding (m)
-% pitch_ratio: winding thickness/coil pitch ratio 
-% kf: fill factor(1 for concentrated windings)
-
-% h_m : height of the magnet (m)
-% l_magnet : axial lenght of the magnet (m)
-% width_ratio: Magnet/steel width ratio 
-% B_opt : Desired remanent flux density for the magnet (T)
-% t_amb : ambient temperature (oC)
-% air_flow : air flow (m^3/sec)
-% number_parallel_mach : number of parallel machines stacked axiall(h_w)y
-% cool_type: cooling type, 1-->natural air, 2-->forced air, 3-->forced water
+mu_0=1.257E-06 ;    % permeability of air
 
 %-------------------------------------------------------------------------------------------------------
 
@@ -95,6 +64,9 @@ cool_type=2;        % assume 'Forced air cooling' is chosen
 % J:curent density, a_cond=cross section area of the conductor 
 % a_window: effective area of winding window
 %h_w : height of the winding,  kf: fill factor(1 for concentrated windings)
+%tau_p : pole pitch
+%tau_c :coil pitch
+% width_winding: width of the winding
 
 %% Calculation part
 
@@ -239,14 +211,12 @@ end
 % E_ph_rms: induced emf per phase(rms), lamda: load angle, phi: power factor angle, I_ph_rms: phase current(rms), R_ph_th: phase resistance(including thermal effects), X_ph: phase reactance value
 % E_ph_peak: induced emf per phase(peak)
 % e:induced emf of one turn,  Nt:number of turns in a coil, N_series: number of coils connnected in series
-% v: air-gap linear speed, flux_lnk_peak : peak flux linkage , tau_p : pole pitch
+% v: air-gap linear speed, flux_lnk_peak : peak flux linkage 
 % r_mean:mean radius, w_m : mechanical speed
 % rpm : rotational speed(rpm)
 % k_leak:leakage factor , magnet_h1:varying magnet pitch 1st harmonic,r_o: outside radius , r_i: inner radius, Np:number of poles, theta_o: outer arc length , theta_i:inner arc length, theta_dif: arc length differences  
 % B_ag: Airgap flux density, width_ratio: Magnet/steel width ratio
 % l_magnet: axial lenght of the magnet
-% tau_c :coil pitch
-% width_winding: width of the winding
 % pitch_ratio: winding thickness/coil pitch ratio
 % coil_phase:number of coils per phase, n_branch: number of parallel branches 
 % Nc: number of coils, m: number of phases
