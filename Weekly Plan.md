@@ -133,8 +133,19 @@ doi: 10.1109/TMAG.2012.2228213
 
 
 ### 24 - 30 Nisan
-- [ ] MATLAB kodu excel VBA kısmı üzerinden tekrar düzenlenecek,termal kısımda çok detaya girilmeden optimizasyona yoğunlaşılacak. 
+- [x] MATLAB kodu excel VBA kısmı üzerinden tekrar düzenlenecek,termal kısımda çok detaya girilmeden optimizasyona yoğunlaşılacak. 
+<br/>:arrow_right: excel worksheet çalıştırıldı şuan çalışan hali var, .m dosyasındaki termal ve diğer blok güncellemeleri githuba yüklendi.
 
-- [ ] Ch-2 yazımı tamamlanarak son hali verilecek.
+- [x] Ch-2 yazımı tamamlanarak son hali verilecek.
+<br/>:arrow_right: Revision-0 versiyon hali githuba yüklendi, düzeltme ve güncelleme/ekleme oldukça devam edilecek.
+
+- [x] Powerlab Journal Club & haftalık seminer.
+<br/>:arrow_right: JC yapılmadı ancak cuma günkü seminere katılım gösterildi(andar).
+
+
+### 1 - 7 Mayıs
+- [ ] Geçen hafta ağırlıklı excelle uğraşıldığından matlab koduna bu hafta ağırlık verilecek.
+
+- [ ] Chapter-3 yazımına başlanacak,latex şablonları ve yazımı incelenecek.
 
 - [ ] Powerlab Journal Club & haftalık seminer.
