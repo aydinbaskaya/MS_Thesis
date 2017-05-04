@@ -1,7 +1,7 @@
 function result = total_mass(x)
 %%%%%Axial Flux PM Generator Design Equations%%%%%
 %----------------------------------------------------------------------
-penalty=0;
+penalty_eff=0;
 
 
 %% Definitions in optimization part(user defined variables/constraints)
@@ -386,7 +386,7 @@ P_loss=P_copper_th+P_eddy ;
 Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 
 if (Eff<0.9)
-   penalty=penalty+(abs(0.9-Eff)*10000) ;
+   penalty_eff=penalty_eff+(abs(0.9-Eff)*10000) ;
 end
 
 %---------------------------------------------------------------------------------------------------------------------------
@@ -484,7 +484,7 @@ tau_former=tau_c-2*width_winding ;
 m_epoxy_single=(l_t*width_winding*(1-kf)+tau_former*l_magnet)*h_w*d_epoxy ; 
 mass_epoxy=m_epoxy_single*Nc; 
 
-total_mass=mass_structure+mass_epoxy+mass_magnet+mass_copper+mass_steel+penalty; %%Resulting total mass equation
+total_mass=mass_structure+mass_epoxy+mass_magnet+mass_copper+mass_steel+penalty_eff; %%Resulting total mass equation
 
 %-------------------------------------------------------------------------------------------------------------------------
 
