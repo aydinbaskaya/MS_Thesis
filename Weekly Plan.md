@@ -144,8 +144,23 @@ doi: 10.1109/TMAG.2012.2228213
 
 
 ### 1 - 7 Mayıs
-- [ ] Geçen hafta ağırlıklı excelle uğraşıldığından matlab koduna bu hafta ağırlık verilecek.
+- [x] Geçen hafta ağırlıklı excelle uğraşıldığından matlab koduna bu hafta ağırlık verilecek.
+<br/>:arrow_right: matlab kodu workspace'te tanımlı alt ve üst sınırlar için optimtoolda denenmeye başlandı,kodla ilgi eksikler/hatalar çıktıkça düzelterek devam ediliyor. Mıknatıs seçimiyle ilgili kataloglar arandı, bulunan 2 uygun dokuman var bunlar github'a da yüklendi.
 
-- [ ] Chapter-3 yazımına başlanacak,latex şablonları ve yazımı incelenecek.
+- [x] Chapter-3 yazımına başlanacak,latex şablonları ve yazımı incelenecek.
+<br/>:arrow_right: Chapter 3 e başlandı, githuba yükleme yapıldı ancak bundan da önemlisi içerikle ilgili güncelleme yapıldı chapter sayısı arttı. Yapılan değişiklikler githuba yüklendi (outline.docx). Ch-2 de güncelleme olacak. Latex'le ilgili bazı şablonlar bulundu, 
+http://asuyatuyolar.org dan latex içerikleri inceleniyor.  :ok_hand:
+- [x] Powerlab Journal Club & haftalık seminer.
+<br/>:arrow_right: JC bu hafta yapılmadı.
+
+
+### 8 - 14 Mayıs
+- [ ] MATLAB optimizasyon ve koda devam edilecek.
+
+- [ ] İçeriği güncellenen chapter-2 bu hafta içinde düzenlenecek.
+
+- [ ] Tamamlanan chapter lar için öncelikle wordde tez formatına uygun düzenleme yapılmaya başlanacak. Latex şablon örneği vakit kalırsa ikinci öncelikle oluşturulacak.
 
 - [ ] Powerlab Journal Club & haftalık seminer.
+
+
