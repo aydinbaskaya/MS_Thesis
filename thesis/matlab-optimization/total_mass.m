@@ -36,8 +36,8 @@ t_amb=20;           % ambient temperature
 air_flow=9;         % air flow
 cool_type=2;        % cooling type, 1-->natural air, 2-->forced air, 3-->forced water , "forced air cooling" is selected for design
 leakage_insert=1;   % leakage flux enable control ; 0-->no leakage, 1-->leakage enable
-alpha_Cu=3.9-E03 ;  % temperature coefficent at 20 Celcius degree
-rho_cu=1.7-E08;     % copper resistivity coefficient
+alpha_Cu=3.9E-03 ;  % temperature coefficent at 20 Celcius degree
+rho_cu=1.7E-08;     % copper resistivity coefficient
 lambda_steel=54;    % lambda_steel: thermal conductivity of steel in W/m.K
 lambda_alum=250;    % lambda_alum: thermal conductivity of aluminium in W/m.K
 lambda_cu_coil=400; % lambda_cu_coil: thermal conductivity of copper along coil in W/m.K
@@ -52,6 +52,11 @@ h_band=0.01 ;       % h_band: height of steel band(jubilee clip)
 w_band=0.04;        % w_band: axial width of the steel band
 t_disc=0.008;       % t_disc: thickness of the disc model, later used in thermal resistance calculations    
 mu_0=1.257E-06 ;    % permeability of air
+Br=1.3 ;            % magnet remanent flux density
+mu_r=1.05 ;         % magnet relative permeability
+mu_st=750 ;         % relative permeability of steel
+l_ws_web=0.02 ;     % winding to steel web clearence 
+k_leak=0.965 ;      % leakage factor 
 
 %-------------------------------------------------------------------------------------------------------
 
@@ -148,6 +153,8 @@ R(2,1) = R(1,1)+(1+2*S_ag/S_I)*S_st ;
 R(2,2)=-2*S_st ; 
 
 inverse_R = inv(R);  
+NI=(Br*h_m)/(mu_0*mu_r);
+tot_mmf_matrix=[2*NI;2*NI];
 flux_l= inverse_R*tot_mmf_matrix ; 
 
 phi_ag_l= flux_l(1,:) ; 
