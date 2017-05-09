@@ -57,7 +57,7 @@ mu_r=1.05 ;         % magnet relative permeability
 mu_st=750 ;         % relative permeability of steel
 l_ws_web=0.02 ;     % winding to steel web clearence 
 k_leak=0.965 ;      % leakage factor 
-
+phi=0;              %assume unity power factor
 %-------------------------------------------------------------------------------------------------------
 
 
@@ -308,6 +308,13 @@ e=(v*flux_lnk_peak*pi)/tau_p ;
 E_ph_peak=e*Nt*N_series ;  
 E_ph_rms=E_ph_peak/sqrt(2); 
 
+if (I_ph_rms*(R_ph_th*sind(phi)+X_ph*cosd(phi))/E_ph_rms)>1
+    lambda=asind(1);
+else
+    lambda=asind((I_ph_rms*(R_ph_th*sind(phi)+X_ph*cosd(phi))/E_ph_rms));
+end
+    
+    
 V_ph_rms = E_ph_rms*cosd(lambda)-I_ph_rms(R_ph_th*cosd(phi)+X_ph*sind(phi)) ;  %%Resulting equation
 
 %--------------------------------------------------------------------------------------------------------------------------
