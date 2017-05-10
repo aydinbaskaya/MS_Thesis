@@ -57,7 +57,12 @@ mu_r=1.05 ;         % magnet relative permeability
 mu_st=750 ;         % relative permeability of steel
 l_ws_web=0.02 ;     % winding to steel web clearence 
 k_leak=0.965 ;      % leakage factor 
-phi=0;              %assume unity power factor
+phi=0;              % assume unity power factor
+strand=1 ;          % number of parallel strands in coil (taken as 1) 
+t_epoxy=1 ;         % epoxy thickness on winding surface (in mm)
+d_steel=7850 ;      % volumetric mass density of steel in kg/m^3
+d_copper=8230 ;     % volumetric mass density of copper in kg/m^3
+d_magnet=8400 ;     % volumetric mass density of permanent magnet in kg/m^3
 %-------------------------------------------------------------------------------------------------------
 
 
@@ -315,7 +320,7 @@ else
 end
     
     
-V_ph_rms = E_ph_rms*cosd(lambda)-I_ph_rms(R_ph_th*cosd(phi)+X_ph*sind(phi)) ;  %%Resulting equation
+V_ph_rms = E_ph_rms*cosd(lambda)-I_ph_rms*(R_ph_th*cosd(phi)+X_ph*sind(phi)) ;  %%Resulting equation
 
 %--------------------------------------------------------------------------------------------------------------------------
 
