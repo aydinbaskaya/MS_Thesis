@@ -63,6 +63,15 @@ t_epoxy=1 ;         % epoxy thickness on winding surface (in mm)
 d_steel=7850 ;      % volumetric mass density of steel in kg/m^3
 d_copper=8230 ;     % volumetric mass density of copper in kg/m^3
 d_magnet=8400 ;     % volumetric mass density of permanent magnet in kg/m^3
+no_rotor_bar=8 ;    % number of rotor bars, taken as 8 for both end torque arm structure
+no_stator_bar=6 ;   % number of bar in torque arm of stator(opt)
+shaft_ro=0.3 ;      % shaft outer radius from 
+shaft_ri=0.1 ;      % shaft inner radius
+d_epoxy=900;        % volumetric mass density of epoxy resin in kg/m^3
+uc_steel=3 ;        % unit cost of steel in £/kg
+uc_copper=8 ;       % unit cost of copper in £/kg
+uc_magnet=110 ;     % unit cost of magnet in £/kg
+uc_epoxy=10 ;       % unit cost of epoxy in £/kg
 %-------------------------------------------------------------------------------------------------------
 
 
@@ -444,6 +453,9 @@ end
 % layer number of outer limb is constant(taken as 2 because of geometry) independent from inner limb number
 % number_parallel_mach:number of axially stacked parallel machines(determined in optimization-constant)
 % h_web: height of web
+% no_rotor_bar: number of rotor bars, taken as 8 for both end torque arm structure
+
+
 
 %% Active mass calculation part
 
