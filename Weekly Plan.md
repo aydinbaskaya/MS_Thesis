@@ -155,12 +155,23 @@ http://asuyatuyolar.org dan latex içerikleri inceleniyor.  :ok_hand:
 
 
 ### 8 - 14 Mayıs
-- [ ] MATLAB optimizasyon ve koda devam edilecek.
+- [x] MATLAB optimizasyon ve koda devam edilecek.
+<br/>:arrow_right: matlab kodu çalışır hale getirildi ama çok stabil değil, eksiklikleri giderilecek.
 
-- [ ] İçeriği güncellenen chapter-2 bu hafta içinde düzenlenecek.
+:hourglass_flowing_sand: İçeriği güncellenen chapter-2 bu hafta içinde düzenlenecek.
+<br/>:arrow_right: ch-1 ve ch-2 düzenlemesi devam ediyor henüz tamamlanmadı.
 
-- [ ] Tamamlanan chapter lar için öncelikle wordde tez formatına uygun düzenleme yapılmaya başlanacak. Latex şablon örneği vakit kalırsa ikinci öncelikle oluşturulacak.
+- [x] Tamamlanan chapter lar için öncelikle wordde tez formatına uygun düzenleme yapılmaya başlanacak. Latex şablon örneği vakit kalırsa ikinci öncelikle oluşturulacak.
+<br/>:arrow_right: ağırlıklı word formatına aktarmayla uğraşıldı ve devam ediliyor. latex formatlarına baktım ancak ona vakit kalmadı.
+
+- [x] Powerlab Journal Club & haftalık seminer.
+<br/>:arrow_right: JC'a katılım gösterildi.
+
+
+### 16 - 22 Mayıs
+- [ ] matlab kodu ve optimizasyonun eksikleri giderilip daha düzgün çalışması sağlanacak.
+
+- [ ] Ch-1 ve Ch-2 word hali tamamlanıp githuba eklenecek.
 
 - [ ] Powerlab Journal Club & haftalık seminer.
-
 
