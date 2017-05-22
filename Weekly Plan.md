@@ -169,9 +169,22 @@ http://asuyatuyolar.org dan latex içerikleri inceleniyor.  :ok_hand:
 
 
 ### 16 - 22 Mayıs
-- [ ] matlab kodu ve optimizasyonun eksikleri giderilip daha düzgün çalışması sağlanacak.
+- [x] matlab kodu ve optimizasyonun eksikleri giderilip daha düzgün çalışması sağlanacak.
+<br/>:arrow_right: kod optimize edilir hale getirildi,daha stabil. Bunu sağlayan initial değerlerin olduğu .mat dosyası github a eklendi. Eski .mat dosyasında hatalı birimler yüzünden anlamsız değerler çıkıyormuş o düzeltildi.
 
 - [ ] Ch-1 ve Ch-2 word hali tamamlanıp githuba eklenecek.
+<br/> :hourglass_flowing_sand: Ch-1 tez formatlı hali düzeltilip github a eklendi,Ch-2 sürüyor. Latex için Miktex ve Texstudio ile haşır neşir oldum ama kısa sürede latex yazımıyla vakit harcamak yerine tezin içeriğini şimdilik wordde devam edip formatlı latex işini sonraya bırakıyorum.
 
-- [ ] Powerlab Journal Club & haftalık seminer.
+- [x] Powerlab Journal Club & haftalık seminer.
+<br/>:arrow_right: JC bu hafta yapılmadı.
+
+
+### 23 - 29 Mayıs
+Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde şu şekilde daralma olacak:
+
+- [ ] Ch-2 word hali yazımı tamamlanamasa bile gelinen son hali upload edilecek
+- [ ] Kod optimizasyondan getirdiği değerler kontrol yapılacak
+
+
+
 
