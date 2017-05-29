@@ -182,9 +182,18 @@ http://asuyatuyolar.org dan latex içerikleri inceleniyor.  :ok_hand:
 ### 23 - 29 Mayıs
 Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde şu şekilde daralma olacak:
 
-- [ ] Ch-2 word hali yazımı tamamlanamasa bile gelinen son hali upload edilecek
-- [ ] Kod optimizasyondan getirdiği değerler kontrol yapılacak
+- [x] Ch-2 word hali yazımı tamamlanamasa bile gelinen son hali upload edilecek
+<br/>:arrow_right:Ch-2 draft versiyon upload edildi, devam edilecek.
+
+- [x] Kod optimizasyondan getirdiği değerler kontrol yapılacak
+<br/>:arrow_right: optimizasyon çalıştırılıp çıkan sonuca ait değerler ekran görüntüsü githuba kondu.
 
 
+### 29 Mayıs - 5 Haziran
 
+- [ ] Ch-2 tamamlanıp tez hali yüklenecek
+
+- [ ] Optimizasyon kodunun çalışırlığı test edilip eksik formüller eklenecek
+
+- [ ] Chapter 3 için çıkarılan formuller worde aktarılacak
 
