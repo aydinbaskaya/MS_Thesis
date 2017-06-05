@@ -192,8 +192,18 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 ### 29 Mayıs - 5 Haziran
 
 - [ ] Ch-2 tamamlanıp tez hali yüklenecek
+<br/> :hourglass_flowing_sand: Yazıma devam ediliyor. Kullanılan görsel ögeler için klasör açıldı ve görseller eklendi. Devre şemaları visioda çiziliyor.
 
 - [ ] Optimizasyon kodunun çalışırlığı test edilip eksik formüller eklenecek
+<br/>:arrow_right: kodda verim ve bazı kısımlarda hatalar farkedildi bunlar üstüne çalışılıyor
 
 - [ ] Chapter 3 için çıkarılan formuller worde aktarılacak
+<br/>:arrow_right: koddaki hatalı kısımlara bakıldığı için bu hafta formül eklenmedi.
+
+
+### 5 - 15 Haziran
+
+- [ ] Ch-2 son hali verilip, Ch-3 boyut denklemleri eklenmesi yapılacak
+
+- [ ] Optimizasyon kodunun doğruluğu(özellikle objective function) ve çalışması excelle karşılaştırılarak devam edilecek.
 
