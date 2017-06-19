@@ -158,8 +158,8 @@ http://asuyatuyolar.org dan latex içerikleri inceleniyor.  :ok_hand:
 - [x] MATLAB optimizasyon ve koda devam edilecek.
 <br/>:arrow_right: matlab kodu çalışır hale getirildi ama çok stabil değil, eksiklikleri giderilecek.
 
-:hourglass_flowing_sand: İçeriği güncellenen chapter-2 bu hafta içinde düzenlenecek.
-<br/>:arrow_right: ch-1 ve ch-2 düzenlemesi devam ediyor henüz tamamlanmadı.
+- [x] İçeriği güncellenen chapter-2 bu hafta içinde düzenlenecek.
+<br/>:arrow_right: ch-1 ve ch-2 düzenlemesi tamamlandı. Github'a tez formatlı olarak yüklendi.
 
 - [x] Tamamlanan chapter lar için öncelikle wordde tez formatına uygun düzenleme yapılmaya başlanacak. Latex şablon örneği vakit kalırsa ikinci öncelikle oluşturulacak.
 <br/>:arrow_right: ağırlıklı word formatına aktarmayla uğraşıldı ve devam ediliyor. latex formatlarına baktım ancak ona vakit kalmadı.
@@ -172,8 +172,8 @@ http://asuyatuyolar.org dan latex içerikleri inceleniyor.  :ok_hand:
 - [x] matlab kodu ve optimizasyonun eksikleri giderilip daha düzgün çalışması sağlanacak.
 <br/>:arrow_right: kod optimize edilir hale getirildi,daha stabil. Bunu sağlayan initial değerlerin olduğu .mat dosyası github a eklendi. Eski .mat dosyasında hatalı birimler yüzünden anlamsız değerler çıkıyormuş o düzeltildi.
 
-- [ ] Ch-1 ve Ch-2 word hali tamamlanıp githuba eklenecek.
-<br/> :hourglass_flowing_sand: Ch-1 tez formatlı hali düzeltilip github a eklendi,Ch-2 sürüyor. Latex için Miktex ve Texstudio ile haşır neşir oldum ama kısa sürede latex yazımıyla vakit harcamak yerine tezin içeriğini şimdilik wordde devam edip formatlı latex işini sonraya bırakıyorum.
+- [x] Ch-1 ve Ch-2 word hali tamamlanıp githuba eklenecek.
+<br/>:arrow_right: Ch-1 tez formatlı hali düzeltilip github a eklendi,Ch-2 de tamamlanarak githuba yüklendi. Latex için Miktex ve Texstudio ile haşır neşir oldum ama kısa sürede latex yazımıyla vakit harcamak yerine tezin içeriğini şimdilik wordde devam edip formatlı latex işini sonraya bırakıyorum.
 
 - [x] Powerlab Journal Club & haftalık seminer.
 <br/>:arrow_right: JC bu hafta yapılmadı.
@@ -191,10 +191,10 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 29 Mayıs - 5 Haziran
 
-- [ ] Ch-2 tamamlanıp tez hali yüklenecek
-<br/> :hourglass_flowing_sand: Yazıma devam ediliyor. Kullanılan görsel ögeler için klasör açıldı ve görseller eklendi. Devre şemaları visioda çiziliyor.
+- [x] Ch-2 tamamlanıp tez hali yüklenecek
+<br/>:arrow_right: Yazım tamamlandı. Kullanılan görsel ögeler için klasör açıldı ve görseller eklendi. Devre şemaları visioda çizilerek githuba yüklendi.
 
-- [ ] Optimizasyon kodunun çalışırlığı test edilip eksik formüller eklenecek
+- [x] Optimizasyon kodunun çalışırlığı test edilip eksik formüller eklenecek
 <br/>:arrow_right: kodda verim ve bazı kısımlarda hatalar farkedildi bunlar üstüne çalışılıyor
 
 - [ ] Chapter 3 için çıkarılan formuller worde aktarılacak
