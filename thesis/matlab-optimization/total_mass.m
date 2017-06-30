@@ -382,7 +382,7 @@ L_phase=L_coil*N_series/n_branch*1000 ;
 % strand:number of parallel strands in coil (taken as 1)
 % t_epoxy : epoxy thickness(taken as 1) , turn_strand : number of turns per strand
 % h_coil_i: height of the copper with insulation, t_insulation: insulation thickness
-% h_copper: heigth of the copper 
+% h_copper: heigth of the copper, t_copper: thickness of the copper 
 % ag_loss: airgap flux eddy loss on coil, leakage_loss: leakage flux eddy loss on coil (taken as 0)                  
 % eddy_coil: sum of eddy losses both for air-gap flux and leakage flux , eddy_magnet: eddy loss due to magnet
 % P_copper_th: copper loss including thermal effects , P_eddy: eddy losses(coil+magnet)
@@ -404,8 +404,9 @@ else
     t_insulation=0;
 end
 
-h_copper=h_coil_i-2*t_insulation ;  
-ag_loss=2*l_magnet*Nt*(((l_magnet/2000)^3)*(B_ag_l^2)*(w_e^2))*(h_copper/1000)/(3*rho_cu*(1+alpha_Cu*dT)) ;  
+h_copper=h_coil_i-2*t_insulation ;
+t_copper=t_coil_i-2*t_insulation;
+ag_loss=2*l_magnet*Nt*(((t_copper/2000)^3)*(B_ag_l^2)*(w_e^2))*(h_copper/1000)/(3*rho_cu*(1+alpha_Cu*dT)) ;  
 eddy_coil= ag_loss+leakage_loss;  
 P_eddy=eddy_coil*Nc+eddy_magnet; 
 P_copper_th=m*(I_ph_rms*I_ph_rms)*R_ph_th ; 
