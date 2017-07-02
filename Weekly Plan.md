@@ -197,13 +197,21 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 - [x] Optimizasyon kodunun çalışırlığı test edilip eksik formüller eklenecek
 <br/>:arrow_right: kodda verim ve bazı kısımlarda hatalar farkedildi bunlar üstüne çalışılıyor
 
-- [ ] Chapter 3 için çıkarılan formuller worde aktarılacak
-<br/>:arrow_right: koddaki hatalı kısımlara bakıldığı için bu hafta formül eklenmedi.
+- [x] Chapter 3 için çıkarılan formuller worde aktarılacak
+<br/>:arrow_right: Ekleme yapılıyor, mathtype ile
 
 
 ### 5 - 15 Haziran
 
-- [ ] Ch-2 son hali verilip, Ch-3 boyut denklemleri eklenmesi yapılacak
+- [x] Ch-2 son hali verilip, Ch-3 boyut denklemleri eklenmesi yapılacak
+<br/>:arrow_right: Ch-2 tamamlandı, Ch-3 yazımı devam ediyor
 
-- [ ] Optimizasyon kodunun doğruluğu(özellikle objective function) ve çalışması excelle karşılaştırılarak devam edilecek.
+- [x] Optimizasyon kodunun doğruluğu(özellikle objective function) ve çalışması excelle karşılaştırılarak devam edilecek.
+<br/>:arrow_right: Objective function düzenlemesi ve constraint eklemesi yapılması lazım
+
+### 3 - 9 Temmuz
+
+- [ ] Chapter-3 yazımı devam edilecek
+
+- [ ] Fitness function ve optimizasyon düzenlemesi yapılacak
 
