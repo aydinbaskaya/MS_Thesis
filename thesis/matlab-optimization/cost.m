@@ -11,6 +11,7 @@ penalty_power=0;            %Power per machine penalty
 
 %% Definitions in optimization part(user defined variables/constraints)
 
+%Constraints of optimization (variables):
 
 r_mean=x(1);        % mean radius 
 g=x(2);             % air-gap clearence
@@ -72,10 +73,10 @@ no_stator_bar=6 ;   % number of bar in torque arm of stator(opt)
 shaft_ro=0.3 ;      % shaft outer radius from 
 shaft_ri=0.1 ;      % shaft inner radius
 d_epoxy=900;        % volumetric mass density of epoxy resin in kg/m^3
-uc_steel=3 ;        % unit cost of steel in ï¿½/kg
-uc_copper=8 ;       % unit cost of copper in ï¿½/kg
-uc_magnet=110 ;     % unit cost of magnet in ï¿½/kg
-uc_epoxy=10 ;       % unit cost of epoxy in ï¿½/kg
+uc_steel=3 ;        % unit cost of steel in £/kg
+uc_copper=8 ;       % unit cost of copper in £/kg
+uc_magnet=110 ;     % unit cost of magnet in £/kg
+uc_epoxy=10 ;       % unit cost of epoxy in £/kg
 %-------------------------------------------------------------------------------------------------------
 
 
