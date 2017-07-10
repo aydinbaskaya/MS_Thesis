@@ -211,7 +211,15 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 3 - 9 Temmuz
 
-- [ ] Chapter-3 yazımı devam edilecek
+- [x] Chapter-3 yazımı devam edilecek
+<br/>:arrow_right:Chapter-3 yazımı büyük ölçüde tamamlandı, optim. sample verify kısmı daha sonra eklenecek
 
-- [ ] Fitness function ve optimizasyon düzenlemesi yapılacak
+- [x] Fitness function ve optimizasyon düzenlemesi yapılacak
+<br/>:arrow_right: Cost.m düzenlemesi excel daha dikkatli incelenerek yapılmaya devam edildi 
+
+### 10 - 17 Temmuz
+
+- [ ] Optimizasyon kodunun yazımına devam edilecek
+
+- [ ] Chapter-4 için başlangıç yapılacak
 
