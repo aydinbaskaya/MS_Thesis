@@ -12,13 +12,14 @@ penalty_power=0;            %Power per machine penalty
 %% Definitions in optimization part(user defined variables/constraints)
 
 %Constraints of optimization (variables):
+%All the length values are given in (m) to optimization
 
 r_mean=x(1);        % mean radius 
-g=x(2);             % air-gap clearence
-J=x(3);             % curent density
+g=x(2);             % air-gap clearence 
+J=x(3);             % curent density in A/mm^2
 t_o=x(4);           % outer limb thickness
 t_i=x(5);           % inner limb thickness
-lc=x(6);            % steel web
+lc=x(6);            % steel web thickness
 width_ratio=x(7);   % Magnet/steel width ratio
 Nt=x(8);            % number of turns in a coil(integer)
 Np=x(9);            % number of poles(integer)
@@ -33,12 +34,12 @@ number_parallel_mach=x(16); % number of parallel machines stacked axially
 %Constants of optimization :
 
 rpm=12 ;            % rotational speed
+gear_ratio=1;       % Direct drive
 groove=0 ;          % space between c-cores 
 groove_c=0;         % gap between modules 
 m=3;                % number of phases
 B_opt=1.3;          % Desired remanent flux density for the magnet
 t_amb=20;           % ambient temperature
-air_flow=9;         % air flow
 cool_type=2;        % cooling type, 1-->natural air, 2-->forced air, 3-->forced water , "forced air cooling" is selected for design
 leakage_insert=0;   % leakage flux enable control ; 0-->no leakage, 1-->leakage enable
 alpha_Cu=3.9E-03 ;  % temperature coefficent at 20 Celcius degree
@@ -521,7 +522,7 @@ tau_former=tau_c-2*width_winding ;
 m_epoxy_single=(l_t*width_winding*(1-kf)+tau_former*l_magnet)*h_w*d_epoxy ; 
 mass_epoxy=m_epoxy_single*Nc; 
 
-total_mass=mass_structure+mass_epoxy+mass_magnet+mass_copper+mass_steel+penalty_eff; %%Resulting total mass equation
+cost=mass_structure+mass_epoxy+mass_magnet+mass_copper+mass_steel+penalty_eff; %%Resulting total mass equation
 
 %-------------------------------------------------------------------------------------------------------------------------
 
@@ -618,4 +619,4 @@ beam_y_percent=abs(beam_y)/g ;
 
 %--------------------------------------------------------------------------------------------------------------------------
 
-result=total_mass; 
+result=cost; 
