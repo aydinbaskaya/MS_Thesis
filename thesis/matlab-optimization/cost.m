@@ -29,19 +29,19 @@ pitch_ratio=x(12);  % winding thickness/coil pitch ratio
 kf=x(13);           % fill factor
 h_m=x(14);          % height of the magnet
 l_magnet=x(15);     % axial lenght of the magnet
-number_parallel_mach=x(16); % number of parallel machines stacked axially
+n_stack=x(16); % number of parallel machines stacked axially
 
 %Constants of optimization :
 
+P_des=5000000;      % Desired rated output power
 rpm=12 ;            % rotational speed
 gear_ratio=1;       % Direct drive
 groove=0 ;          % space between c-cores 
 groove_c=0;         % gap between modules 
 m=3;                % number of phases
-B_opt=1.3;          % Desired remanent flux density for the magnet
+B_opt=1.3;          % Desired remanent flux density for the magnet--Grade N42 rare earth magnet remanent flux density
 t_amb=20;           % ambient temperature
-cool_type=2;        % cooling type, 1-->natural air, 2-->forced air, 3-->forced water , "forced air cooling" is selected for design
-leakage_insert=0;   % leakage flux enable control ; 0-->no leakage, 1-->leakage enable
+J_type=7;           %7 A/mm^2 @100 oC is assumed for Forced air cooling 
 alpha_Cu=3.9E-03 ;  % temperature coefficent at 20 Celcius degree
 rho_cu=1.7E-08;     % copper resistivity coefficient
 lambda_steel=54;    % lambda_steel: thermal conductivity of steel in W/m.K
@@ -149,45 +149,52 @@ r_i= r_mean- l_magnet/2 ;
 r_o= r_mean+ l_magnet/2 ; 
 NI=Br*h_m/(mu_0*mu_r) ; 
 magnet_width= width_ratio*tau_p;
-SI_2= pi/(2*l_magnet*mu_0) ; 
-SI_1=(tau_p-magnet_width)/(mu_0*l_magnet*(0.5*h_w+g+h_m-groove)) ;  
-S_I=SI_1+SI_2 ;  
+
+% SI_2= pi/(2*l_magnet*mu_0) ; 
+% SI_1=(tau_p-magnet_width)/(mu_0*l_magnet*(0.5*h_w+g+h_m-groove)) ;  
+% S_I=SI_1+SI_2 ;  
+
 S_ag=(h_w+2*g)/(l_magnet*magnet_width*mu_0) ; 
 S_PM_o= h_m/(l_magnet*magnet_width*mu_0*mu_r)+0.5*t_o/(l_magnet*magnet_width*mu_0*mu_r) ; 
 
-R(1,1)=2*S_PM_o*(1+2*S_ag/S_I)+S_ag ;  
+% R(1,1)=2*S_PM_o*(1+2*S_ag/S_I)+S_ag ;  
 
 inter_area=t_o*l_magnet ;
 S_sp=(tau_p/(inter_area*mu_0*mu_st))+(groove_c/(inter_area*mu_0)) ; 
 
-R(1,2)= S_sp ;  
+%R(1,2)= S_sp ;  
 
 l_cl= width_winding+l_ws_web ; 
 r_w=r_i-l_cl-lc ; 
-diameter_web=r_w;
+
+%diameter_web=r_w;
+
 tau_pw= 2*pi*r_w/Np ;  
 S_st_A=(l_magnet+2*l_cl+lc)/(t_o*(tau_p+tau_pw)*mu_0*mu_st) ;  
 S_st_C=(2*(h_m+g)+h_w+t_o)/(lc*tau_pw*mu_0*mu_st) ; 
-S_st=2*S_st_A+S_st_C ; 
-R(2,1) = R(1,1)+(1+2*S_ag/S_I)*S_st ; 
-R(2,2)=-2*S_st ; 
+S_st=2*S_st_A+S_st_C ;
 
-inverse_R = inv(R);  
+% R(2,1) = R(1,1)+(1+2*S_ag/S_I)*S_st ; 
+% R(2,2)=-2*S_st ; 
+% 
+% inverse_R = inv(R);  
+
 NI=(Br*h_m)/(mu_0*mu_r);
-tot_mmf_matrix=[2*NI;2*NI];
-flux_l= inverse_R*tot_mmf_matrix ; 
 
-phi_ag_l= flux_l(1,:) ; 
-B_ag_l= phi_ag_l/l_magnet/magnet_width ; 
+% tot_mmf_matrix=[2*NI;2*NI];
+% flux_l= inverse_R*tot_mmf_matrix ; 
+% phi_ag_l= flux_l(1,:) ; 
+% B_ag_l= phi_ag_l/l_magnet/magnet_width ; 
 
 phi_ag_nl=(S_sp+2*S_st)*NI/(S_st*(2*S_PM_o+S_ag+0.5*S_sp)+0.5*(S_sp*(2*S_PM_o+S_ag))) ; 
 B_ag_nl= phi_ag_nl/magnet_width/l_magnet; 
+B_ag=B_ag_nl;                   %flux density is calculated without leakage
 
-if (leakage_insert==1)  
-    B_ag=B_ag_l ;  
-else
-    B_ag=B_ag_nl; 
-end
+% if (leakage_insert==1)  
+%     B_ag=B_ag_l ;  
+% else
+%     B_ag=B_ag_nl; 
+% end
 
 %------end of airgap region flux density calculation----------------%
 
@@ -197,15 +204,16 @@ A_sp_o=t_i*l_magnet ;
 
 phi_sp_nl= S_st*NI/(S_st*(2*S_PM_o+S_ag+0.5*S_sp)+0.5*(S_sp*(2*S_PM_o+S_ag))) ;
 B_sp_nl= phi_sp_nl/A_sp_o ; 
+B_sp =B_sp_nl ;                 %flux density is calculated without leakage
 
-phi_sp_l=flux_l(2,:) ; % 
-B_sp_l=phi_sp_l/A_sp_o ; 
+% phi_sp_l=flux_l(2,:) ; % 
+% B_sp_l=phi_sp_l/A_sp_o ; 
 
-if (leakage_insert==1)  
-    B_sp =B_sp_l ;  
-else
-    B_sp =B_sp_nl ; 
-end
+% if (leakage_insert==1)  
+%     B_sp =B_sp_l ;  
+% else
+%     B_sp =B_sp_nl ; 
+% end
 
 %------ end of spacer region flux density calculation---------%
 
@@ -215,16 +223,16 @@ A_st=tau_pw*lc ;
 
 phi_st_nl=S_sp*NI/(S_st*(2*S_PM_o+S_ag+0.5*S_sp)+0.5*(S_sp*(2*S_PM_o+S_ag))) ; 
 B_st_nl=phi_st_nl/A_st ; 
+B_st =B_st_nl ;                 %flux density is calculated without leakage
 
+% phi_st_l=phi_ag_l*(1+2*S_ag/S_I)-2*phi_sp_l ; 
+% B_st_l=phi_st_l/A_st ;  
 
-phi_st_l=phi_ag_l*(1+2*S_ag/S_I)-2*phi_sp_l ; 
-B_st_l=phi_st_l/A_st ;  
-
-if (leakage_insert==1)  
-    B_st =B_st_l ;  
-else
-    B_st =B_st_nl ; 
-end
+% if (leakage_insert==1)  
+%     B_st =B_st_l ;  
+% else
+%     B_st =B_st_nl ; 
+% end
 
 %------ end of steel region flux density calculation---------%
 %----------------------------------------------------------------------------------------------------
@@ -261,27 +269,8 @@ end
 
 %winding temperature calculated here
 
-if(cool_type==1)  % Natural air Cooling
-    J_type=5.5;
-elseif(cool_type==2) % Forced air cooling
-    J_type=7;
-elseif(cool_type==3) % % Forced water cooling
-    J_type=9;
-end
-
-bypass_1=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;
-bypass_2=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;  
-bypass_3=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;
-
-
-
-if(J_type==5.5)
-    t_winding=bypass_1 ;
-elseif(J_type==7)
-    t_winding=bypass_2 ;
-elseif(J_type==9)
-    t_winding=bypass_3 ;
-end
+bypass_1=(100-t_amb)/(J_type^2)*(J^2)+t_amb ;      %forced air cooling  last temperature 
+t_winding=bypass_1 ;
 
 if t_winding>179   
     temp_winding=179 ; 
@@ -292,8 +281,7 @@ else if t_winding <-179
     end
 end
 
-dT= t_winding-t_amb ; 
-
+dT= t_winding-t_amb ;    % temperature rise
 
 Nc=(3/4)*Np ;
 coil_phase=Nc/m; 
@@ -458,7 +446,7 @@ end
 % mass_steel: steel mass, m_outerlimb_layer: mass of outer limb in single layer, number_outer_limb: number of outer limb layer, m_innerlimb_layer: mass of inner limb in a single layer,number_inner_limb: number of inner limb layer, m_web_layer: mass of web in a single layer,number_web : number of web layer   
 % d_steel:volumetric mass density of steel(taken as constant)
 % layer number of outer limb is constant(taken as 2 because of geometry) independent from inner limb number
-% number_parallel_mach:number of axially stacked parallel machines(determined in optimization-constant)
+% n_stack:number of axially stacked parallel machines(determined in optimization-constant)
 % h_web: height of web
 % no_rotor_bar: number of rotor bars, taken as 8 for both end torque arm structure
 
@@ -468,10 +456,10 @@ end
 
 %In this part; steel mass, copper mass and magnet mass are calculated
 
-number_web=number_parallel_mach ; 
+number_web=n_stack ; 
 h_web=l_mm+2*(h_m-groove); 
 m_web_layer=pi*d_steel*t_i*((r_w+lc)^2-r_w^2)*h_web ; 
-number_inner_limb=number_parallel_mach-1 ; 
+number_inner_limb=n_stack-1 ; 
 m_innerlimb_layer=pi*d_steel*t_i*(r_o^2-r_w^2) ;
 number_outer_limb=2 ;
 m_outerlimb_layer=pi*d_steel*t_o*(r_o^2-r_w^2) ; 
@@ -479,14 +467,14 @@ mass_steel = m_outerlimb_layer*number_outer_limb+m_innerlimb_layer*number_inner_
 
 m_copper_unit=h_w*width_winding*l_t*kf*d_copper ; 
 m_copper_layer=m_copper_unit*Nc ; 
-mass_copper=m_copper_layer*number_parallel_mach; 
+mass_copper=m_copper_layer*n_stack; 
 
-number_magnet_layer=2*number_parallel_mach ; 
+number_magnet_layer=2*n_stack ; 
 m_magnet_layer=pi*d_magnet*h_m*(r_o^2-r_i^2)*l_magnet ;
 mass_magnet=m_magnet_layer*number_magnet_layer ; 
 
 %% Structural mass calculation part
-length_total=2*t_o+number_parallel_mach*l_ss+(number_parallel_mach-1)*t_i ; 
+length_total=2*t_o+n_stack*l_ss+(n_stack-1)*t_i ; 
 
 length_rotor_bar=r_w ;  
 rotor_alternative_a=length_rotor_bar*0.032 ; 
@@ -514,7 +502,7 @@ m_stator=m_stator_cyl+m_stator_torque*2 ;
 l_shaft=1.25*length_total; 
 m_shaft=pi*(shaft_ro^2-shaft_ri^2)*l_shaft*d_steel ; 
 
-m_steelband=number_parallel_mach*(2*pi*(r_o+0.5*r_w)*h_band*w_band*d_steel) ; 
+m_steelband=n_stack*(2*pi*(r_o+0.5*r_w)*h_band*w_band*d_steel) ; 
 
 mass_structure=m_shaft+m_stator+m_rotor+m_steelband ;
 
