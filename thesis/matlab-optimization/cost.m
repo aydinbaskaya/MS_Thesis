@@ -364,7 +364,7 @@ P_loss=P_copper_th+P_eddy ;
 Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 
 if (Eff<0.9)
-   penalty_eff=((abs(0.9-Eff)^2)*10000) ;
+   penalty_eff=((abs(0.9-Eff)^2)*100000) ;
 end
 
 %---------------------------------------------------------------------------------------------------------------------------
@@ -476,50 +476,28 @@ mass_structure=m_shaft+m_stator+m_rotor+m_steelband+mass_epoxy ;
 cost_steel=mass_steel*uc_steel ; 
 cost_copper=mass_copper*uc_copper ; 
 cost_magnet=mass_magnet*uc_magnet; 
-cost_structure=mass_structure*uc_steel+mass_epoxy*uc_epoxy ; 
+cost_structure=(mass_structure-mass_epoxy)*uc_steel+mass_epoxy*uc_epoxy ; 
 
+total_cost=cost_steel+cost_copper+cost_magnet+cost_structure;           %total cost of the generator according to material costs
 %--------------------------------------------------------------------------------------------------------------------------
 
 
 %--------------------------------------------------------------------------------------------------------------------------
 %% Thermal Model and Calculations
 
-%% ----------Definition of the parameters/variables----------
+% ----------Definition of the parameters/variables----------
 
 % bypass thermal model 
 
 
-
-% airgap inputs(from optimization)~at 20o C
-
-af_coil=0.05; % af_coil: airflow over coil in m^3/sec
-kin_vis=1.51E-5 ; % kin_vis: kinematic viscosity of air in m^2/s
-d_air=1.205 ; % d_air: density of air in kg/m^3
-dyn_vis=1.82E-5;  % dyn_vis: dynamic viscosity of air in kg/ms
-prandtl_air=0.713 ; % prandtl_air: Prandtl number of air
-lambda_air=0.0257; % thermal conductivity of air in W/m.K
-heatc_air=1005; % heatc_air: heat capacitance of air in J_final/kgK
-
-%% Calculation part
-
-%thermal resistance parameters
-
-epoxy_s=0.5*h_epoxy*(lambda_epoxy*l_coil_structure*(4*width_winding+h_w));
-rad_cop_s=0.5*h_w*(lambda_cu_ver*l_coil_structure*(4*width_winding+h_w));
-R_rad_s=rad_cop_s+epoxy_s; % R_rad_s: thermal resistance of the structure part, rad_cop_s: copper part of thermal resistance at structure, epoxy_s: epoxy part of thermal resistance at structure 
-
-epoxy_m=0.5*h_epoxy*(lambda_epoxy*l_coil_middle*width_winding);
-copper_m=0.5*h_w*(lambda_cu_ver*l_coil_middle*width_winding);
-R_rad_m=0.25*(copper_m+epoxy_m); % R_rad_m: thermal resistance of the middle coil part, copper_m: copper part of thermal resistance at middle coil,epoxy_m: epoxy part of thermal resistance at middle coil 
-
-epoxy_e=0.5*h_epoxy*(lambda_epoxy*l_coil_end*(2*width_winding+h_w)) ;
-rad_cop_e=0.5*h_w*(lambda_cu_ver*l_coil_end*(2*width_winding+h_w)) ; 
-R_rad_e=rad_cop_e+epoxy_e ; % R_rad_e: thermal resistance of the radial end coil part , rad_cop_e: copper part of thermal resistance at end coil,epoxy_e: epoxy part of thermal resistance at end coil  
+ 
 
 %--------------------------------------------------------------------------------------------------------------------------
 
 
 %--------------------------------------------------------------------------------------------------------------------------
+
+
 %% Structural Model and Calculations
 
 %% ----------Definition of the parameters/variables----------
@@ -551,6 +529,10 @@ beam_y2=udl*((L_beam-beam_a2)^3)*(3*L_beam+beam_a2)/(24*I_beam*youngm) ;
 beam_y=beam_y1+beam_y2 ; 
 beam_y_percent=abs(beam_y)/g ; 
 
+if (beam_y_percent>10)
+   penalty_deflection=((abs(10-beam_y_percent)^2)*100000) ;
+end
+
 %--------------------------------------------------------------------------------------------------------------------------
-cost=mass_structure+mass_magnet+mass_copper+mass_steel+penalty_eff; %%Resulting cost equation
+cost=total_cost+penalty_eff+penalty_deflection;                          %%Resulting cost equation
 result=cost; 
