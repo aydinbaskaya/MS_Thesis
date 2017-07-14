@@ -1,4 +1,4 @@
-function [cost_f,J_final_f,J_init_f,J_pmax_f,P_demand_f,P_net_f]=design(x)
+function [cost_f,J_final_f,J_init_f,J_pmax_f,P_demand_f,P_net_f,n_stack_f]=design(x)
 %----------------------------------------------------------------------
 %%Penalty costs are defined here
 penalty_eff=0;              %Efficiency penalty
@@ -284,17 +284,17 @@ R_amb=R_coil*N_series/n_branch  ;
 R_ph_th=R_amb*(1+alpha_Cu*dT); 
 Z_ph=sqrt(R_ph_th^2+X_ph^2);
 magnet_h1=(4/pi)*B_ag*sin(width_ratio*pi/2); 
-flux_lnk_peak=k_leak*magnet_h1*(r_o^2-r_i^2)*(cosd(Np*theta_i/2)-cosd(Np*theta_o/2))/(theta_dif*((Np/2)^2)) ;  
+flux_lnk_peak=k_leak*magnet_h1*(r_o^2-r_i^2)*(cosd(Np*theta_i/2)-cosd(Np*theta_o/2))/((theta_dif*pi/180)*((Np/2)^2)) ;  
 w_m=(rpm*2*pi)/60 ; 
 v=r_mean*w_m ; 
 e=(v*flux_lnk_peak*pi)/tau_p ; 
 E_ph_peak=e*Nt*N_series ;  
 E_ph_rms=E_ph_peak/sqrt(2); 
 
-if (I_ph_rms*(R_ph_th*sind(phi)+X_ph*cosd(phi))/E_ph_rms)>1
+if (I_ph_rms*(-R_ph_th*sind(phi)+X_ph*cosd(phi))/E_ph_rms)>1
     lambda=asind(1);
 else
-    lambda=asind((I_ph_rms*(R_ph_th*sind(phi)+X_ph*cosd(phi))/E_ph_rms));
+    lambda=asind((I_ph_rms*(-R_ph_th*sind(phi)+X_ph*cosd(phi))/E_ph_rms));
 end
     
 V_ph_rms = E_ph_rms*cosd(lambda)-I_ph_rms*(R_ph_th*cosd(phi)+X_ph*sind(phi)) ;  %%Resulting equation
@@ -562,4 +562,5 @@ J_init_f=J_init;
 J_pmax_f=J_pmax;
 P_demand_f=P_demand;
 P_net_f=(P_o+P_loss);
+n_stack_f=n_stack;
 end

@@ -1,10 +1,13 @@
 function result = cost(x)
 %%%%%Axial Flux PM Generator Design Equations%%%%%
+k=0;
+upper_bound_J=7;    % upper limit for current density
+P_des=5000000;
+eff_gear=1;
 
-upper_bound_J=8;    % upper limit for current density
+[cost,J_final,J_init,J_pmax,P_net,n_stack]=design(x);
 
-[cost,J_final,J_init,J_pmax,P_net]=design(x);
-
+P_demand=(P_des*eff_gear)/n_stack;
 % %-----------------------------------------------------------------
 % %% Reference turbine statics are taken 
 % NET.addAssembly('microsoft.office.interop.excel');
@@ -16,7 +19,7 @@ upper_bound_J=8;    % upper limit for current density
 % data = cell(arr,'ConvertTypes',{'all'});
 % %cellfun(@disp,data(:,1))
 % ref_table=ones(10,5);           %reference turbine values table
-% for i=2:11
+% for i=2:11clc
 %     for j=1:5
 %         ref_table(i-1,j)=data{i,j} ;
 %     end
@@ -34,10 +37,10 @@ if J_init<upper_bound_J
     if J_init<J_pmax
         J_final=J_pmax;
             x(3)=J_final;
-            [cost,J_final,J_init,J_pmax,P_net]=design(x);   
+            [cost,J_final,J_init,J_pmax,P_net,n_stack]=design(x);   
         for k=1:5
-            [cost,J_final,J_init,J_pmax,P_net]=design(x);
-            J_final=J_final*(P_demand/(P_o+P_loss));
+            [cost,J_final,J_init,J_pmax,P_net,n_stack]=design(x);
+            J_final=J_final*(P_demand/(P_net));
             x(3)=J_final;
         end
     else
@@ -46,32 +49,13 @@ if J_init<upper_bound_J
 else
     J_final=upper_bound_J;
 end
-% 
-% go funct
 
-
-
-
-%%
-
-
-
-
-
-
-
-
-
-%----------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
+x(3)=J_final;
+[cost,J_final,J_init,J_pmax,P_net,n_stack]=design(x);           % go funct
 
 
 %--------------------------------------------------------------------------------------------------------------------------
 %cost=total_cost+penalty_eff+penalty_deflection;                          %%Resulting cost equation
+k=k+1;
 result=cost; 
+
