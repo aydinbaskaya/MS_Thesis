@@ -6,8 +6,9 @@ penalty_deflection=0;       %Beam model deflection penalty
 penalty_length=0;           %Axial length penalty
 penalty_odiam=0;            %Outer diameter penalty
 penalty_temperature=0;      %Temperature limit penalty
-penalty_power=0;            %Power per machine penalty   
-
+penalty_power_1=0;          %Power per machine penalty component-1  
+penalty_power_2=0;          %Power per machine penalty component-2
+penalty_power_total=0;      %total penalty for power violation
 %% Definitions in optimization part(user defined variables/constraints)
 
 %Constraints of optimization (variables):
@@ -76,7 +77,7 @@ uc_epoxy=10 ;       % unit cost of epoxy in £/kg
 %% Variable Control part
 
 Np=round(Np/4)*4;   % fix number of poles at multiple of 4
-fix=(Np*3)/(4*m);
+fix=(Np*3)/(4*m);   % to give the integer number of N_series
 while ne((fix/n_branch),round(fix/n_branch))        
     n_branch=n_branch-1;
 end
@@ -100,6 +101,8 @@ J_final=J_opt;
 end 
 
 %--------------------------------------------------------------------------------------------------------------------------
+
+
 %% Flux Density Parameters calculation (Airgap, Spacer and steel flux densities)
 
 %% ----------Definition of the parameters/variables----------
@@ -182,6 +185,7 @@ B_st =B_st_nl ;                 %flux density is calculated without leakage
 %------ end of steel region flux density calculation---------%
 %----------------------------------------------------------------------------------------------------
 
+
 %% [I_ph_rms] Current per phase(rms) calculation
 
 %% ----------Definition of the parameters/variables----------
@@ -257,10 +261,9 @@ theta_dif=width_winding/r_mean;
 theta_o= tau_c/r_mean/2;   
 theta_i= theta_o-theta_dif; 
 
-theta_dif=(theta_dif*180)/pi;  
-theta_o= (theta_o*180)/pi;   
-theta_i= (theta_i*180)/pi; 
-
+theta_dif=(theta_dif*180)/pi;       %convert radian to degree
+theta_o= (theta_o*180)/pi;          %convert radian to degree
+theta_i= (theta_i*180)/pi;          %convert radian to degree
 
 l_mm=h_w+2*g ; 
 l_ss=l_mm+2*(h_m-groove) ;  
@@ -270,7 +273,7 @@ a_cond=a_window/Nt;
 
 B_a=mu_0*Nt/l_ss ; 
 flux_lnk=(2*B_a*Nt*((0.5*(r_o^2-r_i^2)*tand(theta_o))-(width_winding*l_magnet)))+(2*B_a*Nt*width_winding*l_magnet/3) ;  
-k_ind=1; % constant
+k_ind=1;                            %constant
 L_coil= k_ind*flux_lnk ; 
 f=rpm/60*Np/2 ; 
 w_e=2*pi*f ; 
@@ -299,7 +302,12 @@ end
     
 V_ph_rms = E_ph_rms*cosd(lambda)-I_ph_rms*(R_ph_th*cosd(phi)+X_ph*sind(phi)) ;  %%Resulting equation
 
+if (t_winding>100)
+   penalty_temperature=((abs(t_winding-100)^2)*100000) ;
+end
+
 %--------------------------------------------------------------------------------------------------------------------------
+
 
 %--------------------------------------------------------------------------------------------------------------------------
 %% [P_o] Power output calculation
@@ -377,8 +385,18 @@ P_loss=P_copper_th+P_eddy ;
 Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 
 if (Eff<0.9)
-   penalty_eff=((abs(0.9-Eff)^2)*100000) ;
+   penalty_eff=((abs(0.9-Eff)^2)*1000000) ;
 end
+
+if ((P_o+P_loss)<P_demand)
+   penalty_power_1=((abs(P_demand-(P_o+P_loss))^2)*0.0001) ;
+end
+
+if ((P_o+P_loss)>P_demand)
+   penalty_power_2=((abs((P_o+P_loss)-P_demand)^2)*0.0001) ;
+end
+
+penalty_power_total=penalty_power_1+penalty_power_2;
 
 %---------------------------------------------------------------------------------------------------------------------------
 
@@ -424,15 +442,15 @@ number_inner_limb=n_stack-1 ;
 m_innerlimb_layer=pi*d_steel*t_i*(r_o^2-r_w^2) ;
 number_outer_limb=2 ;               %
 m_outerlimb_layer=pi*d_steel*t_o*(r_o^2-r_w^2) ; 
-mass_steel = m_outerlimb_layer*number_outer_limb+m_innerlimb_layer*number_inner_limb+m_web_layer*number_web ; 
+mass_steel = m_outerlimb_layer*number_outer_limb+m_innerlimb_layer*number_inner_limb+m_web_layer*number_web ;               %active steel parts: outer limb,inner limb, web
 
 m_copper_unit=h_w*width_winding*l_t*kf*d_copper ; 
 m_copper_layer=m_copper_unit*Nc ; 
-mass_copper=m_copper_layer*n_stack; 
+mass_copper=m_copper_layer*n_stack;             %active copper mass
 
 number_magnet_layer=2*n_stack ; 
 m_magnet_layer=pi*d_magnet*h_m*(r_o^2-r_i^2)*l_magnet ;
-mass_magnet=m_magnet_layer*number_magnet_layer ; 
+mass_magnet=m_magnet_layer*number_magnet_layer ;        %active magnet mass
 
 %% Structural mass calculation part
 length_total=1.25*(2*t_o+n_stack*l_ss+(n_stack-1)*t_i) ; 
@@ -445,9 +463,9 @@ rotor_rect_bi=rotor_alternative_a-2*rotor_alternative_t ;
 rotor_rect_d=3*rotor_alternative_a ; 
 rotor_rect_di=rotor_rect_d-2*rotor_alternative_t ;
 m_rotor_torque=no_rotor_bar*(rotor_rect_b*rotor_rect_d-rotor_rect_di*rotor_rect_bi)*length_rotor_bar*d_steel ; 
-m_rotor=2*m_rotor_torque;   
+m_rotor=2*m_rotor_torque;               % rotor torque structure
 
-stator_outer=2*(r_o+2*width_winding) ;         %stator outer diameter
+stator_outer=2*(r_o+2*width_winding) ;         % stator outer diameter
 length_stator_bar=0.5*stator_outer ;  
 stator_alternative_a=length_stator_bar*0.025 ; 
 stator_alternative_t=stator_alternative_a*0.4 ;
@@ -457,10 +475,10 @@ stator_rect_d=3*stator_alternative_a ;
 stator_rect_di=stator_rect_d-2*stator_alternative_t ; 
 m_stator_torque=no_stator_bar*(stator_rect_b*stator_rect_d-stator_rect_di*stator_rect_bi)*length_stator_bar*d_steel ; 
 m_stator_cyl=pi*d_steel*length_total*((r_o+width_winding)^2-r_o^2);
-m_stator=m_stator_cyl+m_stator_torque*2 ; 
+m_stator=m_stator_cyl+m_stator_torque*2 ;       % stator torque structure+cylinder
 
 l_shaft=length_total; 
-m_shaft=pi*(shaft_ro^2-shaft_ri^2)*l_shaft*d_steel ; 
+m_shaft=pi*(shaft_ro^2-shaft_ri^2)*l_shaft*d_steel ;   
 
 m_steelband=n_stack*(2*pi*(r_o+0.5*width_winding)*h_band*w_band*d_steel) ; 
 
@@ -469,6 +487,15 @@ m_epoxy_single=(l_t*width_winding*(1-kf)+tau_former*l_magnet)*h_w*d_epoxy ;
 mass_epoxy=m_epoxy_single*Nc;
 
 mass_structure=m_shaft+m_stator+m_rotor+m_steelband+mass_epoxy ;
+
+if (length_total>5)
+   penalty_length=((abs(length_total-5)^2)*100000) ;
+end
+
+if (stator_outer>10)
+   penalty_odiam=((abs(stator_outer-10)^2)*100000) ;
+end
+
 
 %-------------------------------------------------------------------------------------------------------------------------
 
@@ -491,22 +518,7 @@ cost_magnet=mass_magnet*uc_magnet;
 cost_structure=(mass_structure-mass_epoxy)*uc_steel+mass_epoxy*uc_epoxy ; 
 
 total_cost=cost_steel+cost_copper+cost_magnet+cost_structure;           %total cost of the generator according to material costs
-%--------------------------------------------------------------------------------------------------------------------------
-
-
-%--------------------------------------------------------------------------------------------------------------------------
-%% Thermal Model and Calculations
-
-% ----------Definition of the parameters/variables----------
-
-% bypass thermal model 
-
-
- 
-
-%--------------------------------------------------------------------------------------------------------------------------
-
-
+total_cost=1.2*total_cost;         % total material cost is multiplied by the 1.2 due to approx. labour cost of 20%
 %--------------------------------------------------------------------------------------------------------------------------
 
 
@@ -556,7 +568,7 @@ else
 end
 
 %%
-cost_f=total_cost+penalty_eff+penalty_deflection;   
+cost_f=total_cost+penalty_eff+penalty_deflection+penalty_length+penalty_odiam+penalty_temperature+penalty_power_total;   
 J_final_f=J_final;
 J_init_f=J_init;
 J_pmax_f=J_pmax;
