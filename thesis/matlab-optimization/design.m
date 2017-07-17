@@ -108,10 +108,12 @@ end
 %% ----------Definition of the parameters/variables----------
 
 % B_ag: flux density in air-gap 
-% B_ag_nl: flux density in air-gap not included leakage flux
+% B_ag_nl: flux density in air-gap not included leakage flux,B_ag_l: flux density in air-gap included leakage flux
 % NI: mmf
 % Br: magnet remanent flux density of selected magnet (constant)
-% phi_ag_nl: airgap flux not included leakage flux 
+% phi_ag_nl: airgap flux not included leakage flux, phi_ag_l: airgap flux included leakage(first row of flux_l matrix)
+% R: reluctance matrix
+% inverse_R: inverse of reluctance matrix[2x2] , tot_mmf_matrix: total mmf matrix[2x1] , flux_l: flux matrix included leakage effect 
 % S_st: steel reluctance 
 % S_st_A: steel reluctance part A , S_st_C: steel reluctance part C  
 % l_cl:magnet to steel web clearence , tau_pw: web pole pitch
@@ -120,15 +122,16 @@ end
 % S_sp: spacer reluctance
 % inter_area: intermodule area , mu_st: steel relative permeability (constant)
 % S_PM_o: top PM reluctance , S_ag: airgap reluctance 
+% SI_1: reluctance matrix part one, SI_2: reluctance matrix part two
 % mu_r: magnet relative permeability (constant)
 % B_sp: flux density in spacer(intermodule) 
-% B_sp_nl: flux density in spacer(intermodule) not included leakage flux
-% phi_sp_nl: spacer flux not included leakage
+% B_sp_nl: flux density in spacer(intermodule) not included leakage flux, B_sp_l: flux density in spacer included leakage flux
+% phi_sp_nl: spacer flux not included leakage,% phi_sp_l: spacer flux included leakage (second row of flux_l matrix )
 % A_sp_o: intermodule area
-% B_st: flux density in steel(intramodule) 
-% B_st_nl: flux density in steel(intramodule) not included leakage flux
+% B_st: flux density in steel(intramodule)
+% B_st_nl: flux density in steel(intramodule) not included leakage flux, B_st_l: flux density in steel included leakage flux
 % A_st: intramodule(web) area 
-% phi_st_nl: steel flux not included leakage 
+% phi_st_nl: steel flux not included leakage, phi_st_l : steel flux included leakage
 
 %% Calculation part
 
@@ -141,12 +144,19 @@ r_i= r_mean- l_magnet/2 ;
 r_o= r_mean+ l_magnet/2 ; 
 NI=Br*h_m/(mu_0*mu_r) ; 
 magnet_width= width_ratio*tau_p;
+SI_2= pi/(2*l_magnet*mu_0) ; 
+SI_1=(tau_p-magnet_width)/(mu_0*l_magnet*(0.5*h_w+g+h_m-groove)) ;  
+S_I=SI_1+SI_2 ; 
 
 S_ag=(h_w+2*g)/(l_magnet*magnet_width*mu_0) ; 
 S_PM_o= h_m/(l_magnet*magnet_width*mu_0*mu_r)+0.5*t_o/(l_magnet*magnet_width*mu_0*mu_r) ; 
-  
+
+R(1,1)=2*S_PM_o*(1+2*S_ag/S_I)+S_ag ;  
+
 inter_area=t_o*l_magnet ;
 S_sp=(tau_p/(inter_area*mu_0*mu_st))+(groove_c/(inter_area*mu_0)) ; 
+
+R(1,2)= S_sp ; 
 
 l_cl= width_winding+coil2web_cl ; 
 r_w=r_i-l_cl-lc ; 
@@ -155,11 +165,22 @@ S_st_A=(l_magnet+2*l_cl+lc)/(t_o*(tau_p+tau_pw)*mu_0*mu_st) ;
 S_st_C=(2*(h_m+g)+h_w+t_o)/(lc*tau_pw*mu_0*mu_st) ; 
 S_st=2*S_st_A+S_st_C ;
 
+R(2,1) = R(1,1)+(1+2*S_ag/S_I)*S_st ; 
+R(2,2)=-2*S_st ;
+
+inverse_R = inv(R);  
+NI=(Br*h_m)/(mu_0*mu_r);
+tot_mmf_matrix=[2*NI;2*NI];
+flux_l= inverse_R*tot_mmf_matrix ; 
+
+phi_ag_l= flux_l(1,:) ; 
+B_ag_l= phi_ag_l/l_magnet/magnet_width ;
 
 phi_ag_nl=(S_sp+2*S_st)*NI/(S_st*(2*S_PM_o+S_ag+0.5*S_sp)+0.5*(S_sp*(2*S_PM_o+S_ag))) ; 
 B_ag_nl= phi_ag_nl/magnet_width/l_magnet; 
-B_ag=B_ag_nl;                   %flux density is calculated without leakage
-
+% B_ag=B_ag_nl;                   %flux density is calculated without leakage
+B_ag=B_ag_l ; 
+ 
 %------end of airgap region flux density calculation----------------%
 
 
@@ -169,7 +190,12 @@ A_sp_o=t_i*l_magnet ;
 
 phi_sp_nl= S_st*NI/(S_st*(2*S_PM_o+S_ag+0.5*S_sp)+0.5*(S_sp*(2*S_PM_o+S_ag))) ;
 B_sp_nl= phi_sp_nl/A_sp_o ; 
-B_sp =B_sp_nl ;                 %flux density is calculated without leakage
+
+phi_sp_l=flux_l(2,:) ; % 
+B_sp_l=phi_sp_l/A_sp_o ;
+
+% B_sp =B_sp_nl ;                 %flux density is calculated without leakage
+B_sp =B_sp_l ;
 
 %------ end of spacer region flux density calculation---------%
 
@@ -180,7 +206,12 @@ A_st=tau_pw*lc ;
 
 phi_st_nl=S_sp*NI/(S_st*(2*S_PM_o+S_ag+0.5*S_sp)+0.5*(S_sp*(2*S_PM_o+S_ag))) ; 
 B_st_nl=phi_st_nl/A_st ; 
-B_st =B_st_nl ;                 %flux density is calculated without leakage
+
+phi_st_l=phi_ag_l*(1+2*S_ag/S_I)-2*phi_sp_l ; 
+B_st_l=phi_st_l/A_st ;  
+
+% B_st =B_st_nl ;                 %flux density is calculated without leakage
+B_st =B_st_l ; 
 
 %------ end of steel region flux density calculation---------%
 %----------------------------------------------------------------------------------------------------
@@ -385,11 +416,11 @@ P_loss=P_copper_th+P_eddy ;
 Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 
 if (Eff<0.9)
-   penalty_eff=((abs(0.9-Eff)^2)*1000000) ;
+   penalty_eff=((abs(0.9-Eff)^2)*2000000000) ;
 end
 
 if ((P_o+P_loss)<P_demand)
-   penalty_power_1=((abs(P_demand-(P_o+P_loss))^2)*0.0001) ;
+   penalty_power_1=((abs(P_demand-(P_o+P_loss))^2)*0.01) ;
 end
 
 if ((P_o+P_loss)>P_demand)
