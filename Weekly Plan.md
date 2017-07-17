@@ -219,7 +219,21 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 10 - 17 Temmuz
 
-- [ ] Optimizasyon kodunun yazımına devam edilecek
+- [x] Optimizasyon kodunun yazımına devam edilecek
+<br/>:arrow_right: Kod yazımına devam edildi.
 
-- [ ] Chapter-4 için başlangıç yapılacak
+- [x] Chapter-4 için başlangıç yapılacak
+<br/>:arrow_right: Bu chapter için başlangıç oluşturuldu.
+
+### 17 - 24 Temmuz
+
+- [ ] Optimizasyon kodu tamamlanacak
+
+- [ ] Chapter-3 tamamlanacak
+
+- [ ] Chapter-2 düzeltmeler
+
+- [ ] Chapter-4 devam edilecek
+
+
 
