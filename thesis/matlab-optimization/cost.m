@@ -1,6 +1,6 @@
 function result = cost(x)
 %%%%%Axial Flux PM Generator Design Equations%%%%%
-k=0;
+t=0;
 upper_bound_J=7;    % upper limit for current density
 P_des=5000000;
 eff_gear=1;
@@ -33,28 +33,28 @@ P_demand=(P_des*eff_gear)/n_stack;
 % 
 % %-----------------------------------------------------------------
 
-if J_init<upper_bound_J
-    if J_init<J_pmax
-        J_final=J_pmax;
-            x(3)=J_final;
-            [cost,J_final,J_init,J_pmax,P_net,n_stack]=design(x);   
-        for k=1:5
-            [cost,J_final,J_init,J_pmax,P_net,n_stack]=design(x);
-            J_final=J_final*(P_demand/(P_net));
-            x(3)=J_final;
-        end
-    else
-        J_final=0.9*J_pmax;
-    end
-else
-    J_final=upper_bound_J;
-end
-
-x(3)=J_final;
-[cost,J_final,J_init,J_pmax,P_net,n_stack]=design(x);           % go funct
+% if J_init<upper_bound_J
+%     if J_init<J_pmax
+%         J_final=J_pmax;
+%             x(3)=J_final;
+%             [cost,J_final,J_init,J_pmax,P_net,n_stack]=design(x);   
+%         for k=1:5
+%             [cost,J_final,J_init,J_pmax,P_net,n_stack]=design(x);
+%             J_final=J_final*(P_demand/(P_net));
+%             x(3)=J_final;
+%         end
+%     else
+%         J_final=0.9*J_pmax;
+%     end
+% else
+%     J_final=upper_bound_J;
+% end
+% 
+% x(3)=J_final;
+% [cost,J_final,J_init,J_pmax,P_net,n_stack]=design(x);           % go funct
 
 
 %--------------------------------------------------------------------------------------------------------------------------
-k=k+1;
+t=t+1;
 result=cost; 
 

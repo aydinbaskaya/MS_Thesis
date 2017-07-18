@@ -9,6 +9,7 @@ penalty_temperature=0;      %Temperature limit penalty
 penalty_power_1=0;          %Power per machine penalty component-1  
 penalty_power_2=0;          %Power per machine penalty component-2
 penalty_power_total=0;      %total penalty for power violation
+penalty_voltage=0;          %terminal voltage violation penalty
 %% Definitions in optimization part(user defined variables/constraints)
 
 %Constraints of optimization (variables):
@@ -54,7 +55,7 @@ Br=1.3 ;            % magnet remanent flux density--Grade N42 rare earth magnet 
 mu_r=1.05 ;         % magnet relative permeability
 mu_st=750 ;         % relative permeability of electrical steel
 coil2web_cl=0.015 ;     % winding to steel web clearence 
-k_leak=0.965 ;      % leakage factor 
+k_leak=0.95 ;      % leakage factor 
 phi=0;              % assume unity power factor
 strand=1 ;          % number of parallel strands in coil (taken as 1) 
 t_epoxy=1 ;         % epoxy thickness on winding surface (in mm)
@@ -337,6 +338,10 @@ if (t_winding>100)
    penalty_temperature=((abs(t_winding-100)^2)*100000) ;
 end
 
+if (V_ph_rms>690)
+   penalty_voltage=((V_ph_rms-690)^2)*1000000 ;
+end
+
 %--------------------------------------------------------------------------------------------------------------------------
 
 
@@ -416,7 +421,7 @@ P_loss=P_copper_th+P_eddy ;
 Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 
 if (Eff<0.9)
-   penalty_eff=((abs(0.9-Eff)^2)*2000000000) ;
+   penalty_eff=((abs(0.9-Eff)^2)*3000000000) ;
 end
 
 if ((P_o+P_loss)<P_demand)
@@ -424,7 +429,7 @@ if ((P_o+P_loss)<P_demand)
 end
 
 if ((P_o+P_loss)>P_demand)
-   penalty_power_2=((abs((P_o+P_loss)-P_demand)^2)*0.0001) ;
+   penalty_power_2=((abs((P_o+P_loss)-P_demand)^2)*0.01) ;
 end
 
 penalty_power_total=penalty_power_1+penalty_power_2;
@@ -524,7 +529,7 @@ if (length_total>5)
 end
 
 if (stator_outer>10)
-   penalty_odiam=((abs(stator_outer-10)^2)*100000) ;
+   penalty_odiam=((abs(stator_outer-10)^2)*1000000) ;
 end
 
 
@@ -599,7 +604,7 @@ else
 end
 
 %%
-cost_f=total_cost+penalty_eff+penalty_deflection+penalty_length+penalty_odiam+penalty_temperature+penalty_power_total;   
+cost_f=total_cost+penalty_eff+penalty_deflection+penalty_length+penalty_odiam+penalty_temperature+penalty_power_total+penalty_voltage;   
 J_final_f=J_final;
 J_init_f=J_init;
 J_pmax_f=J_pmax;
