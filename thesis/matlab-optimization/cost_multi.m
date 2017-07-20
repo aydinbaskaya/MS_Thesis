@@ -1,35 +1,9 @@
 function result = cost_multi(x)
 %%%%%Axial Flux PM Generator Design Equations%%%%%
-% t=0;
-% upper_bound_J=7;    % upper limit for current density
-% P_des=5000000;
-% eff_gear=1;
 
 [cost,J_final,J_init,J_pmax,P_demand,P_net,n_stack]=design_multi(x);
 
-% P_demand=(P_des*eff_gear)/n_stack;
-% %-----------------------------------------------------------------
-% %% Reference turbine statics are taken 
-% NET.addAssembly('microsoft.office.interop.excel');
-% app = Microsoft.Office.Interop.Excel.ApplicationClass;
-% book =  app.Workbooks.Open('C:\Users\Aydin\Desktop\yeni kod\ref_table.xls');
-% sheet = Microsoft.Office.Interop.Excel.Worksheet(book.Worksheets.Item(1)); 
-% range = sheet.UsedRange;
-% arr = range.Value;
-% data = cell(arr,'ConvertTypes',{'all'});
-% %cellfun(@disp,data(:,1))
-% ref_table=ones(10,5);           %reference turbine values table
-% for i=2:11
-%     for j=1:5
-%         ref_table(i-1,j)=data{i,j} ;
-%     end
-% end
-%   
-% %ref_table(:,1)-->rpm values
-% %ref_table(:,2)-->Average torque in kNm
-% %ref_table(:,3)-->Average power
-% %ref_table(:,4)-->Time Probability
-% %ref_table(:,5)-->Energy ratio
+
 % 
 % %-----------------------------------------------------------------
 

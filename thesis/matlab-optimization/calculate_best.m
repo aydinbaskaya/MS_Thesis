@@ -1,4 +1,8 @@
-function [J_init,J_pmax,P_o,P_loss,cost]=calculate(x,rpm,P_demand)
+function [rpm_f,J_f,Vph_f,Iph_f,Pdes_f,P_tot_f,Eff_f,temp_f,P_net_f,cost]=calculate_best(x,i,table)
+
+eff_gear=1;
+rpm=table(i,2);     %get rpm value
+P_demand=table(i,4)*eff_gear/x(16);  %take P demand
 
 %----------------------------------------------------------------------
 %%Penalty costs are defined here
@@ -597,4 +601,15 @@ end
 % P_net_f=(P_o+P_loss);
 % n_stack_f=n_stack;
 cost=total_cost+penalty_eff+penalty_deflection+penalty_length+penalty_odiam+penalty_temperature+penalty_power_total+penalty_voltage;
+
+rpm_f=rpm;
+J_f=J_final;
+Vph_f=V_ph_rms;
+Iph_f=I_ph_rms;
+Pdes_f=table(i,4);
+P_tot_f=(P_o+P_loss)*n_stack;
+Eff_f=Eff;
+temp_f=t_winding;
+P_net_f=P_o*n_stack;
+
 end
