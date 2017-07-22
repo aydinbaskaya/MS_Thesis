@@ -1,8 +1,10 @@
-function [J_init,J_pmax,P_o,P_loss,cost]=calculate(x,rpm,P_demand)
+function [J_init,J_pmax,cost,rpm,J_final,V_ph_rms,I_ph_rms,Pdes,P_tot,Eff,temp,P_net]=calculate(x,rpm,P_demand,speed_data,i)
 
 %----------------------------------------------------------------------
 %%Penalty costs are defined here
 penalty_eff=0;              %Efficiency penalty
+penalty_eff_1=0;
+penalty_eff_2=0;
 penalty_deflection=0;       %Beam model deflection penalty
 penalty_length=0;           %Axial length penalty
 penalty_odiam=0;            %Outer diameter penalty
@@ -405,16 +407,21 @@ P_loss=P_copper_th+P_eddy ;
 
 Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 
-if (Eff<0.9)
-   penalty_eff=((abs(0.9-Eff)^2)*3000000000) ;
+if (Eff<0.95)
+   penalty_eff_1=((abs(0.9-Eff)^2)*3000000000) ;
 end
+
+if (Eff>0.999)
+   penalty_eff_2=((abs(Eff-0.999)^2)*3000000000) ;
+end
+penalty_eff=penalty_eff_1+penalty_eff_2;
 
 if ((P_o+P_loss)<P_demand)
    penalty_power_1=((abs(P_demand-(P_o+P_loss))^2)*0.001) ;
 end
 
 if ((P_o+P_loss)>P_demand)
-   penalty_power_2=((abs((P_o+P_loss)-P_demand)^2)*0.1) ;
+   penalty_power_2=((abs((P_o+P_loss)-P_demand)^2)*0.001) ;
 end
 
 penalty_power_total=penalty_power_1+penalty_power_2;
@@ -596,5 +603,9 @@ end
 % P_demand_f=P_demand;
 % P_net_f=(P_o+P_loss);
 % n_stack_f=n_stack;
+Pdes=speed_data(i,3);
+P_tot=(P_o+P_loss)*n_stack;
+temp=t_winding;
+P_net=P_o*n_stack;
 cost=total_cost+penalty_eff+penalty_deflection+penalty_length+penalty_odiam+penalty_temperature+penalty_power_total+penalty_voltage;
 end

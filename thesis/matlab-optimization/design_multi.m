@@ -1,4 +1,4 @@
-function [cost_f1,J_final_f,J_init_f,J_pmax_f,P_demand_f,P_net_f,n_stack_f]=design_multi(x)
+function cost_f1=design_multi(x)
 
 gear_ratio=1;       % Gearbox ratio of direct drive
 eff_gear=1;
@@ -12,6 +12,18 @@ speed_data=[1 6 600 0.0900000000000000 4.54103200838914e-05;...             %%po
             10.5000000000000 738 811000 0.0900000000000000 0.0613796159800598;...
             12 846 1063000 0.0900000000000000 0.0804519504152942;...
             12 916 5000000 0.190000000000000 0.798885260735126];                
+
+ratings=cell(10,9);        %ratings table for result design
+% ratings(1,1)={'wind speed'};
+ratings(1,1)={'rpm'};
+ratings(1,2)={'J-Current density'};
+ratings(1,3)={'V_ph (rms)'};
+ratings(1,4)={'I_ph (rms)'};
+ratings(1,5)={'P_desired'};
+ratings(1,6)={'P_total'};
+ratings(1,7)={'Efficiency'};
+ratings(1,8)={'Temperature'};
+ratings(1,9)={'P_net'};
 
 %speed_data(:,1)-->rpm values
 %speed_data(:,2)-->Average torque in kNm
@@ -67,14 +79,14 @@ rpm=speed_data(i,1)*gear_ratio;     %take rpm data
 x(3)=Jmax/2;
 P_demand=speed_data(i,3)*eff_gear/n_stack;  %take P demand
 
-[J_init,J_pmax,P_o,P_loss,cost_f3]=calculate(x,rpm,P_demand);
+[J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net]=calculate(x,rpm,P_demand,speed_data,i);
 
 if J_init<Jmax
     if J_init<J_pmax
         x(3)=J_init;
         for k=1:2
-            [J_init,J_pmax,P_o,P_loss,cost_f3]=calculate(x,rpm,P_demand);
-            x(3)=1.03*x(3)*P_demand/(P_o+P_loss);
+            [J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net]=calculate(x,rpm,P_demand,speed_data,i);
+            x(3)=1.03*x(3)*P_demand/(P_tot/n_stack);
         end
     else
         x(3)=0.9*J_pmax;
@@ -83,20 +95,29 @@ else
   x(3)=Jmax;
 end
 
-[J_init,J_pmax,P_o,P_loss,cost_f3]=calculate(x,rpm,P_demand);   %fonk donen degerler degýscek
-% buraya yazdýrma yapýlcak
-income=0;
+[J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net]=calculate(x,rpm,P_demand,speed_data,i);   
 
+income=0;
 cost_f2=cost_f2+cost_f3*speed_data(i,5)-income*speed_data(i,4);
+
+ratings(i+1,1)={rpm};
+ratings(i+1,2)={J};
+ratings(i+1,3)={Vph};
+ratings(i+1,4)={Iph};
+ratings(i+1,5)={Pdes};
+ratings(i+1,6)={P_tot};
+ratings(i+1,7)={Eff};
+ratings(i+1,8)={temp};
+ratings(i+1,9)={P_net};
 
 end
 
-J_final_f=x(3);
-J_init_f=J_init;
-J_pmax_f=J_pmax;
-P_demand_f=P_demand;
-P_net_f=(P_o+P_loss);
-n_stack_f=n_stack;
+% J_final_f=x(3);
+% J_init_f=J_init;
+% J_pmax_f=J_pmax;
+% P_demand_f=P_demand;
+% P_net_f=(P_o+P_loss);
+% n_stack_f=n_stack;
 cost_f1=cost_f2;
 
 end
