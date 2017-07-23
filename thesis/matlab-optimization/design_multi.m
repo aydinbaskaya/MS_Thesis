@@ -84,9 +84,9 @@ P_demand=speed_data(i,3)*eff_gear/n_stack;  %take P demand
 if J_init<Jmax
     if J_init<J_pmax
         x(3)=J_init;
-        for k=1:2
+        for k=1:5
             [J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net]=calculate(x,rpm,P_demand,speed_data,i);
-            x(3)=1.03*x(3)*P_demand/(P_tot/n_stack);
+            x(3)=x(3)*P_demand/(P_tot/n_stack);
         end
     else
         x(3)=0.9*J_pmax;
