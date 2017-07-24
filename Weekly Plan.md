@@ -227,13 +227,21 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 17 - 24 Temmuz
 
-- [ ] Optimizasyon kodu tamamlanacak
+- [x] Optimizasyon kodu tamamlanacak
+<br/>:arrow_right: kod ufak eksikler dışında çalışır hale getirildi.
 
 - [ ] Chapter-3 tamamlanacak
+<br/>:hourglass: Chapter-3 yazımı devam etmektedir.
 
-- [ ] Chapter-2 düzeltmeler
+- [x] Chapter-2 düzeltmeler
+<br/>:arrow_right: Düzeltmeler tamamlandı.
 
 - [ ] Chapter-4 devam edilecek
+<br/>:hourglass: Chapter-4 yazımı devam etmektedir.
 
+### 24 - 31 Temmuz
+- [ ] Chapter 3 ve 4 yazımı tamamlanacak.
 
+- [ ] Optimizasyon ayarlamaları yapılarak makina parametreleri netleştirilecek.
 
+- [ ] Makina parametrelerine göre maxwell 3d modellemeye başlanacak.
