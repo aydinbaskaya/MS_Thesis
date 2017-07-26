@@ -2,9 +2,9 @@ function [J_init,J_pmax,cost,rpm,J_final,V_ph_rms,I_ph_rms,Pdes,P_tot,Eff,temp,P
 
 %----------------------------------------------------------------------
 %%Penalty costs are defined here
-penalty_eff=0;              %Efficiency penalty
-penalty_eff_1=0;
-penalty_eff_2=0;
+penalty_eff=0;              %Efficiency penalty total
+penalty_eff_1=0;            %efficiency component-1
+penalty_eff_2=0;            %efficiency component-2
 penalty_deflection=0;       %Beam model deflection penalty
 penalty_length=0;           %Axial length penalty
 penalty_odiam=0;            %Outer diameter penalty
@@ -19,8 +19,8 @@ penalty_voltage=0;          %terminal voltage violation penalty
 %All the length values are given in (m) to optimization
 
 r_mean=x(1);        % mean radius 
-g=x(2);             % air-gap clearence 
-J_final=x(3);         % curent density in A/mm^2
+g=x(2)*0.001;       % air-gap clearence in mm
+J_final=x(3);       % curent density in A/mm^2
 t_o=x(4);           % outer limb thickness
 t_i=x(5);           % inner limb thickness
 lc=x(6);            % steel web thickness
@@ -33,7 +33,7 @@ pitch_ratio=x(12);  % winding thickness/coil pitch ratio
 kf=x(13);           % fill factor
 h_m=x(14);          % height of the magnet
 l_magnet=x(15);     % axial lenght of the magnet
-n_stack=x(16); % number of parallel machines stacked axially
+n_stack=x(16);      % number of parallel machines stacked axially
 
 
 %Constants of optimization :
@@ -88,6 +88,11 @@ if pitch_ratio>(0.5-l_magnet/(4*r_mean))        %coil pitch ratio control
 end
 %------------End of variable control-------------------------
 
+f_rated=12/60*Np/2 ; 
+f=rpm/60*Np/2 ;
+f_ratio=f/f_rated;
+
+
 %--------------------------------------------------------------------------------------------------------------------------
 
 
@@ -137,7 +142,7 @@ SI_1=(tau_p-magnet_width)/(mu_0*l_magnet*(0.5*h_w+g+h_m-groove)) ;
 S_I=SI_1+SI_2 ; 
 
 S_ag=(h_w+2*g)/(l_magnet*magnet_width*mu_0) ; 
-S_PM_o= h_m/(l_magnet*magnet_width*mu_0*mu_r)+0.5*t_o/(l_magnet*magnet_width*mu_0*mu_r) ; 
+S_PM_o= h_m/(l_magnet*magnet_width*mu_0*mu_r)+0.5*t_o/(l_magnet*magnet_width*mu_0*mu_st) ; 
 
 R(1,1)=2*S_PM_o*(1+2*S_ag/S_I)+S_ag ;  
 
@@ -157,7 +162,7 @@ R(2,1) = R(1,1)+(1+2*S_ag/S_I)*S_st ;
 R(2,2)=-2*S_st ;
 
 inverse_R = inv(R);  
-NI=(Br*h_m)/(mu_0*mu_r);
+% NI=(Br*h_m)/(mu_0*mu_r);
 tot_mmf_matrix=[2*NI;2*NI];
 flux_l= inverse_R*tot_mmf_matrix ; 
 
@@ -174,7 +179,7 @@ B_ag=B_ag_l ;                     %flux density is calculated with leakage
 
 %-----for spacer region---------%
 
-A_sp_o=t_i*l_magnet ; 
+A_sp_o=t_o*l_magnet ; 
 
 phi_sp_nl= S_st*NI/(S_st*(2*S_PM_o+S_ag+0.5*S_sp)+0.5*(S_sp*(2*S_PM_o+S_ag))) ;
 B_sp_nl= phi_sp_nl/A_sp_o ; 
@@ -219,7 +224,7 @@ B_st =B_st_l ;                    %flux density is calculated with leakage
 
 %% Calculation part
 
-width_winding=pitch_ratio*tau_c;
+% width_winding=pitch_ratio*tau_c;
 a_window=h_w*width_winding*kf; 
 a_cond=a_window/Nt;  
 I_coil=J_final*a_cond*1000000; 
@@ -294,7 +299,7 @@ B_a=mu_0*Nt/l_ss ;
 flux_lnk=(2*B_a*Nt*((0.5*(r_o^2-r_i^2)*tand(theta_o))-(width_winding*l_magnet)))+(2*B_a*Nt*width_winding*l_magnet/3) ;  
 k_ind=1;                            %constant
 L_coil= k_ind*flux_lnk ; 
-f=rpm/60*Np/2 ; 
+% f=rpm/60*Np/2 ; 
 w_e=2*pi*f ; 
 X_ph=w_e*L_coil*(N_series/n_branch); 
 l_coil_structure=(r_mean+0.5*(l_magnet+width_winding))*2*pi/Nc;
@@ -385,7 +390,7 @@ L_phase=L_coil*N_series/n_branch*1000 ;             %in mH
 
 turn_strand=Nt/strand ; 
 h_coil_i=(h_w*1000-2*t_epoxy)/turn_strand ;
-eddy_magnet= 57.65*l_magnet*magnet_width*Np*2 ; % eddy_magnet: magnet surface eddy current loss
+eddy_magnet= (57.65*l_magnet*magnet_width*Np*2)*f_ratio^2 ; % eddy_magnet: magnet surface eddy current loss
 leakage_loss=0  ;% constant
 coil_area_i=(width_winding*1000-2*t_epoxy)*(h_w*1000-2*t_epoxy)/Nt ; 
 ins_area=coil_area_i-a_cond*10^6 ;  
@@ -400,7 +405,7 @@ end
 h_copper=h_coil_i-2*t_insulation ;
 t_copper=t_coil_i-2*t_insulation;
 ag_loss=2*l_magnet*Nt*(((t_copper/2000)^3)*(B_ag^2)*(w_e^2))*(h_copper/1000)/(3*rho_cu*(1+alpha_Cu*dT)) ;  
-eddy_coil= ag_loss+leakage_loss;  
+eddy_coil= (ag_loss+leakage_loss)*f_ratio^2;  
 P_eddy=eddy_coil*Nc+eddy_magnet; 
 P_copper_th=m*(I_ph_rms*I_ph_rms)*R_ph_th ; 
 P_loss=P_copper_th+P_eddy ; 
@@ -408,7 +413,7 @@ P_loss=P_copper_th+P_eddy ;
 Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 
 if (Eff<0.95)
-   penalty_eff_1=((abs(0.9-Eff)^2)*3000000000) ;
+   penalty_eff_1=((abs(0.95-Eff)^2)*6000000000) ;
 end
 
 if (Eff>0.999)
@@ -424,7 +429,7 @@ if ((P_o+P_loss)>P_demand)
    penalty_power_2=((abs((P_o+P_loss)-P_demand)^2)*0.001) ;
 end
 
-penalty_power_total=penalty_power_1+penalty_power_2;
+penalty_power_total=penalty_power_1+penalty_power_2 ;
 
 %---------------------------------------------------------------------------------------------------------------------------
 
