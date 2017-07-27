@@ -256,7 +256,7 @@ I_ph_rms= I_coil*n_branch;  %%Resulting equation
 % l_coil_end: coil end length, l_coil_middle: coil middle part length, l_coil_structure: coil structure part length  
 % f: frequency
 % k_ind: inductance coefficient(take 1 for leakage path assumption), flux_lnk: flux linkage
-% B_a: flux density for inductance calculation
+% B_a: flux linkage calculation component
 % mu_0: permeability of vacuum(constant=4*pi*10^-7) , l_ss: steel to steel distance
 % l_mm: magnet to magnet gap
 
@@ -281,9 +281,9 @@ dT= t_winding-t_amb ;    % temperature rise
 Nc=(3/4)*Np ;
 coil_phase=Nc/m; 
 N_series=coil_phase/n_branch; 
-theta_dif=width_winding/r_mean;  
-theta_o= tau_c/r_mean/2;   
-theta_i= theta_o-theta_dif; 
+theta_dif=width_winding/r_mean;     % in radian
+theta_o= tau_c/r_mean/2;            % in radian
+theta_i= theta_o-theta_dif;         % in radian
 
 theta_dif=(theta_dif*180)/pi;       %convert radian to degree
 theta_o= (theta_o*180)/pi;          %convert radian to degree
@@ -298,8 +298,7 @@ a_cond=a_window/Nt;
 B_a=mu_0*Nt/l_ss ; 
 flux_lnk=(2*B_a*Nt*((0.5*(r_o^2-r_i^2)*tand(theta_o))-(width_winding*l_magnet)))+(2*B_a*Nt*width_winding*l_magnet/3) ;  
 k_ind=1;                            %constant
-L_coil= k_ind*flux_lnk ; 
-% f=rpm/60*Np/2 ; 
+L_coil= k_ind*flux_lnk ;  
 w_e=2*pi*f ; 
 X_ph=w_e*L_coil*(N_series/n_branch); 
 l_coil_structure=(r_mean+0.5*(l_magnet+width_winding))*2*pi/Nc;
@@ -330,8 +329,8 @@ if (t_winding>100)
    penalty_temperature=((abs(t_winding-100)^2)*100000) ;
 end
 
-if (V_ph_rms>690)
-   penalty_voltage=((V_ph_rms-690)^2)*1000000 ;
+if (V_ph_rms>400)
+   penalty_voltage=((V_ph_rms-400)^2)*1000000 ;
 end
 
 %--------------------------------------------------------------------------------------------------------------------------
@@ -390,8 +389,8 @@ L_phase=L_coil*N_series/n_branch*1000 ;             %in mH
 
 turn_strand=Nt/strand ; 
 h_coil_i=(h_w*1000-2*t_epoxy)/turn_strand ;
-eddy_magnet= (57.65*l_magnet*magnet_width*Np*2)*f_ratio^2 ; % eddy_magnet: magnet surface eddy current loss
-leakage_loss=0  ;% constant
+eddy_magnet= (57.65*l_magnet*magnet_width*Np*2)*f_ratio^2 ;            % eddy_magnet: magnet surface eddy current loss(eddy loss is calculated proportional to rated speed eddy loss)
+leakage_loss=0  ;                                                      % constant (eddy loss on coils due to leakage flux is neglected)
 coil_area_i=(width_winding*1000-2*t_epoxy)*(h_w*1000-2*t_epoxy)/Nt ; 
 ins_area=coil_area_i-a_cond*10^6 ;  
 t_coil_i=(width_winding*1000-2*t_epoxy)/turn_strand ; 
@@ -405,7 +404,7 @@ end
 h_copper=h_coil_i-2*t_insulation ;
 t_copper=t_coil_i-2*t_insulation;
 ag_loss=2*l_magnet*Nt*(((t_copper/2000)^3)*(B_ag^2)*(w_e^2))*(h_copper/1000)/(3*rho_cu*(1+alpha_Cu*dT)) ;  
-eddy_coil= (ag_loss+leakage_loss)*f_ratio^2;  
+eddy_coil= (ag_loss+leakage_loss)*f_ratio^2;                            % (eddy loss is calculated proportional to rated speed eddy loss)
 P_eddy=eddy_coil*Nc+eddy_magnet; 
 P_copper_th=m*(I_ph_rms*I_ph_rms)*R_ph_th ; 
 P_loss=P_copper_th+P_eddy ; 
@@ -413,7 +412,7 @@ P_loss=P_copper_th+P_eddy ;
 Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 
 if (Eff<0.95)
-   penalty_eff_1=((abs(0.95-Eff)^2)*6000000000) ;
+   penalty_eff_1=((abs(0.95-Eff)^2)*5000000000) ;
 end
 
 if (Eff>0.999)
@@ -473,7 +472,7 @@ h_web=l_mm+2*(h_m-groove);
 m_web_layer=pi*d_steel*t_i*((r_w+lc)^2-r_w^2)*h_web ; 
 number_inner_limb=n_stack-1 ; 
 m_innerlimb_layer=pi*d_steel*t_i*(r_o^2-r_w^2) ;
-number_outer_limb=2 ;               %
+number_outer_limb=2 ;              
 m_outerlimb_layer=pi*d_steel*t_o*(r_o^2-r_w^2) ; 
 mass_steel = m_outerlimb_layer*number_outer_limb+m_innerlimb_layer*number_inner_limb+m_web_layer*number_web ;               %active steel parts: outer limb,inner limb, web
 
@@ -482,7 +481,7 @@ m_copper_layer=m_copper_unit*Nc ;
 mass_copper=m_copper_layer*n_stack;             %active copper mass
 
 number_magnet_layer=2*n_stack ; 
-m_magnet_layer=pi*d_magnet*h_m*(r_o^2-r_i^2)*l_magnet ;
+m_magnet_layer=pi*d_magnet*h_m*(r_o^2-r_i^2)*width_ratio ;
 mass_magnet=m_magnet_layer*number_magnet_layer ;        %active magnet mass
 
 %% Structural mass calculation part
@@ -580,7 +579,7 @@ I_beam=tau_p*(t_o^3)/12 ;
 L_beam=l_magnet+l_cl ; 
 beam_a1= 0 ;
 beam_a2=l_magnet ; 
-youngm=2E11 ; 
+youngm=2E11 ;           % Youngs modulus coefficient for steel
 beam_y1=-udl*((L_beam-beam_a1)^3)*(3*L_beam+beam_a1)/(24*I_beam*youngm) ; 
 beam_y2=udl*((L_beam-beam_a2)^3)*(3*L_beam+beam_a2)/(24*I_beam*youngm) ; 
 beam_y=beam_y1+beam_y2 ; 
