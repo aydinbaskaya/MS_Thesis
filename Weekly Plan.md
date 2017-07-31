@@ -230,18 +230,26 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 - [x] Optimizasyon kodu tamamlanacak
 <br/>:arrow_right: kod ufak eksikler dışında çalışır hale getirildi.
 
-- [ ] Chapter-3 tamamlanacak
-<br/>:hourglass: Chapter-3 yazımı devam etmektedir.
+- [x] Chapter-3 tamamlanacak
+<br/>:arrow_right: Chapter-3 yazımı tamamlandı.
 
 - [x] Chapter-2 düzeltmeler
 <br/>:arrow_right: Düzeltmeler tamamlandı.
 
-- [ ] Chapter-4 devam edilecek
+- [x] Chapter-4 devam edilecek
 <br/>:hourglass: Chapter-4 yazımı devam etmektedir.
 
 ### 24 - 31 Temmuz
-- [ ] Chapter 3 ve 4 yazımı tamamlanacak.
+- [x] Chapter 3 ve 4 yazımı tamamlanacak.
+<br/>:hourglass: Chapter 3 yazımı tamamlandı. Chapter 4 planı dogrultusunda yazımı devam etmektedir.
 
-- [ ] Optimizasyon ayarlamaları yapılarak makina parametreleri netleştirilecek.
+- [x] Optimizasyon ayarlamaları yapılarak makina parametreleri netleştirilecek.
+<br/>:arrow_right: Optimizasyon kodundaki hatalar bu hafta giderildi. Kodun optimal calısabilmesi için ince ayar gerekli.
 
 - [ ] Makina parametrelerine göre maxwell 3d modellemeye başlanacak.
+<br/>:heavy_multiplication_x: Optimizasyon kodu ve chapter yazımı yüzünden bu hafta bakılamadı.
+
+### 31 Temmuz - 7 Ağustos
+- [ ] Chapter 4 yazımı tamamlanacak.
+
+- [ ] Optimizasyon kodu her calıstırma için optimum parametreleri listelemesi ayarlanacak. Böylece kod üzerinde daha hızlı işlem yapılabilir. Ayrıca toolbox ayarları da bu hafta elden geçirilerek ideal parametreler elde edilmeye çalışılacak.
