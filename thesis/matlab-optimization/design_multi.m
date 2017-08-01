@@ -1,4 +1,4 @@
-function cost_f1=design_multi(x)
+function [cost_f1,x_final]=design_multi(x)
 
 gear_ratio=1;       % Gearbox ratio of direct drive
 eff_gear=1;
@@ -119,5 +119,5 @@ end
 % P_net_f=(P_o+P_loss);
 % n_stack_f=n_stack;
 cost_f1=cost_f2;
-
+x_final=x;
 end
