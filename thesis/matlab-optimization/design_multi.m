@@ -1,4 +1,4 @@
-function [cost_f1,x_final]=design_multi(x)
+function [cost_f1,x_final,ratings]=design_multi(x)
 
 gear_ratio=1;       % Gearbox ratio of direct drive
 eff_gear=1;
@@ -79,13 +79,13 @@ rpm=speed_data(i,1)*gear_ratio;     %take rpm data
 x(3)=Jmax/2;
 P_demand=speed_data(i,3)*eff_gear/n_stack;  %take P demand
 
-[J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net]=calculate(x,rpm,P_demand,speed_data,i);
+[J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net,optim_var2]=calculate(x,rpm,P_demand,speed_data,i);
 
 if J_init<Jmax
     if J_init<J_pmax
         x(3)=J_init;
         for k=1:5
-            [J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net]=calculate(x,rpm,P_demand,speed_data,i);
+            [J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net,optim_var2]=calculate(x,rpm,P_demand,speed_data,i);
             x(3)=x(3)*P_demand/(P_tot/n_stack);
         end
     else
@@ -95,7 +95,7 @@ else
   x(3)=Jmax;
 end
 
-[J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net]=calculate(x,rpm,P_demand,speed_data,i);   
+[J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net,optim_var2]=calculate(x,rpm,P_demand,speed_data,i);   
 
 income=0;
 cost_f2=cost_f2+cost_f3*speed_data(i,5)-income*speed_data(i,4);
@@ -119,5 +119,5 @@ end
 % P_net_f=(P_o+P_loss);
 % n_stack_f=n_stack;
 cost_f1=cost_f2;
-x_final=x;
+x_final=optim_var2;             % updated variable list is exported to main function
 end

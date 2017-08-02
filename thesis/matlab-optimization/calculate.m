@@ -1,4 +1,4 @@
-function [J_init,J_pmax,cost,rpm,J_final,V_ph_rms,I_ph_rms,Pdes,P_tot,Eff,temp,P_net]=calculate(x,rpm,P_demand,speed_data,i)
+function [J_init,J_pmax,cost,rpm,J_final,V_ph_rms,I_ph_rms,Pdes,P_tot,Eff,temp,P_net,optim_var]=calculate(x,rpm,P_demand,speed_data,i)
 
 %----------------------------------------------------------------------
 %%Penalty costs are defined here
@@ -26,10 +26,10 @@ t_i=x(5);           % inner limb thickness
 lc=x(6);            % steel web thickness
 width_ratio=x(7);   % Magnet/steel width ratio
 Nt=x(8);            % number of turns in a coil(integer)
-Np=x(9);            % number of poles(integer)
-n_branch=x(10);     % number of parallel branches(integer)
+% Np=x(9);            % number of poles(integer)
+% n_branch=x(10);     % number of parallel branches(integer)
 h_w=x(11);          % height of the winding
-pitch_ratio=x(12);  % winding thickness/coil pitch ratio
+% pitch_ratio=x(12);  % winding thickness/coil pitch ratio
 kf=x(13);           % fill factor
 h_m=x(14);          % height of the magnet
 l_magnet=x(15);     % axial lenght of the magnet
@@ -73,25 +73,28 @@ uc_epoxy=10 ;       % unit cost of epoxy in £/kg
 
 %% Variable Control part
 
-Np=round(Np/4)*4;   % fix number of poles at multiple of 4
-fix=(Np*3)/(4*m);   % to give the integer number of N_series
-while ne((fix/n_branch),round(fix/n_branch))        
-    n_branch=n_branch-1;
+x(9)=round(x(9)/4)*4;   % fix number of poles at multiple of 4
+fix=(x(9)*3)/(4*m);   % to give the integer number of N_series
+while ne((fix/x(10)),round(fix/x(10)))        
+    x(10)=x(10)-1;
 end
 
-if (n_branch>fix)||(n_branch<1)
-    n_branch=1;
+if (x(10)>fix)||(x(10)<1)
+    x(10)=1;
 end
 
-if pitch_ratio>(0.5-l_magnet/(4*r_mean))        %coil pitch ratio control
-    pitch_ratio=(0.5-l_magnet/(4*r_mean))-0.01;
+if x(12)>(0.5-l_magnet/(4*r_mean))        %coil pitch ratio control
+    x(12)=(0.5-l_magnet/(4*r_mean))-0.01;
 end
 %------------End of variable control-------------------------
 
-f_rated=12/60*Np/2 ; 
-f=rpm/60*Np/2 ;
+f_rated=12/60*x(9)/2 ; 
+f=rpm/60*x(9)/2 ;
 f_ratio=f/f_rated;
 
+Np=x(9);            % number of poles(integer)
+n_branch=x(10);     % number of parallel branches(integer)
+pitch_ratio=x(12);  % winding thickness/coil pitch ratio
 
 %--------------------------------------------------------------------------------------------------------------------------
 
@@ -612,4 +615,5 @@ P_tot=(P_o+P_loss)*n_stack;
 temp=t_winding;
 P_net=P_o*n_stack;
 cost=total_cost+penalty_eff+penalty_deflection+penalty_length+penalty_odiam+penalty_temperature+penalty_power_total+penalty_voltage;
+optim_var=x;                   % updated variable list is exported
 end
