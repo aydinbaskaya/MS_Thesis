@@ -1,10 +1,10 @@
 function result = cost_multi(x)
-%%%%%Axial Flux PM Generator Design Equations%%%%%
+%%%%%Main COST Function for the AFPM Design Optimization%%%%%
 
-[cost,x_final,ratings,result_list]=design_multi(x);         % updated variable list and ratings of the design are imported to here
+[cost,x_final,ratings,result_list]=design_multi(x);         % updated variable list, ratings of the design and resulting parameter list are imported to here
 
-%-----------------------------------------------------
-%---Variable list export part-----------------------
+%------------------------------------------------------------------------------------------------
+%-------------------------Variable list export part----------------------------------------------
 
 table1=cell(16,2);                 % variable table   
 label={'r_mean','airgap','current density','outer limb thickness','inner limb thickness','steel web thickness','magnet/steel width ratio'...
@@ -26,11 +26,13 @@ for row = 1:16
     fprintf(fileID,formatSpec,table1{row,:});       % variable list (@rated speed) is exported to "optim_variables.dat" file in the workspace
 end
 fclose(fileID);
-%----------------------------------------------
+
+%----------------------------End of variable list part--------------------------------------------
 
 
-%----------------------------------------------------------
-%---Ratings table export part---------
+%-------------------------------------------------------------------------------------------------
+%-----------------------------Ratings table export part-------------------------------------------
+
 fileID2 = fopen('optim_ratings.dat','w');   
 formatSpec2 = '%s\t ';
 formatSpec3 = '%s\n' ;
@@ -50,11 +52,13 @@ for i = 1:9
     fprintf(fileID2,formatSpec5,ratings{i+1,9});
 end
 fclose(fileID2);
-%---------------------------------------------------------------
+
+%------------End of Ratings table export part-----------------------------------------------------
 
 
-%---------------------------------------------------------------
-%---Results table export part----------
+%-------------------------------------------------------------------------------------------------
+%-------------------------Results table export part-----------------------------------------------
+
 fileID3 = fopen('optim_results.dat','w');   
 formatSpec6 = '%s\t\t ';
 formatSpec7 = '%d\n' ;
@@ -66,12 +70,13 @@ label3={'r_mean','airgap','rpm','J-Current density','Outer limb thickness','Inne
         'Pole pitch','Coil pitch','Magnet width','Number of coils','frequency','Induced emf per phase rms','Induced emf per phase peak','Copper loss','Eddy loss','Phase reactance',...
         'load angle','power factor angle','magnet fundamental peak flux density','magnet-to-magnet gap','steel-to-steel gap','coil-steel web clearance','web radius','outer radius',...
         'inner radius','temperature rise','total cost','Efficiency Penalty','Deflection Penalty','Axial length penalty','Outer diameter penalty','Temperature penalty','Power Penalty-1',...
-        'Power Penalty-2','Total Power Penalty','Voltage penalty','Total output power','Net output power','Desired Output power','Fitness'};      % namelist of ratings
+        'Power Penalty-2','Total Power Penalty','Voltage penalty','Total output power','Net output power','Desired Output power','Fitness'};      % namelist of results
     
 for row = 1:79
-    fprintf(fileID3,formatSpec6,label3{row});     % namelist of ratings is exported to "optim_ratings.dat" file in the workspace
-    fprintf(fileID3,formatSpec7,result_list(row));
+    fprintf(fileID3,formatSpec6,label3{row});           % namelist of results is exported to "optim_results.dat" file in the workspace
+    fprintf(fileID3,formatSpec7,result_list(row));      % values of results are exported to "optim_results.dat" file in the workspace
 end
 fclose(fileID3);
+%-------------------------------End of Results table export part-----------------------------------
 result=cost; 
 

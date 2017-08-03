@@ -14,7 +14,6 @@ speed_data=[1 6 600 0.0900000000000000 4.54103200838914e-05;...             %%po
             12 916 5000000 0.190000000000000 0.798885260735126];                
 
 ratings=cell(10,9);        %ratings table for result design
-% ratings(1,1)={'wind speed'};
 ratings(1,1)={'rpm'};
 ratings(1,2)={'J-Current density'};
 ratings(1,3)={'V_ph (rms)'};
@@ -49,7 +48,7 @@ ratings(1,9)={'P_net'};
 
 r_mean=x(1);        % mean radius 
 g=x(2);             % air-gap clearence 
-% J_opt=x(3);         % curent density in A/mm^2
+
 t_o=x(4);           % outer limb thickness
 t_i=x(5);           % inner limb thickness
 lc=x(6);            % steel web thickness
@@ -120,5 +119,5 @@ end
 % n_stack_f=n_stack;
 cost_f1=cost_f2;
 x_final=optim_var2;             % updated variable list is exported to main function
-result_list(79)=cost_f2;
+result_list(79)=cost_f2;        % cost value of the individual is assigned for multispeed operation
 end

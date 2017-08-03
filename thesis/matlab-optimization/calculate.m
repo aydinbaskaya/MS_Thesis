@@ -1,6 +1,6 @@
 function [J_init,J_pmax,cost,rpm,J_final,V_ph_rms,I_ph_rms,Pdes,P_tot,Eff,temp,P_net,optim_var,result_list]=calculate(x,rpm,P_demand,speed_data,i)
 
-result_list=zeros(1,40);
+result_list=zeros(1,79);    % Result list for the design table export
 %----------------------------------------------------------------------
 %%Penalty costs are defined here
 penalty_eff=0;              %Efficiency penalty total
@@ -416,7 +416,7 @@ P_loss=P_copper_th+P_eddy ;
 Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 
 if (Eff<0.95)
-   penalty_eff_1=((abs(0.95-Eff)^2)*5000000000) ;
+   penalty_eff_1=((abs(0.95-Eff))*5000000000) ;
 end
 
 if (Eff>0.999)
@@ -425,7 +425,7 @@ end
 penalty_eff=penalty_eff_1+penalty_eff_2;
 
 if ((P_o+P_loss)<P_demand)
-   penalty_power_1=((abs(P_demand-(P_o+P_loss))^2)*0.001) ;
+   penalty_power_1=((abs(P_demand-(P_o+P_loss))^2)*0.1) ;
 end
 
 if ((P_o+P_loss)>P_demand)
@@ -529,7 +529,7 @@ if (length_total>5)
 end
 
 if (stator_outer>10)
-   penalty_odiam=((abs(stator_outer-10)^2)*10000000) ;
+   penalty_odiam=((abs(stator_outer-10))*100000000) ;
 end
 
 
@@ -619,83 +619,84 @@ cost=total_cost+penalty_eff+penalty_deflection+penalty_length+penalty_odiam+pena
 optim_var=x;                   % updated variable list is exported
 
 %performance parameters of the design is saved in result_list and then exported
-result_list(1)=r_mean;
-result_list(2)=g;
-result_list(3)=rpm;
-result_list(4)=J_final;
-result_list(5)=t_o;
-result_list(6)=t_i;
-result_list(7)=lc;
-result_list(8)=Nt;
-result_list(9)=Np;
-result_list(10)=n_branch;
-result_list(11)=h_w;
-result_list(12)=pitch_ratio;
-result_list(13)=kf;
-result_list(14)=h_m;
-result_list(15)=l_magnet;
-result_list(16)=width_ratio;
-result_list(17)=Br;
-result_list(18)=V_ph_rms ;
-result_list(19)=I_ph_rms ;
-result_list(20)=P_o;
-result_list(21)=Eff;
-result_list(22)=L_phase;
-result_list(23)=R_amb;
-result_list(24)=R_ph_th;
-result_list(25)=a_cond*1000000 ;
-result_list(26)=temp_winding;
-result_list(27)=beam_y_percent;
-result_list(28)=B_sp;
-result_list(29)=B_ag;
-result_list(30)=B_st;
-result_list(31)=t_amb;
-result_list(32)=mass_steel;
-result_list(33)=mass_copper;
-result_list(34)=mass_magnet;
-result_list(35)=m_shaft+m_stator+m_rotor+m_steelband;  %structural mass
-result_list(36)=mass_steel+mass_copper+mass_magnet+result_list(34)+mass_epoxy; %total mass
-result_list(37)=cost_steel;
-result_list(38)=cost_copper;
-result_list(39)=cost_magnet;
+
+result_list(1)=r_mean;                  %Mean radius 
+result_list(2)=g;                       %Airgap clearance 
+result_list(3)=rpm;                     %rpm value
+result_list(4)=J_final;                 %Current density
+result_list(5)=t_o;                     %Outer limb thickness
+result_list(6)=t_i;                     %Inner limb thickness
+result_list(7)=lc;                      %Steel-web clearence
+result_list(8)=Nt;                      %Number of turns
+result_list(9)=Np;                      %Number of poles
+result_list(10)=n_branch;               %Number of parallel branches
+result_list(11)=h_w;                    %Height of the winding
+result_list(12)=pitch_ratio;            %Winding thickness/coil pitch ratio
+result_list(13)=kf;                     %Fill factor
+result_list(14)=h_m;                    %Height of the magnet
+result_list(15)=l_magnet;               %Length of the magnet
+result_list(16)=width_ratio;            %Magnet/steel width ratio
+result_list(17)=Br;                     %Remanence flux density of the selected magnet
+result_list(18)=V_ph_rms ;              %Voltage per phase rms value
+result_list(19)=I_ph_rms ;              %Current per phase rms value
+result_list(20)=P_o;                    %Output power from one stage
+result_list(21)=Eff;                    %Efficiency
+result_list(22)=L_phase;                %Phase inductance
+result_list(23)=R_amb;                  %Phase resistance under ambient temperature
+result_list(24)=R_ph_th;                %Phase resistance under operating temperature
+result_list(25)=a_cond*1000000 ;        %Conductor area
+result_list(26)=temp_winding;           %Winding temperature
+result_list(27)=beam_y_percent;         %C-core deflection wrt airgap distance
+result_list(28)=B_sp;                   %Spacer flux density
+result_list(29)=B_ag;                   %Airgap Flux density
+result_list(30)=B_st;                   %Steel flux density
+result_list(31)=t_amb;                  %Ambient temperature
+result_list(32)=mass_steel;             %Steel mass (active part)
+result_list(33)=mass_copper;            %Copper mass
+result_list(34)=mass_magnet;            %PM mass
+result_list(35)=m_shaft+m_stator+m_rotor+m_steelband;           %structural mass(steel)
+result_list(36)=mass_steel+mass_copper+mass_magnet+result_list(35)+mass_epoxy;       %total mass
+result_list(37)=cost_steel;             %Active steel cost
+result_list(38)=cost_copper;            %Copper cost
+result_list(39)=cost_magnet;            %PM cost
 result_list(40)=(mass_structure-mass_epoxy)*uc_steel;   %structural cost
-result_list(41)=cost_steel+cost_copper+cost_magnet+result_list(39); %total cost 
-result_list(42)=stator_outer;
-result_list(43)=2*r_w;
-result_list(44)=length_total/1.25;
-result_list(45)=n_stack;
-result_list(46)=tau_p;
-result_list(47)=tau_c;
-result_list(48)=magnet_width;
-result_list(49)=Nc;
-result_list(50)=f;
-result_list(51)=E_ph_rms;
-result_list(52)=E_ph_peak;
-result_list(53)=P_copper_th;
-result_list(54)=P_eddy;
-result_list(55)=X_ph;
-result_list(56)=lambda;
-result_list(57)=phi;
-result_list(58)=magnet_h1;
-result_list(59)=l_mm;
-result_list(60)=l_ss;
-result_list(61)=coil2web_cl;
-result_list(62)=r_w;
-result_list(63)=r_o;
-result_list(64)=r_i;
-result_list(65)=dT;
-result_list(66)=total_cost;
-result_list(67)=penalty_eff;
-result_list(68)=penalty_deflection;
-result_list(69)=penalty_length;
-result_list(70)=penalty_odiam;
-result_list(71)=penalty_temperature;
-result_list(72)=penalty_power_1;
-result_list(73)=penalty_power_2;
-result_list(74)=penalty_power_total;
-result_list(75)=penalty_voltage;
-result_list(76)=P_tot;
-result_list(77)=P_net;
-result_list(78)=Pdes;
+result_list(41)=cost_steel+cost_copper+cost_magnet+result_list(40); %total cost 
+result_list(42)=stator_outer;           %stator outer diameter
+result_list(43)=2*r_w;                  %web diameter
+result_list(44)=length_total;           %Machine axial length
+result_list(45)=n_stack;                %Number of axial stages
+result_list(46)=tau_p;                  %pole pitch
+result_list(47)=tau_c;                  %Coil pitch
+result_list(48)=magnet_width;           %Magnet width
+result_list(49)=Nc;                     %Number of coils
+result_list(50)=f;                      %Frequency
+result_list(51)=E_ph_rms;               %Induced emf per phase rms
+result_list(52)=E_ph_peak;              %Induced emf per phase peak 
+result_list(53)=P_copper_th;            %Copper loss
+result_list(54)=P_eddy;                 %Eddy loss
+result_list(55)=X_ph;                   %Phase reactance
+result_list(56)=lambda;                 %load angle
+result_list(57)=phi;                    %Power factor angle
+result_list(58)=magnet_h1;              %airgap flux density fundamental harmonic peak value
+result_list(59)=l_mm;                   %magnet-to-magnet distance
+result_list(60)=l_ss;                   %steel-to-steel distance
+result_list(61)=coil2web_cl;            %coil-to-steel web clearence
+result_list(62)=r_w;                    %web radius
+result_list(63)=r_o;                    %outer radius
+result_list(64)=r_i;                    %inner radius
+result_list(65)=dT;                     %temperature rise
+result_list(66)=total_cost;             %total cost of the generator according to material costs
+result_list(67)=penalty_eff;            %Penalty value given for efficiency limit violation
+result_list(68)=penalty_deflection;     %Penalty value given for deflection limit violation
+result_list(69)=penalty_length;         %Penalty value given for axial length limit violation
+result_list(70)=penalty_odiam;          %Penalty value given for outer diameter limit violation
+result_list(71)=penalty_temperature;    %Penalty value given for temperature limit violation
+result_list(72)=penalty_power_1;        %Penalty value given for power limit-1 violation
+result_list(73)=penalty_power_2;        %Penalty value given for power limit-2 violation
+result_list(74)=penalty_power_total;    %Total penalty given for power limit violation
+result_list(75)=penalty_voltage;        %Penalty value given for voltage limit violation
+result_list(76)=P_tot;                  %Machine total power output
+result_list(77)=P_net;                  %Machine net power output
+result_list(78)=Pdes;                   %Desired power for 12 rpm operation
 
 end
