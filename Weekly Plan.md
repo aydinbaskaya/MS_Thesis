@@ -250,6 +250,16 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 <br/>:heavy_multiplication_x: Optimizasyon kodu ve chapter yazımı yüzünden bu hafta bakılamadı.
 
 ### 31 Temmuz - 7 Ağustos
-- [ ] Chapter 4 yazımı tamamlanacak.
+- [x] Chapter 4 yazımı tamamlanacak.
+<br/>:hourglass: Chapter-4 yazımı devam etmektedir.
 
 - [ ] Optimizasyon kodu her calıstırma için optimum parametreleri listelemesi ayarlanacak. Böylece kod üzerinde daha hızlı işlem yapılabilir. Ayrıca toolbox ayarları da bu hafta elden geçirilerek ideal parametreler elde edilmeye çalışılacak.
+<br/>:arrow_right: Sonuc listeleme koda eklendi. Ayrıca %95 verimli tasarım yapabılecek sekilde optimizasyon ayarlandı. İlgili dosyalar githuba yüklendi. 
+
+
+### 7 - 14 Ağustos
+- [ ] Chapter 4 yazımı tamamlanacak.
+
+- [ ] Maxwell parametrik tasarım 
+
+
