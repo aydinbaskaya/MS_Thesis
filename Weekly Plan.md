@@ -259,7 +259,9 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 7 - 14 Ağustos
 - [ ] Chapter 4 yazımı tamamlanacak.
+<br/>:hourglass: Chapter-4 yazımı devam etmektedir.
 
 - [ ] Maxwell parametrik tasarım 
+<br/>:hourglass: Maxwell tasarım devam etmektedir.
 
 
