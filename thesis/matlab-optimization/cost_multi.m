@@ -78,5 +78,12 @@ for row = 1:79
 end
 fclose(fileID3);
 %-------------------------------End of Results table export part-----------------------------------
+
+cost_graph(k)=result_list(79);
+k=k+1;
+linspace=1:1:2000 ;
+scatter(linspace,cost_graph)
+
+
 result=cost; 
 
