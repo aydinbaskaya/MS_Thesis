@@ -67,7 +67,7 @@ n_stack=x(16);      % number of parallel machines stacked axially
 % price=10;
 if multiwind==1
     cost_f2=0;
-    Jmax=7;
+    Jmax=8;
 end
 
 for i=1:9           % for all speed values 
