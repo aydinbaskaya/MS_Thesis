@@ -79,11 +79,16 @@ end
 fclose(fileID3);
 %-------------------------------End of Results table export part-----------------------------------
 
-cost_graph(k)=result_list(79);
-k=k+1;
-linspace=1:1:2000 ;
-scatter(linspace,cost_graph)
 
+%-------------------------------------------------------------------------------------------------
+%-------------------------Fitness table export part-----------------------------------------------
+
+% 
+fileID4 = fopen('fitness_list.txt','a');   
+formatSpec8 = '%.3f\n ';
+fprintf(fileID4,formatSpec8,cost);
+fclose(fileID4);
+%-------------------------------End of Fitness table export part-----------------------------------
 
 result=cost; 
 
