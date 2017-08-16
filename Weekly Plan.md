@@ -237,11 +237,11 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 <br/>:arrow_right: Düzeltmeler tamamlandı.
 
 - [x] Chapter-4 devam edilecek
-<br/>:hourglass: Chapter-4 yazımı devam etmektedir.
+<br/>:arrow_right: Chapter-4 yazımı tamamlandı.
 
 ### 24 - 31 Temmuz
 - [x] Chapter 3 ve 4 yazımı tamamlanacak.
-<br/>:hourglass: Chapter 3 yazımı tamamlandı. Chapter 4 planı dogrultusunda yazımı devam etmektedir.
+<br/>:arrow_right: İki chapter yazımı da tamamlandı.
 
 - [x] Optimizasyon ayarlamaları yapılarak makina parametreleri netleştirilecek.
 <br/>:arrow_right: Optimizasyon kodundaki hatalar bu hafta giderildi. Kodun optimal calısabilmesi için ince ayar gerekli.
@@ -251,15 +251,22 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 31 Temmuz - 7 Ağustos
 - [x] Chapter 4 yazımı tamamlanacak.
-<br/>:hourglass: Chapter-4 yazımı devam etmektedir.
+<br/>:arrow_right: Chapter-4 yazımı tamamlandı.
 
-- [ ] Optimizasyon kodu her calıstırma için optimum parametreleri listelemesi ayarlanacak. Böylece kod üzerinde daha hızlı işlem yapılabilir. Ayrıca toolbox ayarları da bu hafta elden geçirilerek ideal parametreler elde edilmeye çalışılacak.
+- [x] Optimizasyon kodu her calıstırma için optimum parametreleri listelemesi ayarlanacak. Böylece kod üzerinde daha hızlı işlem yapılabilir. Ayrıca toolbox ayarları da bu hafta elden geçirilerek ideal parametreler elde edilmeye çalışılacak.
 <br/>:arrow_right: Sonuc listeleme koda eklendi. Ayrıca %95 verimli tasarım yapabılecek sekilde optimizasyon ayarlandı. İlgili dosyalar githuba yüklendi. 
 
 
 ### 7 - 14 Ağustos
-- [ ] Chapter 4 yazımı tamamlanacak.
+- [x] Chapter 4 yazımı tamamlanacak.
+<br/>:arrow_right: Chapter-4 yazımı tamamlandı.
 
-- [ ] Maxwell parametrik tasarım 
+- [x] Maxwell parametrik tasarım 
+<br/>:arrow_right: Parametrik tasarımla ilgili dokümanlar inceleniyor.
 
+
+### 16 - 26 Ağustos
+- [ ] Maxwell parametrik modellerle ilgili dokuman okuması tamamlanıp 50 kw model üstünden geliştirme yapılacak.
+
+- [ ] Chapter 5 başlangıç yapılacak.
 
