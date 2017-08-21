@@ -11,3 +11,7 @@
 ### 3) 2018 IEEE International Conference on Industrial Technology (ICIT)
     Date: February 20 - 22, 2018
     Submission deadline: October 15th, 2017
+    
+### 4) IEEE CPE-POWERENG 2018
+    Date: 10-12 April 2018
+    Submission deadline: 15 Nov. 2017
