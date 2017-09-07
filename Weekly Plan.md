@@ -266,7 +266,14 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 
 ### 16 - 26 Ağustos
-- [ ] Maxwell parametrik modellerle ilgili dokuman okuması tamamlanıp 50 kw model üstünden geliştirme yapılacak.
+- [x] Maxwell parametrik modellerle ilgili dokuman okuması tamamlanıp 50 kw model üstünden geliştirme yapılacak.
+<br/>:arrow_right: Dokuman okuması tamamlandı ve 50 kw lık model üstünden geliştirilme yapılmaya başlandı. Parametrik model güncellendikçe githuba yükleniyor.
 
-- [ ] Chapter 5 başlangıç yapılacak.
+- [x] Chapter 5 başlangıç yapılacak.
+<br/>:arrow_right: Chapter 5 başlangıç yapıldı.
 
+
+### 7 - 15 Eylül
+- [ ] Chapter 5 yazımına devam edilecek.
+
+- [ ] Parametrik model tamamlanarak analize devam edilecek.
