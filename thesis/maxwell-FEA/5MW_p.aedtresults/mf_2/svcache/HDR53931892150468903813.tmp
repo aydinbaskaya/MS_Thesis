@@ -1,7 +1,63 @@
 SimValueCacheVersionID=1
 $begin 'SimValueInfos'
-	NextUniqueID=0
+	NextUniqueID=4
 	MoveBackwards=false
+	$begin 'SimValue'
+		ID=0
+		$begin 'SimValueParams'
+			QuantityName='Mag_H'
+			ValueState(107, 17, 1, 1)
+			MatrixSize(0, 0)
+		$end 'SimValueParams'
+	$end 'SimValue'
+	$begin 'SimValue'
+		ID=1
+		$begin 'SimValueParams'
+			QuantityName='Mag_B'
+			ValueState(103, 16, 1, 1)
+			MatrixSize(0, 0)
+		$end 'SimValueParams'
+	$end 'SimValue'
+	$begin 'SimValue'
+		ID=2
+		$begin 'SimValueParams'
+			QuantityName='Bz'
+			ValueState(90, 15, 1, 1)
+			MatrixSize(0, 0)
+		$end 'SimValueParams'
+	$end 'SimValue'
+	$begin 'SimValue'
+		ID=3
+		$begin 'SimValueParams'
+			QuantityName='By'
+			ValueState(90, 15, 1, 1)
+			MatrixSize(0, 0)
+		$end 'SimValueParams'
+	$end 'SimValue'
 $end 'SimValueInfos'
 $begin 'SimValueCache'
+	$begin 'DesignMap'
+		DesignID=2
+		$begin 'SolutionMap'
+			$begin 'ContextMap'
+				SolutionID=226
+			$end 'ContextMap'
+			$begin 'ContextMap'
+				SolutionID=227
+				$begin 'VersionMap'
+					$begin 'ReportTypeSolnDef'
+						ReportType=9
+						SimValueContext(0, 0, 2, 0, false, false, 6209, 1, 0, 1, 1, '', 0, 0, 'PC', false, '1001')
+					$end 'ReportTypeSolnDef'
+					$begin 'MajorVVMap'
+						VersionID=323
+						$begin 'MinorVVMap'
+							MajorVariation='coil_ratio=\'0.382\' g=\'0.007meter\' hm=\'0.0171meter\' hw=\'0.0406meter\' l_ss=\'0.0889meter\' lc=\'0.0215meter\' Np=\'216\' r_i=\'4.44meter\' r_o=\'4.701meter\' r_web=\'4.335meter\' t_i=\'0.02meter\' t_o=\'0.03meter\' tau_c=\'0.177meter\' theta_ins=\'0.01deg\' tw=\'0.067614meter\' width_ratio=\'0.737\''
+							MinorCacheFile='min527915096150480936419.tmp'
+						$end 'MinorVVMap'
+					$end 'MajorVVMap'
+				$end 'VersionMap'
+			$end 'ContextMap'
+		$end 'SolutionMap'
+	$end 'DesignMap'
 $end 'SimValueCache'
