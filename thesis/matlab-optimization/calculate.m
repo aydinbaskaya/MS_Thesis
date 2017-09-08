@@ -48,7 +48,7 @@ rho_cu=1.7E-08;     % copper resistivity coefficient
 h_band=0.01 ;       % h_band: height of steel band(J_finalubilee clip)
 w_band=0.04;        % w_band: axial width of the steel band(J_finalubilee clip)
 mu_0=1.257E-06 ;    % permeability of air
-Br=1.4 ;            % magnet remanent flux density--Grade N42 rare earth magnet remanent flux density
+Br=1.4 ;            % magnet remanent flux density--Grade N50 rare earth magnet remanent flux density
 mu_r=1.05 ;         % magnet relative permeability
 mu_st=750 ;         % relative permeability of electrical steel
 coil2web_cl=0.015 ;     % winding to steel web clearence 
@@ -425,11 +425,11 @@ end
 penalty_eff=penalty_eff_1+penalty_eff_2;
 
 if ((P_o+P_loss)<P_demand)
-   penalty_power_1=((abs(P_demand-(P_o+P_loss))^2)*0.1) ;
+   penalty_power_1=((abs(P_demand-(P_o+P_loss))^2)*1) ;
 end
 
 if ((P_o+P_loss)>P_demand)
-   penalty_power_2=((abs((P_o+P_loss)-P_demand)^2)*0.001) ;
+   penalty_power_2=((abs((P_o+P_loss)-P_demand)^2)*10) ;
 end
 
 penalty_power_total=penalty_power_1+penalty_power_2 ;
