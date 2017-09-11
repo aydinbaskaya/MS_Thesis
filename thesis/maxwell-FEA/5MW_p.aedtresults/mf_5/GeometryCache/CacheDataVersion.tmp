@@ -1,5 +1,5 @@
 $begin 'CacheDataVersion'
-	DataVersion=45
+	DataVersion=-1
 $end 'CacheDataVersion'
 $begin 'VariableValues'
 	r_o='4.701meter'
@@ -19,4 +19,5 @@ $begin 'VariableValues'
 	g='0.007meter'
 	theta_ins='0.01deg'
 	axial_length_total='693.6mm'
+	n='12rpm'
 $end 'VariableValues'

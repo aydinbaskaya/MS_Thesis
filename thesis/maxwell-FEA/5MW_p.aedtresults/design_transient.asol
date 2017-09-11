@@ -1,34 +1,67 @@
 $begin '$base_index$'
   $begin 'properties'
     all_levels=000000000000
-    time(year=000000002017, month=000000000009, day=000000000008, hour=000000000020, min=000000000045, sec=000000000020)
+    time(year=000000002017, month=000000000009, day=000000000011, hour=000000000021, min=000000000024, sec=000000000039)
     version=000000000000
   $end 'properties'
   $begin '$base_index$'
-    $index$(pos=000000000705, lin=000000000017, lvl=000000000000)
+    $index$(pos=000000001800, lin=000000000048, lvl=000000000000)
   $end '$base_index$'
 $end '$base_index$'
+$begin 'SolutionBlock5'
+	SolutionName='Transient'
+	SolutionID=665
+	V=687
+	$begin 'States'
+	$end 'States'
+	$begin 'Definition'
+		SamplingInterpolation=false
+		Frequencies()
+		SolutionType=1
+		CenterFreq=0
+	$end 'Definition'
+$end 'SolutionBlock5'
+$begin 'BlockMapName'
+	FileHeader='SolutionBlock1'
+	'SolutionKey(SimSetup=664, Instance=\'SetupDefinition\', Solution=-1, VersionID=687)'='SolutionBlock6'
+	'SolutionKey(SimSetup=664, Instance=\'SolutionDefinition\', Solution=665, VersionID=687)'='SolutionBlock5'
+$end 'BlockMapName'
+$begin 'SolutionBlock6'
+	SimSetupID=664
+	SimSetupName='Setup1'
+	VersionID=687
+	SolveSetupID=1
+	$begin 'MI'
+	$end 'MI'
+$end 'SolutionBlock6'
 $begin 'SolutionBlock1'
 	ProductName='Maxwell 3D'
 	CircuitName='design_transient'
-	VersionID=509
+	VersionID=578
 	PostProcess=false
 	LossLess=true
-	NextUniqueID=511
+	NextUniqueID=706
 	MoveBackwards=false
+	$begin 'VariationIDs'
+		Map(V='axial_length_total=\'693.6mm\' coil_ratio=\'0.382\' g=\'0.007meter\' hm=\'0.0171meter\' hw=\'0.0406meter\' l_ss=\'0.0889meter\' lc=\'0.0215meter\' n=\'12rpm\' Np=\'216\' r_i=\'4.44meter\' r_o=\'4.701meter\' r_web=\'4.335meter\' t_i=\'0.02meter\' t_o=\'0.03meter\' tau_c=\'0.177meter\' theta_ins=\'0.01deg\' tw=\'0.067614meter\' width_ratio=\'0.737\'', ID=666)
+	$end 'VariationIDs'
 	$begin 'LinkedDataList'
+		$begin 'LinkedData'
+			LinkID=685
+			LinkSSID=1
+			LinkVerID=0
+		$end 'LinkedData'
 	$end 'LinkedDataList'
 	$begin 'MI'
 	$end 'MI'
 $end 'SolutionBlock1'
-$begin 'BlockMapName'
-	FileHeader='SolutionBlock1'
-$end 'BlockMapName'
 $begin '$index$'
 	$begin '$index$'
-		BlockMapName(pos=634, lin=14, lvl=0)
-		SolutionBlock1(pos=370, lin=1, lvl=0)
+		SolutionBlock1(pos=1038, lin=27, lvl=0)
+		SolutionBlock5(pos=370, lin=1, lvl=0)
+		BlockMapName(pos=615, lin=14, lvl=0)
+		SolutionBlock6(pos=898, lin=19, lvl=0)
 		$base_index$(pos=0, lin=1, lvl=0)
-		$index$(pos=705, lin=17, lvl=0)
+		$index$(pos=1800, lin=48, lvl=0)
 	$end '$index$'
 $end '$index$'
