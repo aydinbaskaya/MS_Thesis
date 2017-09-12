@@ -1,7 +1,0 @@
-minimum_dimension 1.71000000000001e-10
-residual -1.00000000000000e+00
-percent_refinement 3.00000000000000e+01
-nonlinear_residual 1.00000000000000e-03
-deformation_dependent_object 0
-differential_matrix_computation 0
-end
