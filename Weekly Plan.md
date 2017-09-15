@@ -274,6 +274,14 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 
 ### 7 - 15 Eylül
-- [ ] Chapter 5 yazımına devam edilecek.
+- [x] Chapter 5 yazımına devam edilecek.
+<br/>:arrow_right: Chapter 5 yerine Chapter 3 düzeltmelerine başlandı.
 
-- [ ] Parametrik model tamamlanarak analize devam edilecek.
+- [x] Parametrik model tamamlanarak analize devam edilecek.
+<br/>:arrow_right: Parametrik model tamamlandı. Magnetostatic ve transient analizler yapılıyor. Leakage flux reluctance pathle ilgili düzeltme yapıldıktan sonra daha uyumlu sonuçlar alınmaya başlandı(Bag ve induced emf)
+
+
+### 15 - 22 Eylül
+- [ ] Chapter 3 düzeltmeler tamamlanacak.
+
+- [ ] Maxwell farklı optimizasyon sonuçları için de çalıştırılarak kullanılan sabitlerin son değerleri belirlenecek.
