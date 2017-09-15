@@ -141,8 +141,10 @@ r_i= r_mean- l_magnet/2 ;
 r_o= r_mean+ l_magnet/2 ; 
 NI=Br*h_m/(mu_0*mu_r) ; 
 magnet_width= width_ratio*tau_p;
-SI_2= pi/(2*l_magnet*mu_0) ; 
-SI_1=(tau_p-magnet_width)/(mu_0*l_magnet*(0.5*h_w+g+h_m-groove)) ;  
+%SI_2= pi/(2*l_magnet*mu_0) ; 
+SI_2=magnet_width/(g+0.5*h_w)/(l_magnet*mu_0);   %yeni reluctance path
+SI_1=(tau_p-magnet_width)/(mu_0*l_magnet*(0.5*h_w+g-groove)) ;  %hm attýk cunku orda reluctance path yok
+%SI_1=(tau_p-magnet_width)/(mu_0*l_magnet*(0.5*h_w+g+h_m-groove)) ; 
 S_I=SI_1+SI_2 ; 
 
 S_ag=(h_w+2*g)/(l_magnet*magnet_width*mu_0) ; 
