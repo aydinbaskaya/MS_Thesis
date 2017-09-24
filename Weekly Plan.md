@@ -283,5 +283,13 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 15 - 22 Eylül
 - [ ] Chapter 3 düzeltmeler tamamlanacak.
+<br/>:hourglass: Chapter-3 düzeltmeleri devam ediyor
 
 - [ ] Maxwell farklı optimizasyon sonuçları için de çalıştırılarak kullanılan sabitlerin son değerleri belirlenecek.
+<br/>:hourglass: chapter düzeltmeleri ve kodda yer alan bazı reluctance hesaplarında hatalar bulunduğu için sabitler ve optimizasyon çalıştırılmadı. Ancak, gelecek hafta ilgilenilecek.
+
+
+### 22 - 29 Eylül
+- [ ] Chapter 3 düzeltmeler tamamlanacak.
+
+- [ ] Kodda geçen hafta yapılamayan düzeltmeler yapılacak.
