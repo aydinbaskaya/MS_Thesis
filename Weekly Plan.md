@@ -289,7 +289,7 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 <br/>:hourglass: chapter düzeltmeleri ve kodda yer alan bazı reluctance hesaplarında hatalar bulunduğu için sabitler ve optimizasyon çalıştırılmadı. Ancak, gelecek hafta ilgilenilecek.
 
 
-### 22 - 29 Eylül
+### 30 Eylül - 8 Ekim
 - [ ] Chapter 3 düzeltmeler tamamlanacak.
 
 - [ ] Kodda geçen hafta yapılamayan düzeltmeler yapılacak.
