@@ -282,14 +282,22 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 
 ### 15 - 22 Eylül
-- [ ] Chapter 3 düzeltmeler tamamlanacak.
-<br/>:hourglass: Chapter-3 düzeltmeleri devam ediyor
+- [x] Chapter 3 düzeltmeler tamamlanacak.
+<br/>:arrow_right:Chapter-3 düzeltmeleri tamamlandı.
 
-- [ ] Maxwell farklı optimizasyon sonuçları için de çalıştırılarak kullanılan sabitlerin son değerleri belirlenecek.
-<br/>:hourglass: chapter düzeltmeleri ve kodda yer alan bazı reluctance hesaplarında hatalar bulunduğu için sabitler ve optimizasyon çalıştırılmadı. Ancak, gelecek hafta ilgilenilecek.
+- [x] Maxwell farklı optimizasyon sonuçları için de çalıştırılarak kullanılan sabitlerin son değerleri belirlenecek.
+<br/>:arrow_right: chapter düzeltmeleri ve kodda yer alan bazı reluctance hesaplarında hatalar bulunduğu için sabitler ve optimizasyon çalıştırılmadı. Ancak, gelecek hafta ilgilenilecek.
 
 
 ### 30 Eylül - 8 Ekim
-- [ ] Chapter 3 düzeltmeler tamamlanacak.
+- [x] Chapter 3 düzeltmeler tamamlanacak.
+<br/>:arrow_right:Chapter-3 düzeltmeleri tamamlandı.
 
-- [ ] Kodda geçen hafta yapılamayan düzeltmeler yapılacak.
+- [x] Kodda geçen hafta yapılamayan düzeltmeler yapılacak.
+<br/>:arrow_right:Kod düzeltmelerine başlandı,devam ediyor.
+
+
+### 9 - 16 Ekim
+- [ ] Chapter 4 düzeltmeler 
+
+- [ ] matlab kodu düzeltmeler
