@@ -1,0 +1,10 @@
+$begin 'Named_Expression'
+	Name('eddy_loss2')
+	Expression('Integrate(Volume(PM_S), *(Mag_J, Mag_J))')
+	NameOfExpression('Mag_J')
+	NameOfExpression('Mag_J')
+	Operation('*')
+	EnterVolume('PM_S')
+	Operation('VolumeValue')
+	Operation('Integrate')
+$end 'Named_Expression'
