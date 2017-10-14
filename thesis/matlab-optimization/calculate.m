@@ -52,22 +52,22 @@ Br=1.4 ;            % magnet remanent flux density--Grade N50 rare earth magnet 
 mu_r=1.05 ;         % magnet relative permeability
 mu_st=750 ;         % relative permeability of electrical steel
 coil2web_cl=0.015 ;     % winding to steel web clearence 
-k_leak=0.95 ;      % leakage factor 
+k_leak=0.97 ;      % leakage factor 
 phi=0;              % assume unity power factor
 strand=1 ;          % number of parallel strands in coil (taken as 1) 
 t_epoxy=1 ;         % epoxy thickness on winding surface (in mm)
 d_steel=7850 ;      % volumetric mass density of steel in kg/m^3
-d_copper=8230 ;     % volumetric mass density of copper in kg/m^3
-d_magnet=8400 ;     % volumetric mass density of permanent magnet in kg/m^3
-d_epoxy=900;        % volumetric mass density of epoxy resin in kg/m^3
+d_copper=8960 ;     % volumetric mass density of copper in kg/m^3
+d_magnet=7500 ;     % volumetric mass density of permanent magnet in kg/m^3
+d_epoxy=1150;        % volumetric mass density of epoxy resin in kg/m^3
 no_rotor_bar=8 ;    % number of rotor bars, taken as 8 
 no_stator_bar=6 ;   % number of bar in torque arm of stator(opt) in both sides
 shaft_ro=0.3 ;      % shaft outer radius from 
 shaft_ri=0.1 ;      % shaft inner radius
-uc_steel=3 ;        % unit cost of steel in £/kg
-uc_copper=8 ;       % unit cost of copper in £/kg
-uc_magnet=110 ;     % unit cost of magnet in £/kg
-uc_epoxy=10 ;       % unit cost of epoxy in £/kg
+uc_steel=3 ;        % unit cost of steel in $/kg
+uc_copper=10 ;       % unit cost of copper in $/kg
+uc_magnet=80 ;     % unit cost of magnet in $/kg
+uc_epoxy=0.4 ;       % unit cost of epoxy in $/kg
 %----------------------------End of initialization------------------------
 
 
