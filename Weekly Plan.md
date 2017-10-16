@@ -298,6 +298,15 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 
 ### 9 - 16 Ekim
-- [ ] Chapter 4 düzeltmeler 
+- [x] Chapter 4 düzeltmeler 
+<br/>:arrow_right: Düzeltmelere başlandı, devam ediyor.
 
-- [ ] matlab kodu düzeltmeler
+- [x] matlab kodu düzeltmeler
+<br/>:arrow_right: Matlab kodu Ch-3/4 düzeltmeleri sırasında çıkan eksiklikler doğrultusunda düzeltiliyor.
+
+
+### 16 - 23 Ekim
+- [ ] Chapter 4 düzeltmelerinin bitmesi için gerekli analizler tamamlanacak.
+
+- [ ] matlab kodu düzeltmeleri tamamlanacak.
+
