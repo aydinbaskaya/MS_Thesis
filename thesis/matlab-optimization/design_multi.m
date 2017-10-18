@@ -4,6 +4,7 @@ gear_ratio=1;       % Gearbox ratio of direct drive
 eff_gear=1;
 multiwind=1;
 elec_price=7.3*10^-3;     % Electricity price($) per Wh 
+cap_f=0.9;          % capacity factor
 speed_data=[1.000	187.5	195000	0.319	0.040;...             %%power-speed data is taken here
             1.000	4038.5	420000	0.107	0.029;...
             2.900	2606.1	786000	0.112	0.058;...
@@ -84,9 +85,9 @@ P_demand=speed_data(i,3)*eff_gear/n_stack;  %take P demand
 if J_init<Jmax
     if J_init<J_pmax
         x(3)=J_init;
-        for k=1:5
+        for k=1:1
             [J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net,optim_var2,result_list]=calculate(x,rpm,P_demand,speed_data,i);
-            x(3)=x(3)*P_demand/(P_tot/n_stack);
+            x(3)=1.004*x(3)*P_demand/(result_list(20));
         end
     else
         x(3)=0.9*J_pmax;
@@ -97,7 +98,7 @@ end
 
 [J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net,optim_var2,result_list]=calculate(x,rpm,P_demand,speed_data,i);   
 
-income=P_net*elec_price*gear_ratio*0.9;     % 0.9 is taken as capacity factor
+income=P_net*elec_price*gear_ratio*cap_f;     % 0.9 is taken as capacity factor
 cost_f2=cost_f2+cost_f3*speed_data(i,5)-income*speed_data(i,4);
 
 ratings(i+1,1)={rpm};

@@ -42,7 +42,7 @@ groove=0 ;          % space between c-cores
 groove_c=0;         % gap between modules 
 m=3;                % number of phases
 t_amb=20;           % ambient temperature in oC
-J_final_type=7;           % 7 A/mm^2 @100 oC is assumed for Forced air cooling 
+J_final_type=7;     % 7 A/mm^2 @100 oC is assumed for Forced air cooling 
 alpha_Cu=3.9E-03 ;  % temperature coefficent at 20 Celcius degree
 rho_cu=1.7E-08;     % copper resistivity coefficient
 h_band=0.01 ;       % h_band: height of steel band(J_finalubilee clip)
@@ -51,8 +51,8 @@ mu_0=1.257E-06 ;    % permeability of air
 Br=1.4 ;            % magnet remanent flux density--Grade N50 rare earth magnet remanent flux density
 mu_r=1.05 ;         % magnet relative permeability
 mu_st=750 ;         % relative permeability of electrical steel
-coil2web_cl=0.015 ;     % winding to steel web clearence 
-k_leak=0.97 ;      % leakage factor 
+coil2web_cl=0.015 ; % winding to steel web clearence 
+k_leak=0.97 ;       % leakage factor 
 phi=0;              % assume unity power factor
 strand=1 ;          % number of parallel strands in coil (taken as 1) 
 t_epoxy=1 ;         % epoxy thickness on winding surface (in mm)
@@ -65,9 +65,10 @@ no_stator_bar=6 ;   % number of bar in torque arm of stator(opt) in both sides
 shaft_ro=0.3 ;      % shaft outer radius from 
 shaft_ri=0.1 ;      % shaft inner radius
 uc_steel=3 ;        % unit cost of steel in $/kg
-uc_copper=10 ;       % unit cost of copper in $/kg
-uc_magnet=80 ;     % unit cost of magnet in $/kg
-uc_epoxy=0.4 ;       % unit cost of epoxy in $/kg
+uc_copper=10 ;      % unit cost of copper in $/kg
+uc_magnet=80 ;      % unit cost of magnet in $/kg
+uc_epoxy=0.4 ;      % unit cost of epoxy in $/kg
+eddy_d=28.58*10^3 ; %magnet eddy loss density w/m^3
 %----------------------------End of initialization------------------------
 
 
@@ -395,7 +396,7 @@ L_phase=L_coil*N_series/n_branch*1000 ;             %in mH
 
 turn_strand=Nt/strand ; 
 h_coil_i=(h_w*1000-2*t_epoxy)/turn_strand ;
-eddy_magnet= (57.65*l_magnet*magnet_width*Np*2)*f_ratio^2 ;            % eddy_magnet: magnet surface eddy current loss(eddy loss is calculated proportional to rated speed eddy loss)
+eddy_magnet= (eddy_d*l_magnet*magnet_width*h_m*Np*2)*f_ratio^2 ;            % eddy_magnet: magnet surface eddy current loss(eddy loss is calculated proportional to rated speed eddy loss) 28.58 kW/m^3 eddy loss coefficient from FEA
 leakage_loss=0  ;                                                      % constant (eddy loss on coils due to leakage flux is neglected)
 coil_area_i=(width_winding*1000-2*t_epoxy)*(h_w*1000-2*t_epoxy)/Nt ; 
 ins_area=coil_area_i-a_cond*10^6 ;  
@@ -418,20 +419,20 @@ P_loss=P_copper_th+P_eddy ;
 Eff=P_o/(P_o+P_loss) ; %%Resulting equation
 
 if (Eff<0.95)
-   penalty_eff_1=((abs(0.95-Eff))*5000000000) ;
+   penalty_eff_1=((abs(0.95-Eff))*50000) ;
 end
 
 if (Eff>0.999)
-   penalty_eff_2=((abs(Eff-0.999)^2)*3000000000) ;
+   penalty_eff_2=((abs(Eff-0.999)^2)*30000000) ;
 end
 penalty_eff=penalty_eff_1+penalty_eff_2;
 
-if ((P_o+P_loss)<P_demand)
-   penalty_power_1=((abs(P_demand-(P_o+P_loss))^2)*1) ;
+if ((P_o)<=P_demand)
+   penalty_power_1=((abs(P_demand-(P_o))^2)*0.1) ;
 end
 
-if ((P_o+P_loss)>P_demand)
-   penalty_power_2=((abs((P_o+P_loss)-P_demand)^2)*10) ;
+if ((P_o)>P_demand)
+   penalty_power_2=((abs((P_o)-P_demand)^2)*1) ;
 end
 
 penalty_power_total=penalty_power_1+penalty_power_2 ;
