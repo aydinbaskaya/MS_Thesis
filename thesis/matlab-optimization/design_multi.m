@@ -122,4 +122,5 @@ end
 cost_f1=cost_f2;
 x_final=optim_var2;             % updated variable list is exported to main function
 result_list(79)=cost_f2;        % cost value of the individual is assigned for multispeed operation
+result_list(80)=income;
 end

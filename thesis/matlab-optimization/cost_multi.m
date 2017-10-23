@@ -70,9 +70,9 @@ label3={'r_mean','airgap','rpm','J-Current density','Outer limb thickness','Inne
         'Pole pitch','Coil pitch','Magnet width','Number of coils','frequency','Induced emf per phase rms','Induced emf per phase peak','Copper loss','Eddy loss','Phase reactance',...
         'load angle','power factor angle','magnet fundamental peak flux density','magnet-to-magnet gap','steel-to-steel gap','coil-steel web clearance','web radius','outer radius',...
         'inner radius','temperature rise','total cost','Efficiency Penalty','Deflection Penalty','Axial length penalty','Outer diameter penalty','Temperature penalty','Power Penalty-1',...
-        'Power Penalty-2','Total Power Penalty','Voltage penalty','Total output power','Net output power','Desired Output power','Fitness'};      % namelist of results
+        'Power Penalty-2','Total Power Penalty','Voltage penalty','Total output power','Net output power','Desired Output power','Fitness','income'};      % namelist of results
     
-for row = 1:79
+for row = 1:80
     fprintf(fileID3,formatSpec6,label3{row});           % namelist of results is exported to "optim_results.dat" file in the workspace
     fprintf(fileID3,formatSpec7,result_list(row));      % values of results are exported to "optim_results.dat" file in the workspace
 end
@@ -89,6 +89,19 @@ formatSpec8 = '%.3f\n ';
 fprintf(fileID4,formatSpec8,cost);
 fclose(fileID4);
 %-------------------------------End of Fitness table export part-----------------------------------
+
+
+%-------------------------------------------------------------------------------------------------
+%-------------------------Cost table export part-----------------------------------------------
+
+% 
+fileID5 = fopen('cost_list.txt','a');   
+formatSpec9 = '%.3f\n ';
+fprintf(fileID5,formatSpec9,result_list(79));
+fclose(fileID5);
+%-------------------------------End of cost table export part-----------------------------------
+
+
 
 result=cost; 
 

@@ -1,6 +1,6 @@
 function [J_init,J_pmax,cost,rpm,J_final,V_ph_rms,I_ph_rms,Pdes,P_tot,Eff,temp,P_net,optim_var,result_list]=calculate(x,rpm,P_demand,speed_data,i)
 
-result_list=zeros(1,79);    % Result list for the design table export
+result_list=zeros(1,80);    % Result list for the design table export
 %----------------------------------------------------------------------
 %%Penalty costs are defined here
 penalty_eff=0;              %Efficiency penalty total
