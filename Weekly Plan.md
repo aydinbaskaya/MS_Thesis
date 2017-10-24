@@ -307,6 +307,13 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 16 - 23 Ekim
 - [ ] Chapter 4 düzeltmelerinin bitmesi için gerekli analizler tamamlanacak.
+<br/>:hourglass_flowing_sand: analizler son elde edilen parametreler yardımıyla çalıştırılıyor, henüz tamamlanmadı. Chapter-4 düzeltmelerine devam edildi.
 
-- [ ] matlab kodu düzeltmeleri tamamlanacak.
+- [x] matlab kodu düzeltmeleri tamamlanacak.
+<br/>:arrow_right: kod düzeltmeleri tamamlandı. Chapter-5 te doğrulaması yapılacak optimizasyon sonucları elde edildi. FEA sürüyor.
 
+
+### 23 - 30 Ekim
+- [ ] Chapter-4 düzeltmeleri tamamlanacak.
+
+- [ ] Magnetostatic ve Transient analizlerin sonuçları alınacak.
