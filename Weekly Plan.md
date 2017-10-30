@@ -315,5 +315,15 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 23 - 30 Ekim
 - [ ] Chapter-4 düzeltmeleri tamamlanacak.
+<br/>:hourglass_flowing_sand: Analizler henüz tamamlanmadığından, chapter-4 yazımı devam ediyor.
 
 - [ ] Magnetostatic ve Transient analizlerin sonuçları alınacak.
+<br/>:hourglass_flowing_sand: Flux density değerleri arasında farklılığa sebep olan kleak katsayısıyla ilgili düzeltme yapıldı. Bu işlemin ardından magnetostatic analiz yapıldı. Transient analiz sürmektedir. Analizin tamamlanmasının ardından Ch-4'e son hali verilecek.
+
+
+### 30 Ekim - 6 Kasım
+- [ ] Chapter-4 düzeltmeleri tamamlanacak.
+
+- [ ] Magnetostatic ve Transient analizlerin sonuçları alınarak son chapter a başlanacak.
+
+
