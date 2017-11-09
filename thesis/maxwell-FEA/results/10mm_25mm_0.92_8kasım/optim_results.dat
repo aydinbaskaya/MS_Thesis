@@ -1,0 +1,80 @@
+r_mean		 4.713162e+00
+airgap		 1.000000e-02
+rpm		 12
+J-Current density		 2.464025e+00
+Outer limb thickness		 3.274535e-02
+Inner limb thickness		 2.091570e-02
+steel web thickness		 2.458479e-02
+Number of turns		 42
+Number of poles		 216
+Number of branch		 6
+height of the winding		 4.420755e-02
+Winding thickness/coil pitch ratio		 3.741659e-01
+Fill factor		 6.967269e-01
+Height of the magnet		 1.924180e-02
+length of the magnet		 2.867280e-01
+Magnet/Steel width ratio		 7.736327e-01
+Remanence Flux density		 1.400000e+00
+Voltage per phase rms		 3.739802e+02
+Current per phase rms		 7.415620e+02
+Output power		 8.319885e+05
+Effiency		 9.522447e-01
+Phase inductance		 8.509086e-01
+Resistance @ambient		 2.005073e-02
+Resistance w/thermal		 2.082587e-02
+Conductor area		 5.015926e+01
+windint temperature		 2.991252e+01
+Beam deflection		 3.318327e-02
+Spacer Flux density		 9.113465e-01
+Airgap flux density		 4.595005e-01
+Steel flux density		 2.578541e-01
+Ambient temperature		 20
+Steel mass(active)		 1.549624e+04
+Copper mass		 1.722926e+04
+Magnet mass		 1.137589e+04
+Structural mass		 7.176992e+04
+total mass		 1.161404e+05
+Steel cost		 4.648872e+04
+Copper cost		 1.722926e+05
+Magnet cost		 9.100713e+05
+Structural cost		 2.153097e+05
+Total cost		 1.344162e+06
+Stator outer diameter		 9.986642e+00
+web diameter		 8.923630e+00
+total axial length		 9.827702e-01
+Number of parallel machines		 6
+Pole pitch		 1.371003e-01
+Coil pitch		 1.828004e-01
+Magnet width		 1.060653e-01
+Number of coils		 162
+frequency		 2.160000e+01
+Induced emf per phase rms		 3.987289e+02
+Induced emf per phase peak		 5.638878e+02
+Copper loss		 3.435733e+04
+Eddy loss		 7.367129e+03
+Phase reactance		 1.154826e-01
+load angle		 1.240240e+01
+power factor angle		 0
+magnet fundamental peak flux density		 5.045800e-01
+magnet-to-magnet gap		 6.420755e-02
+steel-to-steel gap		 1.026912e-01
+coil-steel web clearance		 1.500000e-02
+web radius		 4.461815e+00
+outer radius		 4.856526e+00
+inner radius		 4.569798e+00
+temperature rise		 9.912521e+00
+total cost		 1.613124e+06
+Efficiency Penalty		 0
+Deflection Penalty		 0
+Axial length penalty		 0
+Outer diameter penalty		 0
+Temperature penalty		 0
+Power Penalty-1		 1.808568e+05
+Power Penalty-2		 0
+Total Power Penalty		 1.808568e+05
+Voltage penalty		 0
+Total output power		 5.242278e+06
+Net output power		 4.991931e+06
+Desired Output power		 5000000
+Fitness		 4.851215e+06
+income		 3.279699e+04
