@@ -1,0 +1,71 @@
+
+--------------------------MAGNETOSTATIC ANALYSIS---------------------------
+
+* Airgap(g=10 mm) flux density value is investigated.
+
+Mesh=25 mm
+
+Iteration percantage error=0.3%
+
+
+			Analytic 	| 	FEA
+
+Bag,1(fund.-peak)	0.51 T		|	0.49 T	-----> Error=4%
+
+Bag		    0.45 T (flat-top)	|       0.46 T (sin.)
+
+
+---------------------------------------------------------------------------
+
+
+--------------------------NO-LOAD ANALYSIS---------------------------------
+
+* No load induced emf(Ea) is investigated.
+
+Mesh=25 mm
+
+Iteration length= 100 ms
+
+Step size= 1 ms
+
+rpm=12
+
+
+			Analytic 	| 	FEA
+
+Ea			412.4 V		|	410.6 V	-----> Error=0.4 %
+
+
+--------------------------FULL-LOAD ANALYSIS---------------------------------
+
+* Induced voltages, eddy loss ,torque, L_phase  are observed through simulations.
+
+* Current excitation is adjusted so that current and voltage waveforms are in phase ( phi=0 )
+
+* FEA phase voltage omits the R_phase, so resistive voltage drop is calculated after the simulation
+
+* Magnet eddy loss coefficient is estimated as 20.35 kW/m^3 from the FEA 
+
+
+Mesh=25 mm
+
+Iteration length= 100 ms
+
+Step size= 1 ms
+
+rpm=12
+
+
+			Analytic 	| 	FEA
+
+Vph,rms			386.9 V		|	385.7 V	-----> Error=0.3 %
+
+
+
+
+
+
+
+
+
+
