@@ -306,8 +306,8 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 
 ### 16 - 23 Ekim
-- [ ] Chapter 4 düzeltmelerinin bitmesi için gerekli analizler tamamlanacak.
-<br/>:hourglass_flowing_sand: analizler son elde edilen parametreler yardımıyla çalıştırılıyor, henüz tamamlanmadı. Chapter-4 düzeltmelerine devam edildi.
+- [x] Chapter 4 düzeltmelerinin bitmesi için gerekli analizler tamamlanacak.
+<br/>:arrow_right: FEA analizleri tamamlandı.
 
 - [x] matlab kodu düzeltmeleri tamamlanacak.
 <br/>:arrow_right: kod düzeltmeleri tamamlandı. Chapter-5 te doğrulaması yapılacak optimizasyon sonucları elde edildi. FEA sürüyor.
@@ -315,21 +315,21 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 23 - 30 Ekim
 - [ ] Chapter-4 düzeltmeleri tamamlanacak.
-<br/>:hourglass_flowing_sand: Analizler henüz tamamlanmadığından, chapter-4 yazımı devam ediyor.
+<br/>:hourglass_flowing_sand: Analizler tamamlandı, chapter-4 düzeltmeleri devam ediyor.
 
-- [ ] Magnetostatic ve Transient analizlerin sonuçları alınacak.
-<br/>:hourglass_flowing_sand: Flux density değerleri arasında farklılığa sebep olan kleak katsayısıyla ilgili düzeltme yapıldı. Bu işlemin ardından magnetostatic analiz yapıldı. Transient analiz sürmektedir. Analizin tamamlanmasının ardından Ch-4'e son hali verilecek.
+- [x] Magnetostatic ve Transient analizlerin sonuçları alınacak.
+<br/>:arrow_right: Analizler tamamlandı, sonuçlar uyumlu. Detaylı bilgiler için ilgili repoda "Design Notes.txt" oluşturuldu.
 
 
 ### 30 Ekim - 6 Kasım
 - [ ] Chapter-4 düzeltmeleri tamamlanacak.
 <br/>:hourglass_flowing_sand: Düzeltmeler devam ediyor
 
-- [ ] Magnetostatic ve Transient analizlerin sonuçları alınarak son chapter a başlanacak.
-<br/>:hourglass_flowing_sand: 9mm ve 10 mm airgap analizleri tamamlandı, Ch-4 yazımı devam ediyor
+- [x] Magnetostatic ve Transient analizlerin sonuçları alınarak son chapter a başlanacak.
+<br/>:arrow_right: 9mm ve 10 mm airgap analizleri tamamlandı, Ch-4 ve Ch-5  yazımı devam ediyor
 
 
-### 8 Kasım - 15 Kasım
+### 15 Kasım - 22 Kasım
 
 - [ ] Chapter-4 düzeltmeleri tamamlanacak.
 
@@ -338,6 +338,8 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 - [ ] Tasarım kodları commentleri düzenlenecek.
 
 - [ ] Powereng'18 paper
+<br/>:hourglass_flowing_sand: Paper için süre uzatıldı.
+
 
 
 
