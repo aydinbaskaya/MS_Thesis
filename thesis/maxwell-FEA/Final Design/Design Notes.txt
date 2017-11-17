@@ -47,7 +47,7 @@ Ea			412.4 V		|	410.6 V	-----> Error=0.4 %
 * Magnet eddy loss coefficient is estimated as 20.35 kW/m^3 from the FEA 
 
 
-Mesh=25 mm
+Mesh=30 mm
 
 Iteration length= 100 ms
 
