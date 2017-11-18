@@ -19,7 +19,7 @@ for i=1:16
     table1{i,2}=x_final(i);         % values of variables   
 end
 
-fileID = fopen('optim_variables.dat','w');   
+fileID = fopen('optim_variables.dat','w');      %filename of variable list is defined here
 formatSpec = '%s\t %d\n';
 
 for row = 1:16
@@ -33,7 +33,7 @@ fclose(fileID);
 %-------------------------------------------------------------------------------------------------
 %-----------------------------Ratings table export part-------------------------------------------
 
-fileID2 = fopen('optim_ratings.dat','w');   
+fileID2 = fopen('optim_ratings.dat','w');   %filename of ratings table is defined here
 formatSpec2 = '%s\t ';
 formatSpec3 = '%s\n' ;
 label2={'rpm','J-Current density','V_ph (rms)','I_ph (rms)','P_desired','P_total','Efficiency','Temperature','P_net'};      % namelist of ratings
@@ -59,7 +59,7 @@ fclose(fileID2);
 %-------------------------------------------------------------------------------------------------
 %-------------------------Results table export part-----------------------------------------------
 
-fileID3 = fopen('optim_results.dat','w');   
+fileID3 = fopen('optim_results.dat','w');               %filename of optimization parameter list is defined here
 formatSpec6 = '%s\t\t ';
 formatSpec7 = '%d\n' ;
 label3={'r_mean','airgap','rpm','J-Current density','Outer limb thickness','Inner limb thickness','steel web thickness','Number of turns','Number of poles','Number of branch',...
@@ -83,8 +83,7 @@ fclose(fileID3);
 %-------------------------------------------------------------------------------------------------
 %-------------------------Fitness table export part-----------------------------------------------
 
-% 
-fileID4 = fopen('fitness_list.txt','a');   
+fileID4 = fopen('fitness_list.txt','a');   %filename of fitness list is defined here
 formatSpec8 = '%.3f\n ';
 fprintf(fileID4,formatSpec8,cost);
 fclose(fileID4);
@@ -94,14 +93,11 @@ fclose(fileID4);
 %-------------------------------------------------------------------------------------------------
 %-------------------------Cost table export part-----------------------------------------------
 
-% 
-fileID5 = fopen('cost_list.txt','a');   
+fileID5 = fopen('cost_list.txt','a');   %filename of cost list is defined here
 formatSpec9 = '%.3f\n ';
 fprintf(fileID5,formatSpec9,result_list(79));
 fclose(fileID5);
 %-------------------------------End of cost table export part-----------------------------------
 
 
-
 result=cost; 
-

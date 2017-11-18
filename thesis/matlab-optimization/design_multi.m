@@ -1,11 +1,11 @@
 function [cost_f1,x_final,ratings,result_list]=design_multi(x)
 
-gear_ratio=1;       % Gearbox ratio of direct drive
-eff_gear=1;
-multiwind=1;
-elec_price=7.3*10^-3;     % Electricity price($) per Wh 
-cap_f=0.9;          % capacity factor
-speed_data=[1.000	187.5	195000	0.319	0.040;...             %%power-speed data is taken here
+gear_ratio=1;              % Gearbox ratio of direct drive
+eff_gear=1;                % Gearbox efficiency
+multiwind=1;               % Multi speed operation is taken into account
+elec_price=7.3*10^-3;      % Electricity price($) per Wh 
+cap_f=0.9;                 % capacity factor
+speed_data=[1.000	187.5	195000	0.319	0.040;...             %%power-speed data is taken here    
             1.000	4038.5	420000	0.107	0.029;...
             2.900	2606.1	786000	0.112	0.058;...
             4.800	2596.2	1296000	0.101	0.086;...
@@ -13,18 +13,10 @@ speed_data=[1.000	187.5	195000	0.319	0.040;...             %%power-speed data is
             8.600	3017.7	2699000	0.083	0.148;...
             10.500	3193.2	3487000	0.063	0.144;...
             12.000	3344.6	4174000	0.047	0.129;...
-            12.000	4006.4	5000000	0.075	0.247];                
+            12.000	4006.4	5000000	0.075	0.247]; 
 
-ratings=cell(10,9);        %ratings table for result design
-ratings(1,1)={'rpm'};
-ratings(1,2)={'J-Current density'};
-ratings(1,3)={'V_ph (rms)'};
-ratings(1,4)={'I_ph (rms)'};
-ratings(1,5)={'P_desired'};
-ratings(1,6)={'P_total'};
-ratings(1,7)={'Efficiency'};
-ratings(1,8)={'Temperature'};
-ratings(1,9)={'P_net'};
+%----------------------------------------------------------
+%Taken speed data configuration
 
 %speed_data(:,1)-->rpm values
 %speed_data(:,2)-->Average torque in kNm
@@ -41,12 +33,23 @@ ratings(1,9)={'P_net'};
 %speed_data(7,:)-->10 m/s
 %speed_data(8,:)-->11 m/s
 %speed_data(9,:)-->12 m/s   --->12 rpm RATED speed
-
+%----------------------------------------------------------
+      
+ratings=cell(10,9);        %ratings table for result design
+ratings(1,1)={'rpm'};
+ratings(1,2)={'J-Current density'};
+ratings(1,3)={'V_ph (rms)'};
+ratings(1,4)={'I_ph (rms)'};
+ratings(1,5)={'P_desired'};
+ratings(1,6)={'P_total'};
+ratings(1,7)={'Efficiency'};
+ratings(1,8)={'Temperature'};
+ratings(1,9)={'P_net'};
 
 %% Definitions in optimization part(user defined variables/constraints)
 
 %Constraints of optimization (variables):
-%All the length values are given in (m) to optimization
+%All the length values are given in meter (m) for optimization
 
 r_mean=x(1);        % mean radius 
 g=x(2);             % air-gap clearence 
@@ -66,21 +69,21 @@ l_magnet=x(15);     % axial lenght of the magnet
 n_stack=x(16);      % number of parallel machines stacked axially
 
 
-% price=10;
 if multiwind==1
     cost_f2=0;
     Jmax=7;
 end
 
+
 for i=1:9           % for all speed values 
     
-
-
-rpm=speed_data(i,1)*gear_ratio;     %take rpm data             
-x(3)=Jmax/2;
+rpm=speed_data(i,1)*gear_ratio;             %take rpm data             
+x(3)=Jmax/2;                                %current density initialize
 P_demand=speed_data(i,3)*eff_gear/n_stack;  %take P demand
 
-[J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net,optim_var2,result_list]=calculate(x,rpm,P_demand,speed_data,i);
+[J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net,optim_var2,result_list]=calculate(x,rpm,P_demand,speed_data,i);  %initial calculation for J parameters
+
+% J adjustment iterations:
 
 if J_init<Jmax
     if J_init<J_pmax
@@ -96,10 +99,10 @@ else
   x(3)=Jmax;
 end
 
-[J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net,optim_var2,result_list]=calculate(x,rpm,P_demand,speed_data,i);   
+[J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net,optim_var2,result_list]=calculate(x,rpm,P_demand,speed_data,i);      %last calculation for J parameters
 
-income=P_net*elec_price*gear_ratio*cap_f;     % 0.9 is taken as capacity factor
-cost_f2=cost_f2+cost_f3*speed_data(i,5)-income*speed_data(i,4);
+income=P_net*elec_price*gear_ratio*cap_f;                           %Electricity generation income            
+cost_f2=cost_f2+cost_f3*speed_data(i,5)-income*speed_data(i,4);     %Cost calculation
 
 ratings(i+1,1)={rpm};
 ratings(i+1,2)={J};
@@ -113,14 +116,9 @@ ratings(i+1,9)={P_net};
 
 end
 
-% J_final_f=x(3);
-% J_init_f=J_init;
-% J_pmax_f=J_pmax;
-% P_demand_f=P_demand;
-% P_net_f=(P_o+P_loss);
-% n_stack_f=n_stack;
-cost_f1=cost_f2;
+cost_f1=cost_f2;                % Individual cost is exported to main function
 x_final=optim_var2;             % updated variable list is exported to main function
-result_list(79)=cost_f2;        % cost value of the individual is assigned for multispeed operation
-result_list(80)=income;
+result_list(79)=cost_f2;        % cost value of the individual is included in the result list 
+result_list(80)=income;         % Income value of the individual is included in the result list
+
 end
