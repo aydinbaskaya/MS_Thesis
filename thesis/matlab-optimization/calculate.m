@@ -1,6 +1,7 @@
 function [J_init,J_pmax,cost,rpm,J_final,V_ph_rms,I_ph_rms,Pdes,P_tot,Eff,temp,P_net,optim_var,result_list]=calculate(x,rpm,P_demand,speed_data,i)
 
 result_list=zeros(1,80);    % Result list for the design table export
+
 %----------------------------------------------------------------------
 %%Penalty costs are defined here
 penalty_eff=0;              %Efficiency penalty total
@@ -14,28 +15,28 @@ penalty_power_1=0;          %Power per machine penalty component-1
 penalty_power_2=0;          %Power per machine penalty component-2
 penalty_power_total=0;      %total penalty for power violation
 penalty_voltage=0;          %terminal voltage violation penalty
+
 %% Definitions in optimization part(user defined variables/constraints)
 
 %Constraints of optimization (variables):
-%All the length values are given in (m) to optimization
+%All the length values are given in meter (m) for optimization
 
-r_mean=x(1);        % mean radius 
-g=x(2)*0.001;       % air-gap clearence in mm
-J_final=x(3);       % curent density in A/mm^2
-t_o=x(4);           % outer limb thickness
-t_i=x(5);           % inner limb thickness
-lc=x(6);            % steel web thickness
-width_ratio=x(7);   % Magnet/steel width ratio
-Nt=x(8);            % number of turns in a coil(integer)
-% Np=x(9);            % number of poles(integer)
-% n_branch=x(10);     % number of parallel branches(integer)
-h_w=x(11);          % height of the winding
-% pitch_ratio=x(12);  % winding thickness/coil pitch ratio
-kf=x(13);           % fill factor
-h_m=x(14);          % height of the magnet
-l_magnet=x(15);     % axial lenght of the magnet
-n_stack=x(16);      % number of parallel machines stacked axially
-
+r_mean=x(1);            % mean radius 
+g=x(2)*0.001;           % air-gap clearence in mm
+J_final=x(3);           % curent density in A/mm^2
+t_o=x(4);               % outer limb thickness
+t_i=x(5);               % inner limb thickness
+lc=x(6);                % steel web thickness
+width_ratio=x(7);       % Magnet/steel width ratio
+Nt=x(8);                % number of turns in a coil(integer)
+% Np=x(9);              % number of poles(integer)----> will be updated in variable control part                                      
+% n_branch=x(10);       % number of parallel branches(integer)----> will be updated in variable control part               
+h_w=x(11);              % height of the winding
+% pitch_ratio=x(12);    % winding thickness/coil pitch ratio----> will be updated in variable control part
+kf=x(13);               % fill factor
+h_m=x(14);              % height of the magnet
+l_magnet=x(15);         % axial lenght of the magnet
+n_stack=x(16);          % number of parallel machines stacked axially
 
 %Constants of optimization :
 groove=0 ;          % space between c-cores 
@@ -52,8 +53,8 @@ Br=1.4 ;            % magnet remanent flux density--Grade N50 rare earth magnet 
 mu_r=1.05 ;         % magnet relative permeability
 mu_st=750 ;         % relative permeability of electrical steel
 coil2web_cl=0.015 ; % winding to steel web clearence 
-k_leak=0.92 ;       % leakage factor 
-phi=0;              % assume unity power factor
+k_leak=0.95 ;       % leakage factor 
+phi=0;              % assume unity power factor ---->cos(phi)=1
 strand=1 ;          % number of parallel strands in coil (taken as 1) 
 t_epoxy=1 ;         % epoxy thickness on winding surface (in mm)
 d_steel=7850 ;      % volumetric mass density of steel in kg/m^3
@@ -62,21 +63,19 @@ d_magnet=7500 ;     % volumetric mass density of permanent magnet in kg/m^3
 d_epoxy=1150;        % volumetric mass density of epoxy resin in kg/m^3
 no_rotor_bar=8 ;    % number of rotor bars, taken as 8 
 no_stator_bar=6 ;   % number of bar in torque arm of stator(opt) in both sides
-shaft_ro=0.3 ;      % shaft outer radius from 
+shaft_ro=0.3 ;      % shaft outer radius 
 shaft_ri=0.1 ;      % shaft inner radius
 uc_steel=3 ;        % unit cost of steel in $/kg
 uc_copper=10 ;      % unit cost of copper in $/kg
 uc_magnet=80 ;      % unit cost of magnet in $/kg
 uc_epoxy=0.4 ;      % unit cost of epoxy in $/kg
-eddy_d=28.58*10^3 ; %magnet eddy loss density w/m^3
+eddy_d=20.35*10^3 ; %magnet eddy loss density W/m^3
 %----------------------------End of initialization------------------------
-
-
 
 %% Variable Control part
 
 x(9)=round(x(9)/4)*4;   % fix number of poles at multiple of 4
-fix=(x(9)*3)/(4*m);   % to give the integer number of N_series
+fix=(x(9)*3)/(4*m);     % to give the integer number of N_series
 while ne((fix/x(10)),round(fix/x(10)))        
     x(10)=x(10)-1;
 end
@@ -90,9 +89,9 @@ if x(12)>(0.5-l_magnet/(4*r_mean))        %coil pitch ratio control
 end
 %------------End of variable control-------------------------
 
-f_rated=12/60*x(9)/2 ; 
-f=rpm/60*x(9)/2 ;
-f_ratio=f/f_rated;
+f_rated=12/60*x(9)/2 ;     % rated frequency @12 rpm 
+f=rpm/60*x(9)/2 ;          % frequency for a current rpm
+f_ratio=f/f_rated;         % frequency ratio for eddy loss calculation
 
 Np=x(9);            % number of poles(integer)
 n_branch=x(10);     % number of parallel branches(integer)
@@ -141,11 +140,9 @@ width_winding=pitch_ratio*tau_c;
 r_i= r_mean- l_magnet/2 ;
 r_o= r_mean+ l_magnet/2 ; 
 NI=Br*h_m/(mu_0*mu_r) ; 
-magnet_width= width_ratio*tau_p;
-%SI_2= pi/(2*l_magnet*mu_0) ; 
-SI_2=magnet_width/(g+0.5*h_w)/(l_magnet*mu_0);   %yeni reluctance path
-SI_1=(tau_p-magnet_width)/(mu_0*l_magnet*(0.5*h_w+g-groove)) ;  %hm attýk cunku orda reluctance path yok
-%SI_1=(tau_p-magnet_width)/(mu_0*l_magnet*(0.5*h_w+g+h_m-groove)) ; 
+magnet_width= width_ratio*tau_p; 
+SI_2=magnet_width/(g+0.5*h_w)/(l_magnet*mu_0);   %new reluctance path
+SI_1=(tau_p-magnet_width)/(mu_0*l_magnet*(0.5*h_w+g-groove)) ;  %hm is excluded because there is no reluctance path  
 S_I=SI_1+SI_2 ; 
 
 S_ag=(h_w+2*g)/(l_magnet*magnet_width*mu_0) ; 
@@ -169,7 +166,6 @@ R(2,1) = R(1,1)+(1+2*S_ag/S_I)*S_st ;
 R(2,2)=-2*S_st ;
 
 inverse_R = inv(R);  
-% NI=(Br*h_m)/(mu_0*mu_r);
 tot_mmf_matrix=[2*NI;2*NI];
 flux_l= inverse_R*tot_mmf_matrix ; 
 
@@ -191,7 +187,7 @@ A_sp_o=t_o*l_magnet ;
 phi_sp_nl= S_st*NI/(S_st*(2*S_PM_o+S_ag+0.5*S_sp)+0.5*(S_sp*(2*S_PM_o+S_ag))) ;
 B_sp_nl= phi_sp_nl/A_sp_o ; 
 
-phi_sp_l=flux_l(2,:) ; % 
+phi_sp_l=flux_l(2,:) ; 
 B_sp_l=phi_sp_l/A_sp_o ;
 
 % B_sp =B_sp_nl ;                 %flux density is calculated without leakage
@@ -221,17 +217,16 @@ B_st =B_st_l ;                    %flux density is calculated with leakage
 
 %% ----------Definition of the parameters/variables----------
 
-%I_coil : current in one coil
+% I_coil : current in one coil
 % J_final:curent density, a_cond=cross section area of the conductor 
 % a_window: effective area of winding window
-%h_w : height of the winding,  kf: fill factor(1 for concentrated windings)
-%tau_p : pole pitch
-%tau_c :coil pitch
+% h_w : height of the winding,  kf: fill factor(1 for concentrated windings)
+% tau_p : pole pitch
+% tau_c :coil pitch
 % width_winding: width of the winding
 
 %% Calculation part
 
-% width_winding=pitch_ratio*tau_c;
 a_window=h_w*width_winding*kf; 
 a_cond=a_window/Nt;  
 I_coil=J_final*a_cond*1000000; 
@@ -305,8 +300,8 @@ a_cond=a_window/Nt;
 B_a=mu_0*Nt/l_ss ; 
 flux_lnk=(2*B_a*Nt*((0.5*(r_o^2-r_i^2)*tand(theta_o))-(width_winding*l_magnet)))+(2*B_a*Nt*width_winding*l_magnet/3) ;  
 k_ind=1;                            %constant
-L_coil= k_ind*flux_lnk ;  
-w_e=2*pi*f ; 
+L_coil= k_ind*flux_lnk ;    %in H
+w_e=2*pi*f ;    %in radian
 X_ph=w_e*L_coil*(N_series/n_branch); 
 l_coil_structure=(r_mean+0.5*(l_magnet+width_winding))*2*pi/Nc;
 l_coil_middle=l_magnet+width_winding; 
@@ -318,8 +313,8 @@ R_ph_th=R_amb*(1+alpha_Cu*dT);
 Z_ph=sqrt(R_ph_th^2+X_ph^2);
 magnet_h1=k_leak*(4/pi)*B_ag*sin(width_ratio*pi/2); 
 flux_lnk_peak=magnet_h1*(r_o^2-r_i^2)*(cosd(Np*theta_i/2)-cosd(Np*theta_o/2))/((theta_dif*pi/180)*((Np/2)^2)) ;  
-w_m=(rpm*2*pi)/60 ; 
-v=r_mean*w_m ; 
+w_m=(rpm*2*pi)/60 ;     %in rad/s
+v=r_mean*w_m ;  %in m/s
 e=(v*flux_lnk_peak*pi)/tau_p ; 
 E_ph_peak=e*Nt*N_series ;  
 E_ph_rms=E_ph_peak/sqrt(2); 
