@@ -10,19 +10,19 @@
     Submission deadline:  August 28th, 2017 
     Status: Missed
     
-### 3) 2018 IEEE International Conference on Industrial Technology (ICIT)
+### 3) ~2018 IEEE International Conference on Industrial Technology (ICIT)~
     Date: February 20 - 22, 2018
-    Submission deadline: October 29th, 2017
-    Status: 
+    Submission deadline: November 20th, 2017(Extended)
+    Status: Missed
     
 ### 4) Winercost 18
     Date: 21-23 March 2018
-    Submission deadline: 15 Oct. 2017
-    Status: Abstract submitted
+    Submission deadline: 30 Nov. 2017(for accepted papers)
+    Status: Abstract accepted
     
 ### 5) IEEE CPE-POWERENG 2018
     Date: 10-12 April 2018
-    Submission deadline: 15 Nov. 2017
+    Submission deadline: 10 Dec. 2017(Submission Extended)
     Status: 
 
 ### 6) IET-RPG 2018
