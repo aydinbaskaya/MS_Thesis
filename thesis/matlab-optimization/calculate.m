@@ -319,6 +319,7 @@ e=(v*flux_lnk_peak*pi)/tau_p ;
 E_ph_peak=e*Nt*N_series ;  
 E_ph_rms=E_ph_peak/sqrt(2); 
 
+%Load angle calculation
 if (I_ph_rms*(-R_ph_th*sind(phi)+X_ph*cosd(phi))/E_ph_rms)>1
     lambda=asind(1);
 else
@@ -391,8 +392,8 @@ L_phase=L_coil*N_series/n_branch*1000 ;             %in mH
 
 turn_strand=Nt/strand ; 
 h_coil_i=(h_w*1000-2*t_epoxy)/turn_strand ;
-eddy_magnet= (eddy_d*l_magnet*magnet_width*h_m*Np*2)*f_ratio^2 ;            % eddy_magnet: magnet surface eddy current loss(eddy loss is calculated proportional to rated speed eddy loss) 28.58 kW/m^3 eddy loss coefficient from FEA
-leakage_loss=0  ;                                                      % constant (eddy loss on coils due to leakage flux is neglected)
+eddy_magnet= (eddy_d*l_magnet*magnet_width*h_m*Np*2)*f_ratio^2 ;            % eddy_magnet: magnet surface eddy current loss(eddy loss is calculated proportional to rated speed eddy loss) 20.35 kW/m^3 eddy loss coefficient from FEA
+leakage_loss=0  ;                                                           % constant (eddy loss on coils due to leakage flux is neglected)
 coil_area_i=(width_winding*1000-2*t_epoxy)*(h_w*1000-2*t_epoxy)/Nt ; 
 ins_area=coil_area_i-a_cond*10^6 ;  
 t_coil_i=(width_winding*1000-2*t_epoxy)/turn_strand ; 
@@ -420,6 +421,7 @@ end
 if (Eff>0.999)
    penalty_eff_2=((abs(Eff-0.999)^2)*30000000) ;
 end
+
 penalty_eff=penalty_eff_1+penalty_eff_2;
 
 if ((P_o)<=P_demand)
@@ -433,6 +435,7 @@ end
 penalty_power_total=penalty_power_1+penalty_power_2 ;
 
 %---------------------------------------------------------------------------------------------------------------------------
+
 
 %--------------------------------------------------------------------------------------------------------------------------
 %% Component mass calculation 
@@ -593,27 +596,20 @@ end
 
 %% Current density part
 
-J_init=P_demand/(3*E_ph_rms*a_cond*1000000*n_branch);
+J_init=P_demand/(3*E_ph_rms*a_cond*1000000*n_branch);       % initial density J
 
 if E_ph_rms/(2*Z_ph*a_cond*1000000*n_branch)>0
-    J_pmax=E_ph_rms/(2*Z_ph*a_cond*1000000*n_branch);
+    J_pmax=E_ph_rms/(2*Z_ph*a_cond*1000000*n_branch);       % fault condition density J
 else
     J_pmax=0;
 end
 
 %%
-% cost_f=total_cost+penalty_eff+penalty_deflection+penalty_length+penalty_odiam+penalty_temperature+penalty_power_total+penalty_voltage;   
-% J_final_f=J_final;
-% J_init_f=J_init;
-% J_pmax_f=J_pmax;
-% P_demand_f=P_demand;
-% P_net_f=(P_o+P_loss);
-% n_stack_f=n_stack;
 Pdes=speed_data(i,3);
 P_tot=(P_o+P_loss)*n_stack;
 temp=t_winding;
 P_net=P_o*n_stack;
-cost=total_cost+penalty_eff+penalty_deflection+penalty_length+penalty_odiam+penalty_temperature+penalty_power_total+penalty_voltage;
+cost=total_cost+penalty_eff+penalty_deflection+penalty_length+penalty_odiam+penalty_temperature+penalty_power_total+penalty_voltage;        %cost for individual=material+penalties
 optim_var=x;                   % updated variable list is exported
 
 %performance parameters of the design is saved in result_list and then exported
