@@ -1,3 +1,7 @@
+
+% .m file for calculate the wind speed distribution for a given wind-speed data file (.csv)
+
+% speed category initialization
 speed_0=0;
 speed_1=0;
 speed_2=0;
@@ -12,16 +16,18 @@ speed_10=0;
 speed_11=0;
 speed_12=0;
 
-fileID ='KORU_RES.csv';
-A=csvread(fileID,1,1);
+fileID ='KORU_RES.csv';         
+A=csvread(fileID,1,1);          % read wind speed data file
 plot(A(:,1))
-array=A(:,2);
+array=A(:,2);                   % plot raw data
 n=size(array,1);
+
+% Wind speed classification according to speed/data classification part : 
 
 for i=1:1:n
     
      if array(i)<1
-        speed_0=speed_0+1 ;
+        speed_0=speed_0+1 ;         %wind speeds below 1 m/s are included in 0 m/s speed
      end
 
      if (array(i)>=1)&(array(i)<2)
@@ -69,10 +75,12 @@ for i=1:1:n
     end
 
     if array(i)>=12
-        speed_12=speed_12+1 ;
+        speed_12=speed_12+1 ;           %wind speeds above 12 m/s are included in 12 m/s rated speed
     end
 
 end
+
+% Find wind speed frequencies
 
 freq_0=(speed_0/n)*100;
 freq_1=(speed_1/n)*100;
