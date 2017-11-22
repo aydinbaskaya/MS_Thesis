@@ -426,12 +426,12 @@ if (Eff>0.999)
 end
 penalty_eff=penalty_eff_1+penalty_eff_2;
 
-if ((P_o+P_loss)<P_demand)
-   penalty_power_1=((abs(P_demand-(P_o+P_loss))^2)*0.1) ;
+if ((P_o)<=P_demand)
+   penalty_power_1=((abs(P_demand-(P_o))^2)*0.1) ;
 end
 
-if ((P_o+P_loss)>P_demand)
-   penalty_power_2=((abs((P_o+P_loss)-P_demand)^2)*1) ;
+if ((P_o)>P_demand)
+   penalty_power_2=((abs((P_o)-P_demand)^2)*1) ;
 end
 
 penalty_power_total=penalty_power_1+penalty_power_2 ;
