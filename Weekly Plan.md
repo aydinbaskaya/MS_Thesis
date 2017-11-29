@@ -314,16 +314,16 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 
 ### 23 - 30 Ekim
-- [ ] Chapter-4 düzeltmeleri tamamlanacak.
-<br/>:hourglass_flowing_sand: Analizler tamamlandı, chapter-4 düzeltmeleri devam ediyor.
+- [x] Chapter-4 düzeltmeleri tamamlanacak.
+<br/>:arrow_right: Analizler ve Chapter-4 düzeltmeleri tamamlandı.
 
 - [x] Magnetostatic ve Transient analizlerin sonuçları alınacak.
 <br/>:arrow_right: Analizler tamamlandı, sonuçlar uyumlu. Detaylı bilgiler için ilgili repoda "Design Notes.txt" oluşturuldu.
 
 
 ### 30 Ekim - 6 Kasım
-- [ ] Chapter-4 düzeltmeleri tamamlanacak.
-<br/>:hourglass_flowing_sand: Düzeltmeler devam ediyor
+- [x] Chapter-4 düzeltmeleri tamamlanacak.
+<br/>:arrow_right:Chapter-4 düzeltmeleri tamamlandı.
 
 - [x] Magnetostatic ve Transient analizlerin sonuçları alınarak son chapter a başlanacak.
 <br/>:arrow_right: 9mm ve 10 mm airgap analizleri tamamlandı, Ch-4 ve Ch-5  yazımı devam ediyor
@@ -331,14 +331,28 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 15 Kasım - 22 Kasım
 
-- [ ] Chapter-4 düzeltmeleri tamamlanacak.
+- [x] Chapter-4 düzeltmeleri tamamlanacak.
+<br/>:arrow_right:Chapter-4 düzeltmeleri tamamlandı.
 
-- [ ] Chapter-5 devam edilecek.
+- [x] Chapter-5 devam edilecek.
+<br/>:arrow_right:Chapter-5 düzeltmeleri devam ediyor.
 
-- [ ] Tasarım kodları commentleri düzenlenecek.
+- [x] Tasarım kodları commentleri düzenlenecek.
+<br/>:arrow_right:Kod comment yazımı tamamlandı.
 
 - [ ] Powereng'18 paper
 <br/>:hourglass_flowing_sand: Paper için süre uzatıldı.
+
+
+### 30 Kasım - 10 Aralık
+
+- [ ] Chapter-5 düzeltmeleri tamamlanacak.
+
+- [ ] İlk dört chapter birleştirme yapılacak.
+
+- [ ] Paper abstract gönderimleri
+
+
 
 
 
