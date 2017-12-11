@@ -22,12 +22,12 @@
     
 ### 5) IEEE CPE-POWERENG 2018
     Date: 10-12 April 2018
-    Submission deadline: 10 Dec. 2017(Submission Extended)
+    Submission deadline: 1 Jan. 2018(Submission Extended)
     Status: 
 
 ### 6) IET-RPG 2018
     Date: 26-27 September 2018
-    Submission deadline: 8 December 2017 (Abstract)
+    Submission deadline: 5 Jan. 2018 (Abstract Submission Extended)
     Status: 
     
 ### 7) ICEEE 2018
