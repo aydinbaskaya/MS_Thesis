@@ -347,14 +347,19 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 ### 30 Kasım - 10 Aralık
 
 - [ ] Chapter-5 düzeltmeleri tamamlanacak.
+<br/>:hourglass_flowing_sand: Saha görevi sebebiyle geçtiğimiz hafta tamamlanamadı.
 
 - [ ] İlk dört chapter birleştirme yapılacak.
+<br/>:hourglass_flowing_sand: Saha görevi sebebiyle geçtiğimiz hafta tamamlanamadı.
 
-- [ ] Paper abstract gönderimleri
+- [x] Paper abstract gönderimleri
+<br/>:arrow_right: Winercost minor revision düzeltmeleri yapılarak abstract tekrar yollandı.
 
+### 11-18 Aralık
 
+- [ ] Chapter-5 düzeltmeleri tamamlanacak.
 
-
+- [ ] İlk üç chapter birleştirmesi yapılacak.
 
 
 
