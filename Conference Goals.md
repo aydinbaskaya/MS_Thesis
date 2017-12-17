@@ -32,5 +32,5 @@
     
 ### 7) ICEEE 2018
     Date: 3-5 May 2018
-    Submission deadline: 15 December 2017 (Abstract & Full)
+    Submission deadline: 25 Jan. 2018 (Abstract & Full)-(Submission Extended)
     Status: 
