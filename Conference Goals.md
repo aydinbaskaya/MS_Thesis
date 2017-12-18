@@ -18,7 +18,7 @@
 ### 4) Winercost 18
     Date: 21-23 March 2018
     Submission deadline: 30 Nov. 2017(for accepted papers)
-    Status: Abstract minor revision corrections
+    Status: Abstract --> accepted, full paper--->pending(15 January 2018)
     
 ### 5) IEEE CPE-POWERENG 2018
     Date: 10-12 April 2018
