@@ -1,16 +1,16 @@
-r_mean	 4.720099e+00
-airgap	 9
-current density	 2.486149e+00
-outer limb thickness	 3.340100e-02
-inner limb thickness	 2.130033e-02
-steel web thickness	 2.930635e-02
-magnet/steel width ratio	 7.565641e-01
-Number of turn	 41
+r_mean	 4.713644e+00
+airgap	 10
+current density	 2.475493e+00
+outer limb thickness	 3.805812e-02
+inner limb thickness	 2.535914e-02
+steel web thickness	 2.240689e-02
+magnet/steel width ratio	 7.596965e-01
+Number of turn	 42
 Number of poles	 216
 number of branches	 6
-height of the winding	 4.411181e-02
-pitch ratio	 3.720410e-01
-fill factor	 6.980526e-01
-height of the magnet	 1.936301e-02
-lenghth of the magnet	 2.797459e-01
+height of the winding	 4.300189e-02
+pitch ratio	 3.889134e-01
+fill factor	 6.907907e-01
+height of the magnet	 1.880507e-02
+lenghth of the magnet	 2.827064e-01
 number of stack	 6

@@ -3,8 +3,8 @@ function [cost_f1,x_final,ratings,result_list]=design_multi(x)
 gear_ratio=1;              % Gearbox ratio of direct drive
 eff_gear=1;                % Gearbox efficiency
 multiwind=1;               % Multi speed operation is taken into account
-elec_price=7.3*10^-3;      % Electricity price($) per Wh 
-cap_f=0.9;                 % capacity factor
+elec_price=7.3*10^-5;      % Electricity price($) per Wh 
+cap_f=0.9;                 % capacity factor(availability)
 speed_data=[1.000	187.5	195000	0.319	0.040;...             %%power-speed data is taken here    
             1.000	4038.5	420000	0.107	0.029;...
             2.900	2606.1	786000	0.112	0.058;...
@@ -101,7 +101,7 @@ end
 
 [J_init,J_pmax,cost_f3,rpm,J,Vph,Iph,Pdes,P_tot,Eff,temp,P_net,optim_var2,result_list]=calculate(x,rpm,P_demand,speed_data,i);      %last calculation for J parameters
 
-income=P_net*elec_price*gear_ratio*cap_f;                           %Electricity generation income            
+income=P_net*elec_price*gear_ratio*cap_f*365*24;                           %Electricity generation income            
 cost_f2=cost_f2+cost_f3*speed_data(i,5)-income*speed_data(i,4);     %Cost calculation
 
 ratings(i+1,1)={rpm};

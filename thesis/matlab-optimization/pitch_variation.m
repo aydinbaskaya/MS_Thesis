@@ -4,21 +4,21 @@
 rpm=12;
 
 % final design variables:
-x=[4.669128e+00
+x=[4.713644e+00
 10
-2.452992e+00
-3.330197e-02
-2.194542e-02
-2.203521e-02
-7.624905e-01
-44
+2.475493e+00
+3.805812e-02
+2.535914e-02
+2.240689e-02
+7.596965e-01
+42
 216
 6
-4.409094e-02
-3.836697e-01
-6.995152e-01
-1.886225e-02
-2.854164e-01
+4.300189e-02
+3.889134e-01
+6.907907e-01
+1.880507e-02
+2.827064e-01
 6];
 
 x=x';
@@ -46,7 +46,7 @@ k=k+1;
 end
 
 pitch_var=0.1:0.1:7 ;
-plot(pitch_var,abs(sonuc/412.42*100),'b--o','LineWidth',1);        % 412.42 is the final design induced emf value for default pitch ratio
+plot(pitch_var,abs(sonuc/395.63*100),'b--o','LineWidth',1);        % 395.63 is the final design induced emf value for default pitch ratio
 grid on
 grid minor
 xlabel('Tc/Tp','FontSize',16)
