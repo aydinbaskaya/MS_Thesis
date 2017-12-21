@@ -355,7 +355,7 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 - [x] Paper abstract gönderimleri
 <br/>:arrow_right: Winercost minor revision düzeltmeleri yapılarak abstract tekrar yollandı.
 
-### 11-18 Aralık
+### 18-25 Aralık
 
 - [ ] Chapter-5 düzeltmeleri tamamlanacak.
 
