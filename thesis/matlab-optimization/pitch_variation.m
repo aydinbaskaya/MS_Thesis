@@ -46,7 +46,7 @@ k=k+1;
 end
 
 pitch_var=0.1:0.1:7 ;
-plot(pitch_var,abs(sonuc/395.63*100),'b--o','LineWidth',1);        % 395.63 is the final design induced emf value for default pitch ratio
+plot(pitch_var,abs(sonuc/395.63*100),'b--o','LineWidth',1.5);        % 395.63 is the final design induced emf value for default pitch ratio
 grid on
 grid minor
 xlabel('Tc/Tp','FontSize',16)

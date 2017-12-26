@@ -71,7 +71,7 @@ uc_steel=3 ;        % unit cost of steel in $/kg
 uc_copper=10 ;      % unit cost of copper in $/kg
 uc_magnet=80 ;      % unit cost of magnet in $/kg
 uc_epoxy=0.4 ;      % unit cost of epoxy in $/kg
-eddy_d=20.35*10^3 ; %magnet eddy loss density W/m^3
+eddy_d=18*10^3 ; %magnet eddy loss density W/m^3
 %----------------------------End of initialization------------------------
 
 %% Variable Control part
