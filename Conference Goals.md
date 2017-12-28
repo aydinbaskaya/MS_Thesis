@@ -19,6 +19,7 @@
     Date: 21-23 March 2018
     Submission deadline: 30 Nov. 2017(for accepted papers)
     Status: Abstract --> accepted, full paper--->pending(15 January 2018)
+    Registration Status: Early bird registration is done.
     
 ### 5) IEEE CPE-POWERENG 2018
     Date: 10-12 April 2018
@@ -33,4 +34,9 @@
 ### 7) ICEEE 2018
     Date: 3-5 May 2018
     Submission deadline: 25 Jan. 2018 (Abstract & Full)-(Submission Extended)
+    Status: 
+    
+### 8) ICEM 2018
+    Date: September 3-6, 2018
+    Submission deadline: 4 February, 2018
     Status: 
