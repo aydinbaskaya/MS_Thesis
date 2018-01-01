@@ -346,20 +346,29 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 30 Kasım - 10 Aralık
 
-- [ ] Chapter-5 düzeltmeleri tamamlanacak.
-<br/>:hourglass_flowing_sand: Saha görevi sebebiyle geçtiğimiz hafta tamamlanamadı.
+- [X] Chapter-5 düzeltmeleri tamamlanacak.
+<br/>:arrow_right: Düzeltmeler tamamlandı.
 
-- [ ] İlk dört chapter birleştirme yapılacak.
-<br/>:hourglass_flowing_sand: Saha görevi sebebiyle geçtiğimiz hafta tamamlanamadı.
+- [x] İlk dört chapter birleştirme yapılacak.
+<br/>:arrow_right: Birleştirme tamamlandı.
 
 - [x] Paper abstract gönderimleri
 <br/>:arrow_right: Winercost minor revision düzeltmeleri yapılarak abstract tekrar yollandı.
 
+
 ### 18-25 Aralık
 
-- [ ] Chapter-5 düzeltmeleri tamamlanacak.
+- [x] Chapter-5 düzeltmeleri tamamlanacak.
+<br/>:arrow_right: Düzeltmeler tamamlanarak bölümler birleştirildi.
 
-- [ ] İlk üç chapter birleştirmesi yapılacak.
+- [x] İlk üç chapter birleştirmesi yapılacak.
+<br/>:arrow_right: Düzeltmeler tamamlanarak bölümler birleştirildi.
 
 
+### 31 Aralık - 5 Ocak
 
+- [ ] Tez birleştirilmiş metinde düzeltmeler tamamlanacak ve premilinary sayfalar da eklenecek.
+
+- [ ] Jüri atama formu ve diğer evraklar tamamlanarak öğrenci işlerine teslim edilecek.
+
+- [ ] RPG 2018 abstract submission
