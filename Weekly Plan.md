@@ -367,7 +367,7 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 31 Aralık - 5 Ocak
 
-- [ ] Tez birleştirilmiş metinde düzeltmeler tamamlanacak ve premilinary sayfalar da eklenecek.
+- [ ] Tez birleştirilmiş metinde düzeltmeler tamamlanacak ve preliminary sayfalar da eklenecek.
 
 - [ ] Jüri atama formu ve diğer evraklar tamamlanarak öğrenci işlerine teslim edilecek.
 
