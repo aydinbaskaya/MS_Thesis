@@ -21,15 +21,15 @@
     Status: Abstract --> accepted, full paper--->pending(15 January 2018)
     Registration Status: Early bird registration is done.
     
-### 5) IEEE CPE-POWERENG 2018
+### 5) ~IEEE CPE-POWERENG 2018~
     Date: 10-12 April 2018
     Submission deadline: 1 Jan. 2018(Submission Extended)
-    Status: 
+    Status:Missed 
 
-### 6) IET-RPG 2018
+### 6) ~IET-RPG 2018~
     Date: 26-27 September 2018
     Submission deadline: 5 Jan. 2018 (Abstract Submission Extended)
-    Status: 
+    Status:Missed 
     
 ### 7) ICEEE 2018
     Date: 3-5 May 2018
