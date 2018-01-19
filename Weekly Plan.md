@@ -378,10 +378,20 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 8 - 15 Ocak
 
-- [ ] Tezin jüri kopyası hazırlanarak jüri üyelerine dağıtımının yapılması.
+- [x] Tezin jüri kopyası hazırlanarak jüri üyelerine dağıtımının yapılması.
+<br/>:arrow_right: Tez savunması gerçekleştrildi. 
 
-- [ ] Tez sunumu hazırlanması.
+- [x] Tez sunumu hazırlanması.
+<br/>:arrow_right: Tez savunması gerçekleştrildi. 
 
 - [ ] Winercost full paper. 
+<br/>:hourglass_flowing_sand: Erteleme alındı.
 
+### 22 - 28 Ocak
+
+- [ ]  Jüri düzeltmeleri yapılacak.
+
+- [ ] Winercost paper.
+
+- [ ] ICEEE paper.
 
