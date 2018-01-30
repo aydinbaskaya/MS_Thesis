@@ -341,7 +341,7 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 <br/>:arrow_right:Kod comment yazımı tamamlandı.
 
 - [ ] Powereng'18 paper
-<br/>:hourglass_flowing_sand: Paper için süre uzatıldı.
+<br/>:x: İptal.
 
 
 ### 30 Kasım - 10 Aralık
@@ -374,7 +374,8 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 <br/>:arrow_right: Gerekli evraklar hazırlandı.
 
 - [ ] RPG 2018 abstract submission
-<br/>:hourglass_flowing_sand: Henüz yüklenmedi.
+<br/>:x: İptal.
+
 
 ### 8 - 15 Ocak
 
@@ -384,14 +385,26 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 - [x] Tez sunumu hazırlanması.
 <br/>:arrow_right: Tez savunması gerçekleştirildi. 
 
-- [ ] Winercost full paper. 
-<br/>:hourglass_flowing_sand: Erteleme alındı.
+- [x] Winercost full paper. 
+<br/>:arrow_right:  Full paper yollandı.
+
 
 ### 22 - 28 Ocak
 
 - [ ] Jüri düzeltmeleri yapılacak.
+<br/>:hourglass_flowing_sand: Tez düzeltmeleri devam ediyor. 
 
-- [ ] Winercost paper.
+- [x] Winercost paper.
+<br/>:arrow_right: Full paper yollandı.
 
 - [ ] ICEEE paper.
+<br/>:x: İptal.
+
+
+### 29 Ocak - 5 Şubat 
+
+- [ ] Jüri düzeltmeleri tamamlanacak.
+
+- [ ] Winercost vize işlemleri.
+
 
