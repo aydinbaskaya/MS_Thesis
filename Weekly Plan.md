@@ -403,8 +403,16 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 29 Ocak - 5 Şubat 
 
-- [ ] Jüri düzeltmeleri tamamlanacak.
+- [x] Jüri düzeltmeleri tamamlanacak.
+<br/>:arrow_right: Juri düzeltmeleri ve enstitü işlemleri tamamlandı.
 
-- [ ] Winercost vize işlemleri.
+- [x] Winercost vize işlemleri.
+<br/>:arrow_right: Vize başvurusu yapıldı.
+
+
+### 12 - 20 Şubat 
+
+- [ ] Tez teslimi ve mezuniyet işlemleri
+
 
 
