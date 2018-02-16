@@ -391,8 +391,8 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 22 - 28 Ocak
 
-- [ ] Jüri düzeltmeleri yapılacak.
-<br/>:hourglass_flowing_sand: Tez düzeltmeleri devam ediyor. 
+- [x] Jüri düzeltmeleri yapılacak.
+<br/>:arrow_right: Tez düzeltmeleri tamamlandı. 
 
 - [x] Winercost paper.
 <br/>:arrow_right: Full paper yollandı.
