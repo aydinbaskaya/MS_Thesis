@@ -412,7 +412,8 @@ Bu hafta görev sebebiyle Ankara dışında olacağımdan haftalık hedeflerde �
 
 ### 12 - 20 Şubat 
 
-- [ ] Tez teslimi ve mezuniyet işlemleri
+- [x] Tez teslimi ve mezuniyet işlemleri
+<br/>:arrow_right: İşlemler tamamlandı.
 
 
 
